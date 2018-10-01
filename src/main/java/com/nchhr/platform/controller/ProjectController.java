@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("")
-//平台项目相关控制器
+//平台项目相关控制器层
 public class ProjectController {
 
 }
