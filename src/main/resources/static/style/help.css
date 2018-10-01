@@ -1,0 +1,14 @@
+body{
+    background: #f2f2f2;
+}
+ul{
+    border-top: 0.2rem solid #f2f2f2;
+    background: #fff;
+}
+ul li{
+    line-height: 0.88rem;
+    padding-left: 0.3rem;
+    color: #323232;
+    font-size: 0.26rem;
+    border-bottom: 1px solid #f2f2f2;
+}

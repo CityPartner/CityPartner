@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/common.js"></script>
+    <script src="js/jquery.js"></script>
+    <link href="style/reset.css" rel="stylesheet" type="text/css">
+    <link href="style/base.css" rel="stylesheet" type="text/css">
+    <link href="style/header.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="style/projectDetail.css"/>
+    <title>项目详情</title>
+</head>
+<body>
+<header><span onclick="javascript:history.go(-1)"></span>&nbsp;&nbsp;项目详情<b id="share">分享</b></header>
+<img src="images/projectDetail/banner.png" alt="" style="width: 100%;height: 3.8rem;"/>
+<p class="f30 title">一起来开一家设计师主题咖啡馆</p>
+<ul id="intro">
+    <li class="parent"><div class="child"></div></li>
+</ul>
+<div class="df aic pl30 person">
+    <img src="images/projectDetail/icon.png" alt="" style="width: 0.9rem;height: 0.9rem;"/>
+    <div class="ml30">
+        <p class="f26 g6">创始人</p>
+        <p class="f22 g9">某某某</p>
+        <p class="f26 g6">江西  南昌</p>
+    </div>
+</div>
+<ul class="detail">
+    <li>我的收入</li>
+    <li onclick="window.location.href='withdraw.html'">盈利提现</li>
+    <li>分红详情</li>
+    <li>项目收入</li>
+    <li>项目支出</li>
+    <li>优惠券</li>
+</ul>
+<ul id="comment">
+
+</ul>
+<footer class="df">
+    <div></div>
+    <div class="fx1" id="support">☰ 项目后台管理</div>
+</footer>
+<div class="am-share">
+    <h3 class="am-share-title tc">分享到</h3>
+    <ul class="am-share-sns df jcsa">
+        <li><a href="#" onclick="javascript:bShare.share(event,'sinaminiblog',0);return false;"> <i class="share-icon-weibo1"></i> <span>QQ好友</span> </a> </li>
+        <li><a href="#" onclick="javascript:bShare.share(event,'weixin',0);return false;"> <i class="share-icon-weibo2"></i> <span>朋友圈</span> </a> </li>
+        <li><a href="#" onclick="javascript:bShare.share(event,'weixin',0);return false;"> <i class="share-icon-weibo3"></i> <span>微信好友</span> </a> </li>
+        <li><a href="#" onclick="javascript:bShare.share(event,'qqim',0);return false;"> <i class="share-icon-weibo4"></i> <span>新浪微博</span> </a> </li>
+    </ul>
+</div>
+
+<script>
+    $(function(){
+        var money=$("#money").html();
+        var target=$("#target").html();
+        // money=money.slice(money.indexOf('￥')+1);
+        // target=target.slice(target.indexOf('￥')+1);
+        console.log(money);
+        console.log(target);
+        $(".child").css("width",parseInt(money)/parseInt(target)*100+'%')
+        function toshare(){
+            $(".am-share").addClass("am-modal-active");
+            if($(".sharebg").length>0){
+                $(".sharebg").addClass("sharebg-active");
+            }else{
+                $("body").append('<div class="sharebg"></div>');
+                $(".sharebg").addClass("sharebg-active");
+            }
+            document.documentElement.style.overflow='hidden';
+            document.body.style.overflow='hidden';
+            $(".sharebg-active,.share_btn").click(function(){
+                $(".am-share").removeClass("am-modal-active");
+                setTimeout(function(){
+                    $(".sharebg-active").removeClass("sharebg-active");
+                    $(".sharebg").remove();
+                },300);
+                document.documentElement.style.overflow='auto';
+                document.body.style.overflow='auto';
+            })
+        }
+        $("#share").click(function(){
+            toshare();
+        });
+        if(money==0){
+            $("#support").css("background","#aaa");
+        }
+    });
+</script>
+</body>
+</html>

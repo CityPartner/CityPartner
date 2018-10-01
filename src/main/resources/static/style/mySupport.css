@@ -1,0 +1,36 @@
+body{
+    background: #f2f2f2;
+}
+h1{
+    font-size: 0.26rem;
+    font-weight: normal;
+    color: #323232;
+    line-height: 0.8rem;
+    padding-left: 0.3rem;
+}
+ul{
+    background: #fff;
+}
+ul li{
+    padding:0.3rem;
+    border-bottom: 0.2rem solid  #f2f2f2;
+}
+h2{
+    font-size: 0.32rem;
+    color: #323232;
+    line-height: 0.32rem;
+}
+.btn{
+    background:#e8373b ;
+    color: #fff;
+    text-align: center;
+    width: 1.5rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    font-size: 0.28rem;
+    border-radius: 0.1rem;
+}
+strong{
+    margin-left: 0.5rem;
+    font-weight: normal;
+}

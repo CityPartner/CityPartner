@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="js/common.js"></script>
+		<script src="js/jquery.js"></script>
+		<link href="style/reset.css" rel="stylesheet" type="text/css">
+		<link href="style/base.css" rel="stylesheet" type="text/css">
+		<link href="style/header.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="style/myProject.css" />
+		<title>我的项目</title>
+	</head>
+	<body>
+		<header>我的项目</header>
+		<nav>
+			<ul class="df jcsb bgwh">
+				<li class="tc fx1 active">参与中</li>
+				<li class="tc fx1">发起中</li>
+			</ul>
+		</nav>
+		<ul id="content0" class="content">
+			<li onclick="window.location.href='projectDetail.html'">
+				<div class="container">
+					<img src="images/myProject/img1.png" alt="" class="banner" />
+					<p class="intro">一起来开一家设计师主题咖啡馆</p>
+				</div>
+				<div class="message">
+					<div>
+						<div class="f22 g9">项目启动资金：<span class="f26 money">300000</span></div>
+					</div>
+					<div>
+						<p class="day">正在运作</p>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<ul id="content1" class="content" style="display: none;">
+			<li id="none">
+				<img src="images/myProject/none.png" alt="" />
+				<p class="tc f26 g9">您还没有发起过项目</p>
+				<button>我要发起项目</button>
+			</li>
+		</ul>
+		<script>
+			$(function() {
+				$("nav ul li").each(function(index, val) {
+					$(val).click(function() {
+						$(this).addClass("active").siblings().removeClass("active");
+						$("#content" + index).show().siblings(".content").hide();
+					});
+				});
+				for (var i = 0; i < $(".child2").length; i++) {
+					$(".child2").eq(i).css("width", parseInt($(".target2").eq(i).text()) + '%');
+				}
+			});
+		</script>
+	</body>
+</html>

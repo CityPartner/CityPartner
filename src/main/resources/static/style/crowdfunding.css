@@ -1,0 +1,228 @@
+body{
+    background: #f2f2f2;
+    padding-bottom: 1rem;
+}
+header b{
+   float: right;
+    font-size: 0.26rem;
+    color: #fff;
+    position: relative;
+    right: 0.3rem;
+    font-weight: normal;
+}
+nav{
+    height: 0.6rem;
+    background: #f2f2f2;
+    padding:0.2rem 0.3rem;
+}
+nav div{
+    height: 0.6rem;
+    line-height: 0.6rem;
+    font-size: 0.26rem;
+    color: #999;
+    padding-left: 0.66rem;
+    background: #fff;
+    border-radius: 0.6rem;
+    background:#fff url(../images/search.png) no-repeat 0.24rem center;
+    background-size: 0.28rem 0.28rem;
+    -webkit-background-size: 0.28rem 0.28rem;
+    -o-background-size: 0.28rem 0.28rem;
+}
+.nav{
+    height: 0.9rem;
+    background: #fff;
+    padding-left: 0.7rem;
+    padding-right: 0.3rem;
+}
+.nav li{
+    font-size: 0.26rem;
+    color: #666;
+    padding-right: 0.26rem;
+    background: url(../images/updown.png) no-repeat right center;
+    background-size: 0.11rem 0.23rem;
+    -webkit-background-size: 0.11rem 0.23rem;
+    -o-background-size: 0.11rem 0.23rem;
+}
+.nav li:first-child{
+    background: none;
+}
+#content{
+    padding:0 0.2rem;
+}
+#content li{
+     margin-top: 0.2rem;
+ }
+.container{
+    position: relative;
+}
+
+.banner{
+    width: 7.1rem;
+    height: 3.6rem;
+}
+.intro{
+    position: absolute;
+    bottom: 0;
+    height:0.5rem ;
+    line-height: 0.5rem;
+    width: 100%;
+    font-size: 0.3rem;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+}
+.message{
+    display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+    -moz-justify-content: space-between;-webkit-justify-content: space-between;justify-content: space-between;
+    padding-left: 0.1rem;
+    padding-right: 0.2rem;
+    position: relative;
+    height: 0.9rem;
+    background: #fff;
+}
+.target{
+    font-size: 0.22rem;
+    line-height: 0.36rem;
+    background: #2d9cff;
+    color: #fff;
+    padding:0 0.07rem;
+    position: absolute;
+    border-radius: 0.1rem;
+    margin-top: 0.14rem;
+    margin-left: 0.95rem;
+}
+.point{
+    position: absolute;
+    border-bottom: 0.12rem solid #2d9cff;
+    border-left: 0.08rem solid transparent;
+    border-right: 0.08rem solid transparent;
+    right: 0.54rem;
+    top:-0.12rem;
+}
+.parent{
+    width: 5.34rem;
+    height: 0.1rem;
+    background: #ddd;
+    border-radius: 0.1rem;
+}
+.child{
+    margin-top: 0.15rem;
+    height: 0.1rem;
+    background: #2d9cff;
+    border-radius: 0.1rem;
+}
+.people{
+    font-size: 0.22rem;
+    color: #999;
+    text-align: right;
+    line-height: 0.22rem;
+    margin-top: 0.1rem;
+}
+.day{
+    font-size: 0.22rem;
+    color: #2d9cff;
+    line-height: 0.22rem;
+    margin-top: 0.15rem;
+}
+footer{
+    height: 0.98rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    border-top: 0.02rem solid #dcdcdc;
+}
+footer ul li{
+    height: 0.98rem;
+    position: relative;
+    width: 1rem;
+}
+footer ul li:nth-of-type(1){
+    background: url(../images/crowdfunding/icon1.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li:nth-of-type(2){
+    background: url(../images/crowdfunding/icon.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li:nth-of-type(3){
+    background: url(../images/index/icon3.png) no-repeat center 0.18rem;
+    background-size: 0.38rem 0.45rem;
+    -o-background-size: 0.38rem 0.45rem ;
+    -webkit-background-size: 0.38rem 0.45rem;
+}
+footer ul li:nth-of-type(4){
+    background: url(../images/index/icon4.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li p{
+    position: relative;
+    bottom: -0.65rem;
+    font-size: 0.2rem;
+    color: #aaa;
+    text-align: center;
+}
+.active{
+    color: #2d9cff;
+}
+.bg{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.6);
+    top:0;
+}
+.select{
+    position: absolute;
+    top:0.88rem;
+    right: 0;
+    background: #fff;
+    width: 5.6rem;
+    height: 100%;
+}
+.select{
+    font-size: 0.26rem;
+}
+.act{
+    background: #2d9cff;
+    color: #fff;
+    border-radius: 0.06rem;
+}
+.ctr{
+    width: 3rem;
+}
+.ctr li{
+    margin:0 0.12rem;
+    padding:0 0.12rem;
+}
+.ctr1 li:nth-of-type(4){
+    margin-top: 0.3rem;
+}
+.ctr1 li:nth-of-type(5){
+    margin-top: 0.3rem;
+}
+.ctr1 li:nth-of-type(6){
+    margin-top: 0.3rem;
+}
+.ctr2 li:nth-of-type(3){
+    margin-top: 0.3rem;
+}
+.ctr3 li{
+    margin-top: 0.3rem;
+}
+.ctr3 li:nth-of-type(1){
+    margin-top: 0;
+}
+.ctr3 li:nth-of-type(2){
+    margin-top: 0;
+}
+.all{
+    height: 0.4rem;
+    padding:0 0.12rem;
+}
+

@@ -1,0 +1,18 @@
+body{
+    background: #f2f2f2;
+}
+table{
+    width: 100%;
+    text-align: center;
+    background: #fff;
+}
+tbody{
+    font-size: 0.26rem;
+    color: #323232;
+}
+tbody tr{
+    border-top: 1px solid #f2f2f2;
+}
+td{
+    padding:0.3rem 0;
+}

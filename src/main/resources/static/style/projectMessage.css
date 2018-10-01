@@ -1,0 +1,146 @@
+body{
+    background: #f2f2f2;
+    padding-bottom: 1rem;
+}
+header b{
+    float: right;
+    font-size: 0.26rem;
+    color: #fff;
+    font-weight: normal;
+    margin-right: 0.3rem;
+}
+nav{
+    border-top: 0.2rem solid #f2f2f2;
+    border-bottom: 0.2rem solid #f2f2f2;
+    height: 3rem;
+}
+nav ul{
+    padding-top: 0.5rem;
+    padding-bottom: 0.88rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    background: #fff;
+}
+nav ul li div{
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: 0.5rem;
+    color: #2d9cff;
+    border-radius: 1rem;
+    border:1px solid #2d9cff;
+    text-align: center;
+}
+nav ul li p{
+    color: #aaa;
+    line-height: 0.26rem;
+    margin-top: 0.3rem;
+}
+.activeTop{
+    background: #a3d4ff;
+    border: none;
+    color: #fff;
+}
+.activeBottom{
+    color: #323232;
+}
+form ul li{
+    line-height: 0.88rem;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 0.26rem;
+    color: #323232;
+}
+form ul li:nth-of-type(2){
+    padding-bottom: 0.9rem;
+}
+form ul li:last-child{
+    border-top: 0.2rem solid #f2f2f2;
+}
+form ul li label{
+    width: 1.7rem;
+}
+form ul li input{
+    background: #fff;
+    flex: 1;
+}
+.select{
+    background: url(../images/right.png) no-repeat right center;
+    background-size: 0.16rem 0.25rem;
+    -o-background-size: 0.16rem 0.25rem;
+    -webkit-background-size: 0.16rem 0.25rem;
+}
+#file{
+    background: #eee url(../images/add.png) no-repeat center center;
+    background-size: 0.5rem 0.5rem;
+    -o-background-size: 0.5rem 0.5rem;
+    -webkit-background-size: 0.5rem 0.5rem;
+    margin-left: 0.25rem;
+}
+input[type="file"]{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+form>div{
+    padding:0.4rem 0;
+}
+input[type="submit"]{
+    display: block;
+    width: 6.3rem;
+    height: 0.75rem;
+    background: #2d9cff;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    line-height: 0.75rem;
+    border-radius: 0.1rem;
+    margin-bottom: 0.3rem;
+}
+footer{
+    height: 0.98rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    border-top: 0.02rem solid #dcdcdc;
+}
+footer ul li{
+    height: 0.98rem;
+    position: relative;
+    width: 1rem;
+}
+footer ul li:nth-of-type(1){
+    background: url(../images/crowdfunding/icon1.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li:nth-of-type(2){
+    background: url(../images/index/icon2.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li:nth-of-type(3){
+    background: url(../images/icon3.png) no-repeat center 0.18rem;
+    background-size: 0.38rem 0.45rem;
+    -o-background-size: 0.38rem 0.45rem ;
+    -webkit-background-size: 0.38rem 0.45rem;
+}
+footer ul li:nth-of-type(4){
+    background: url(../images/index/icon4.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li p{
+    position: relative;
+    bottom: -0.65rem;
+    font-size: 0.2rem;
+    color: #aaa;
+    text-align: center;
+}
+.active{
+    color: #2d9cff;
+}

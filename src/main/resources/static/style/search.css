@@ -1,0 +1,67 @@
+body{
+    background: #f2f2f2;
+}
+form{
+    height: 1rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+}
+form input{
+    line-height: 0.6rem;
+    font-size: 0.26rem;
+    color: #999;
+    padding-left:0.66rem ;
+    border-radius: 0.6rem;
+    width: 100%;
+    box-sizing: border-box;
+   -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #fff url(../images/search.png) no-repeat 0.22rem center;
+    background-size:0.28rem 0.28rem ;
+    -webkit-background-size: 0.28rem 0.28rem;
+    margin-top: 0.2rem;
+}
+h1{
+    line-height: 0.6rem;
+    font-size: 0.26rem;
+    color: #999999;
+    padding-left: 0.3rem;
+    background: #fff;
+}
+.intro{
+    margin-top: 0.22rem;
+}
+.intro li{
+    float: left;
+    line-height: 0.5rem;
+    width: 1.16rem;
+    font-size: 0.26rem;
+    color: #323232;
+    text-align: center;
+    background: #fff;
+    border-radius:0.1rem ;
+    margin-left: 0.3rem;
+}
+h2{
+    line-height: 0.6rem;
+    font-size: 0.26rem;
+    color: #999999;
+    padding-left: 0.3rem;
+    margin-top: 0.4rem;
+}
+.now li{
+    padding:0 0.3rem;
+    height: 0.9rem;
+    border-bottom: 0.02rem solid #f2f2f2;
+    display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+    -moz-justify-content: space-between;-webkit-justify-content: space-between;justify-content: space-between;
+    -webkit-box-align: center;-moz-align-items: center;-webkit-align-items: center;align-items: center;
+    font-size: 0.26rem;
+    color: #323232;
+    background: #fff;
+}
+.del{
+    font-size: 0.6rem;
+    color: #999;
+    font-weight: 100;
+}

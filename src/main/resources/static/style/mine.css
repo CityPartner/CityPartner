@@ -1,0 +1,106 @@
+body{
+    background: #f2f2f2;
+}
+header{
+    background:#2d9cff;
+}
+header>img{
+    margin:0 auto;
+    width: 1.26rem;
+    height: 1.26rem;
+    border:0.06rem solid #fff;
+    border-radius: 1rem;
+}
+header>p:nth-of-type(1){
+    line-height: 0.8rem;
+    border-bottom: 1px solid #fff;
+}
+header p span{
+    margin-left: 0.4rem;
+    padding-right: 0.5rem;
+    background: url(../images/mine/down.png) no-repeat right center;
+    background-size: 0.26rem 0.16rem ;
+    -webkit-background-size: 0.26rem 0.16rem;
+    -o-background-size: 0.26rem 0.16rem;
+}
+.background{
+    background: url(../images/mine/up.png) no-repeat right center;
+}
+.content li{
+    height: 0.88rem;
+    color: #323232;
+    background:#fff url(../images/right.png) no-repeat 7.04rem center;
+    background-size: 0.16rem 0.25rem ;
+    -webkit-background-size: 0.16rem 0.25rem;
+    -o-background-size: 0.16rem 0.25rem;
+}
+footer{
+    height: 0.98rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    border-top: 0.02rem solid #dcdcdc;
+}
+footer ul li{
+    height: 0.98rem;
+    position: relative;
+    width: 1rem;
+}
+footer ul li:nth-of-type(1){
+    background: url(../images/crowdfunding/icon1.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li:nth-of-type(2){
+    background: url(../images/index/icon2.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li:nth-of-type(3){
+    background: url(../images/index/icon3.png) no-repeat center 0.18rem;
+    background-size: 0.38rem 0.45rem;
+    -o-background-size: 0.38rem 0.45rem ;
+    -webkit-background-size: 0.38rem 0.45rem;
+}
+footer ul li:nth-of-type(4){
+    background: url(../images/mine/footer.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li p{
+    position: relative;
+    bottom: -0.65rem;
+    font-size: 0.2rem;
+    color: #aaa;
+    text-align: center;
+}
+.active{
+    color: #2d9cff;
+}
+.show div{
+    line-height: 0.7rem;
+}
+.recharge{
+    font-size: 0.26rem;
+    color: #323232;
+    padding-left: 0.65rem;
+    display: inline-block;
+    background: url(../images/mine/recharge.png) no-repeat left center;
+    background-size: 0.4rem 0.4rem;
+    -o-background-size: 0.4rem 0.4rem;
+    -webkit-background-size: 0.4rem 0.4rem;
+}
+.withdraw{
+    font-size: 0.26rem;
+    color: #323232;
+    padding-left: 0.65rem;
+    display: inline-block;
+    background: url(../images/mine/withdraw.png) no-repeat left center;
+    background-size: 0.4rem 0.4rem;
+    -o-background-size: 0.4rem 0.4rem;
+    -webkit-background-size: 0.4rem 0.4rem;
+}

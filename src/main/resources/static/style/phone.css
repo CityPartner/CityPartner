@@ -1,0 +1,46 @@
+body{
+    background: #f2f2f2;
+}
+form ul li{
+    padding:0 0.3rem;
+    margin-top:0.2rem;
+    height: 0.88rem;
+    position: relative;
+}
+form ul li:last-child{
+    margin-top: 0.28rem;
+}
+input[type="text"]{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    font-size: 0.26rem;
+    color: #999;
+    padding-left: 0.2rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+input[type="submit"]{
+    display: block;
+    width: 6.3rem;
+    line-height: 0.77rem;
+    font-size: 0.26rem;
+    color: #fff;
+    background: #2d9cff;
+    margin:0 auto;
+    border-radius: 0.1rem;
+}
+#get{
+    position: absolute;
+    width: 1.95rem;
+    height: 0.6rem;
+    background: #2d9cff;
+    color: #fff;
+    font-size: 0.26rem;
+    text-align: center;
+    line-height: 0.6rem;
+    right: 0.4rem;
+    border-radius: 0.1rem;
+    margin-top: 0.14rem;
+}

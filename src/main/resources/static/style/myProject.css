@@ -1,0 +1,173 @@
+body{
+    background: #f2f2f2;
+}
+nav ul li{
+    height: 0.84rem;
+    font-size: 0.3rem;
+    color: #aaaaaa;
+    line-height: 0.84rem;
+}
+.active{
+    color: #2d9cff;
+    border-bottom: 0.04rem solid #2d9cff;
+}
+
+.content{
+    padding:0 0.2rem;
+}
+.content li{
+    margin-top: 0.2rem;
+    border-radius: 0.1rem;
+}
+.container{
+    position: relative;
+}
+
+.banner{
+    width: 7.1rem;
+    height: 3.6rem;
+}
+.intro{
+    position: absolute;
+    bottom: 0;
+    height:0.5rem ;
+    line-height: 0.5rem;
+    width: 100%;
+    font-size: 0.3rem;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+}
+.message{
+    display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+    -moz-justify-content: space-between;-webkit-justify-content: space-between;justify-content: space-between;
+    padding-left: 0.1rem;
+    padding-right: 0.2rem;
+    position: relative;
+    height: 0.88rem;
+    background: #fff;
+    border-bottom: 0.02rem solid #ebebeb;
+    -webkit-box-align: center;-moz-align-items: center;-webkit-align-items: center;align-items: center;
+}
+.target{
+    font-size: 0.22rem;
+    line-height: 0.36rem;
+    background: #2d9cff;
+    color: #fff;
+    padding:0 0.07rem;
+    position: absolute;
+    border-radius: 0.1rem;
+    margin-top: 0.14rem;
+    margin-left: 0.95rem;
+}
+.point{
+    position: absolute;
+    border-bottom: 0.12rem solid #2d9cff;
+    border-left: 0.08rem solid transparent;
+    border-right: 0.08rem solid transparent;
+    right: 0.54rem;
+    top:-0.12rem;
+}
+.parent{
+    width: 5.34rem;
+    height: 0.1rem;
+    background: #ddd;
+    border-radius: 0.1rem;
+}
+.child{
+    margin-top: 0.15rem;
+    height: 0.1rem;
+    background: #2d9cff;
+    border-radius: 0.1rem;
+}
+.people{
+    font-size: 0.22rem;
+    color: #999;
+    text-align: right;
+    line-height: 0.22rem;
+    margin-top: 0.1rem;
+}
+.day{
+    font-size: 0.22rem;
+    color: #2d9cff;
+    line-height: 0.22rem;
+}
+.money{
+    color:#e8373b;
+}
+.message2{
+    display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+    -moz-justify-content: space-between;-webkit-justify-content: space-between;justify-content: space-between;
+    padding-left: 0.1rem;
+    padding-right: 0.2rem;
+    position: relative;
+    height: 0.9rem;
+    background: #fff;
+}
+.target2{
+    font-size: 0.22rem;
+    line-height: 0.36rem;
+    background: #2d9cff;
+    color: #fff;
+    padding:0 0.07rem;
+    position: absolute;
+    border-radius: 0.1rem;
+    margin-top: 0.14rem;
+    margin-left: 0.95rem;
+}
+.point2{
+    position: absolute;
+    border-bottom: 0.12rem solid #2d9cff;
+    border-left: 0.08rem solid transparent;
+    border-right: 0.08rem solid transparent;
+    right: 0.54rem;
+    top:-0.12rem;
+}
+.parent2{
+    width: 5.34rem;
+    height: 0.1rem;
+    background: #ddd;
+    border-radius: 0.1rem;
+    margin-top: 0.16rem;
+}
+.child2{
+    margin-top: 0.15rem;
+    height: 0.1rem;
+    background: #2d9cff;
+    border-radius: 0.1rem;
+}
+.people2{
+    font-size: 0.22rem;
+    color: #999;
+    text-align: right;
+    line-height: 0.22rem;
+    margin-top: 0.1rem;
+}
+.day2{
+    font-size: 0.22rem;
+    color: #2d9cff;
+    line-height: 0.22rem;
+    margin-top: 0.15rem;
+}
+#none img{
+    width: 2rem;
+    height: 2rem;
+    margin:0 auto;
+    margin-top: 1.86rem;
+
+}
+#none p{
+    margin-top: 0.4rem;
+}
+#none button{
+    display: block;
+    width: 6.3rem;
+    height: 0.75rem;
+    background: #2d9cff;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 0.55rem;
+    line-height: 0.75rem;
+    border-radius: 0.1rem;
+}

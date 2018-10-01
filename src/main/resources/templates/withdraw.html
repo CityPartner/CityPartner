@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/common.js"></script>
+    <script src="js/jquery.js"></script>
+    <link href="style/reset.css" rel="stylesheet" type="text/css">
+    <link href="style/base.css" rel="stylesheet" type="text/css">
+    <link href="style/header.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="style/withdraw.css"/>
+    <title>提现</title>
+</head>
+<body>
+<header><span onclick="javascript:history.go(-1)"></span>提现</header>
+<form action="">
+    <ul class="bgwh content1">
+        <li class="df pr30 pl30"><label class="f26" for="name">申请人</label>
+            <input type="text" id="name" name="name" placeholder="请输入姓名"/></li>
+        <li class="df pr30 pl30"><label class="f26" for="id">可提现金额</label>
+            <input type="text" id="id" name="id" value="2000.00" disabled/></li>
+        <li class="pr30 pl30"><label class="f26" for="money">本次提现金额</label>
+            <input type="text" id="money" name="money" placeholder="请输入提现金额"/>元
+        </li>
+        <li class="df pr30 pl30"><input type="text" id="pass" name="pass" placeholder="请输入短信验证码"/><span
+                id="get">获取验证码</span></li>
+    </ul>
+    <input type="submit" value="确认提现"/>
+</form>
+<p>提现手续费：2.00元（手续费从提现金额中扣除，因此 2元以下无法提现）</p>
+<script>
+    $(function () {
+        $("select").change(function () {
+            if ($(this).val() != "default") {
+                $(this).css("paddingLeft", "0.68rem");
+            } else {
+                $(this).css("paddingLeft", "0");
+            }
+            switch ($(this).val()) {
+                case "工行":
+                    $(this).css("backgroundImage", "url(images/bank.png)");
+                    break;
+                default :
+                    $(this).css("backgroundImage", "url()");
+                    break;
+            }
+        });
+    });
+</script>
+</body>
+</html>

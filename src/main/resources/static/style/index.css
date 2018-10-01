@@ -1,0 +1,188 @@
+body{
+    padding-top: 0.88rem;
+    padding-bottom: 1rem;
+}
+header b{
+    float: right;
+    position: relative;
+    width: 0.3rem;
+    height: 0.26rem;
+    background: url(../images/index/email.png) no-repeat center center;
+    background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    top:0.31rem;
+    right: 0.3rem;
+}
+.flexslider {
+    margin: 0px auto;
+    position: relative;
+    width: 100%;
+    height: 3.5rem;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.flexslider .slides li {
+    width: 100%;
+    height: 100%;
+}
+
+.flex-control-nav {
+    width: 100%;
+    position: absolute;
+    bottom:0.13rem;
+    text-align: center;
+    font-size: 0.2rem;
+}
+
+.flex-control-nav li {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+
+.flex-control-paging li a {
+    background: url(../images/dot.png) no-repeat 0 -0.25rem;
+    background-size:0.25rem 0.5rem ;
+    display: block;
+    height: 0.2rem;
+    overflow: hidden;
+    text-indent: -99em;
+    width: 0.2rem;
+    cursor: pointer;
+    margin-left: 0.1rem;
+}
+
+.flex-control-paging li a.flex-active,
+.flex-control-paging li.active a {
+    background-position: 0 0;
+}
+.flexslider .slides a img {
+    width: 100%;
+    display: block;
+}
+.item{
+    border-bottom: 0.1rem solid #eee;
+}
+.item ul li img{
+    width:0.85rem;
+    height: 0.85rem;
+}
+.item ul{
+    padding:0.3rem 0.4rem 0.2rem 0.4rem;
+}
+.item ul li a span{
+     color:#9d9d9d;
+     line-height: 0.24rem;
+     margin-top:0.2rem;
+ }
+#banner{
+    border-top:0.2rem solid #f2f2f2;
+    border-bottom: 0.2rem solid #f2f2f2;
+    width: 100%;
+    height: 2.68rem;
+}
+h1{
+    line-height: 0.6rem;
+    font-size: 0.26rem;
+    color: #323232;
+    padding-left: 0.3rem;
+}
+#content li{
+    display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+    padding: 0.16rem 0.3rem 0.18rem 0.3rem;
+    border-top: 1px solid #dcdcdc;
+
+}
+#content li img{
+    width: 2.65rem;
+    height: 1.8rem;
+}
+#content li>div{
+    display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+    -webkit-box-direction: normal;-webkit-box-orient: vertical;-moz-flex-direction: column;-webkit-flex-direction: column;flex-direction: column;
+    -moz-justify-content: space-between;-webkit-justify-content: space-between;justify-content: space-between;
+    padding: 0.1rem 0 0.1rem 0.3rem;
+}
+#content li>div p{
+    font-size: 0.26rem;
+    color: #323232;
+}
+#content li >div >div:nth-of-type(1){
+    display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
+    -webkit-box-align: center;-moz-align-items: center;-webkit-align-items: center;align-items: center;
+}
+#content li >div >div:last-child{
+    font-size: 0.22rem;
+    color: #999;
+}
+#content li >div >div:last-child span{
+    color: #323232;
+}
+#content li >div >div:last-child span:first-child{
+    margin-right: 0.6rem;
+}
+.container{
+    width: 3.12rem;
+    height: 0.1rem;
+    background: #ddd;
+    border-radius: 0.1rem;
+    margin-right: 0.3rem;
+}
+.num{
+    font-size: 0.22rem;
+    color: #2d9cff;
+}
+.child{
+    height: 0.1rem;
+    background: #2d9cff;
+    border-radius: 0.1rem;
+}
+footer{
+    height: 0.98rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    border-top: 0.02rem solid #dcdcdc;
+}
+footer ul li{
+    height: 0.98rem;
+    position: relative;
+    width: 1rem;
+}
+footer ul li:nth-of-type(1){
+    background: url(../images/index/icon1.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li:nth-of-type(2){
+    background: url(../images/index/icon2.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li:nth-of-type(3){
+    background: url(../images/index/icon3.png) no-repeat center 0.18rem;
+    background-size: 0.38rem 0.45rem;
+    -o-background-size: 0.38rem 0.45rem ;
+    -webkit-background-size: 0.38rem 0.45rem;
+}
+footer ul li:nth-of-type(4){
+    background: url(../images/index/icon4.png) no-repeat center 0.18rem;
+    background-size: 0.42rem 0.45rem;
+    -o-background-size: 0.42rem 0.45rem ;
+    -webkit-background-size: 0.42rem 0.45rem;
+}
+footer ul li p{
+    position: relative;
+    bottom: -0.65rem;
+    font-size: 0.2rem;
+    color: #aaa;
+    text-align: center;
+}
+.active{
+    color: #2d9cff;
+}

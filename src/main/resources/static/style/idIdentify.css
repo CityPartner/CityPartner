@@ -1,0 +1,66 @@
+body{
+    background: #f2f2f2;
+}
+form{
+    margin-top: 0.2rem;
+}
+.txt{
+    height: 0.88rem;
+    line-height: 0.88rem;
+    background: #fff;
+}
+.txt input{
+    background: #fff;
+    font-size: 0.26rem;
+    color: #323232;
+    width: 5.5rem;
+}
+#imgdiv{
+    display: block;
+    margin:0 auto;
+    width: 6.5rem;
+    height: 4rem;
+    border-radius: 0.1rem;
+    background: url(../images/idIdentify/bg1.png) no-repeat center center;
+    background-size: 6.5rem 4rem;
+    -o-background-size: 6.5rem 4rem;
+    -webkit-background-size: 6.5rem 4rem;
+}
+#imgShow{
+    border-radius: 0.1rem;
+}
+#imgdiv1{
+    display: block;
+    margin:0 auto;
+    width: 6.5rem;
+    height: 4rem;
+    border-radius: 0.1rem;
+    background: url(../images/idIdentify/bg2.png) no-repeat center center;
+    background-size: 6.5rem 4rem;
+    -o-background-size: 6.5rem 4rem;
+    -webkit-background-size: 6.5rem 4rem;
+}
+#imgShow1{
+    border-radius: 0.1rem;
+}
+.photo input{
+    position: absolute;
+    top:0;
+    left: 0.5rem;
+    width: 6.5rem;
+    height: 4rem;
+    opacity: 0;
+}
+input[type="submit"]{
+    display: block;
+    width: 6.3rem;
+    height: 0.75rem;
+    background: #2d9cff;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    line-height: 0.75rem;
+    border-radius: 0.1rem;
+}

@@ -1,0 +1,76 @@
+body{
+    background: #f2f2f2;
+}
+.content1 li{
+    line-height: 0.88rem;
+    height: 0.88rem;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 0.26rem;
+    color: #323232;
+    position: relative;
+}
+.content1 li:nth-of-type(4){
+    border-top: 0.2rem solid #f2f2f2;
+    border-bottom: 0.2rem solid #f2f2f2;
+}
+.content1 li:nth-of-type(4) input{
+    width: 2.6rem;
+}
+.content1 li label{
+    display: inline-block;
+    width: 2rem;
+}
+.content1 li input{
+    background: #fff;
+    flex: 1;
+}
+input[type="submit"]{
+    display: block;
+    width: 6.3rem;
+    height: 0.75rem;
+    background: #2d9cff;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    line-height: 0.75rem;
+    border-radius: 0.1rem;
+    margin-bottom: 0.3rem;
+}
+select{
+    border: none;
+    background: #fff;
+    color: #323232;
+}
+.content1 li:nth-of-type(2){
+    background: url(../images/downBlack.png) no-repeat 5.75rem center;
+    background-size: 0.14rem 0.16rem;
+    -o-background-size: 0.14rem 0.16rem;
+    -webkit-background-size: 0.14rem 0.16rem;
+}
+.background{
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 0.44rem 0.44rem;
+    -o-background-size: 0.44rem 0.44rem;
+    -webkit-background-size: 0.44rem 0.44rem;
+}
+#get{
+    width: 1.95rem;
+    height: 0.6rem;
+    position: absolute;
+    left: 5.26rem;
+    top:0.14rem;
+    background: #2d9cff;
+    line-height: 0.6rem;
+    color: #fff;
+    font-size: 0.26rem;
+    text-align: center;
+    border-radius: 0.1rem;
+}
+form+p{
+    padding:0 0.6rem;
+    font-size: 0.26rem;
+    color: #666666;
+}

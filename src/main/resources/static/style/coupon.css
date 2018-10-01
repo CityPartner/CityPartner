@@ -1,0 +1,54 @@
+body{
+    background: #f2f2f2;
+}
+nav ul li{
+    height: 0.84rem;
+    font-size: 0.3rem;
+    color: #aaaaaa;
+    line-height: 0.84rem;
+}
+.active{
+    color: #2d9cff;
+    border-bottom: 0.04rem solid #2d9cff;
+}
+.content li{
+    width: 6.5rem;
+    height: 1.9rem;
+    margin:0 auto;
+    margin-top: 0.2rem;
+    background: #2d9cff;
+    padding:0.2rem 0.3rem;
+}
+.content li > div{
+    border:0.03rem dashed #fff;
+    width: 6.44rem;
+    height: 1.84rem;
+}
+.money{
+    padding-left: 1.15rem;
+}
+.money span:first-child{
+    font-size: 0.36rem;
+    line-height: 0.36rem;
+    display: inline-block;
+    color: #fff;
+    vertical-align: top;
+    font-family: "微软雅黑";
+}
+.money span:nth-of-type(2){
+    font-size: 1.1rem;
+    line-height: 1rem;
+    display: inline-block;
+    color: #fff;
+    font-family: "微软雅黑";
+}
+.money span:last-child{
+    font-size: 0.28rem;
+    display: inline-block;
+    line-height: 0.28rem;
+    color: #fff;
+    font-family: "微软雅黑";
+}
+.money+p{
+    padding-left: 1.45rem;
+}

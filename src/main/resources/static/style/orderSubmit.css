@@ -1,0 +1,68 @@
+body{
+    background: #f2f2f2;
+}
+h1{
+    line-height: 0.7rem;
+    font-size: 0.3rem;
+    color: #323232;
+    padding-left: 0.3rem;
+    background: #fff;
+}
+table{
+    border-top: 0.2rem solid #f2f2f2;
+    border-bottom: 0.2rem solid #f2f2f2;
+    background: #fff url(../images/right.png) no-repeat 7.04rem center;
+    background-size: 0.16rem 0.25rem;
+    width: 100%;
+    font-size: 0.26rem;
+    color: #323232;
+}
+tbody td:nth-of-type(2){
+    padding-right: 1.35rem;
+    line-height: 0.4rem;
+}
+form{
+    font-size: 0.26rem;
+    color: #323232;
+}
+form ul li{
+    border-bottom: 1px solid #f2f2f2;
+    line-height: 0.88rem;
+}
+input[type="text"]{
+    background: #fff;
+    margin-left: 0.1rem;
+}
+#all{
+    color: #e8373b;
+}
+#dec,#add{
+    display: inline-block;
+    width: 0.3rem;
+    height: 0.3rem;
+    text-align: center;
+    line-height: 0.3rem;
+    background: #eee;
+}
+#count{
+    display: inline-block;
+    width: 0.3rem;
+    height: 0.3rem;
+    text-align: center;
+    line-height: 0.3rem;
+    border:1px solid #eee;
+    margin:0 0.1rem;
+}
+input[type="submit"]{
+    display: block;
+    width: 6.3rem;
+    height: 0.75rem;
+    background: #2d9cff;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    line-height: 0.75rem;
+    border-radius: 0.1rem;
+}

@@ -1,0 +1,37 @@
+body{
+    background: #f2f2f2;
+    color: #323232;
+}
+.all{
+    line-height: 0.88rem;
+}
+.useOr{
+    color: #e8373b;
+    padding-right: 0.3rem;
+    background: url(../images/right.png) no-repeat right center;
+    background-size:0.16rem 0.25rem ;
+    -webkit-background-size: 0.16rem 0.25rem ;
+    -o-background-size:0.16rem 0.25rem ;
+}
+#money{
+    text-align: right;
+    background: #fff;
+    color: #e8373b;
+}
+input[type="radio"]{
+    width: 0.3rem;
+    height: 0.3rem;
+}
+input[type="submit"]{
+    display: block;
+    width: 6.3rem;
+    height: 0.75rem;
+    background: #2d9cff;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    line-height: 0.75rem;
+    border-radius: 0.1rem;
+}

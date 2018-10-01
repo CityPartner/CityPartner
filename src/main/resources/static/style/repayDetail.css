@@ -1,0 +1,196 @@
+body{
+    background: #f2f2f2;
+}
+header b{
+    float: right;
+    font-size: 0.26rem;
+    color: #fff;
+    margin-right:0.3rem ;
+    font-weight: normal;
+}
+nav ul li{
+    color: #aaaaaa;
+    height: 0.95rem;
+    line-height: 0.95rem;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.active{
+    border-bottom: 0.05rem solid #2d9cff;
+    color: #2d9cff;
+}
+.content1 li{
+    line-height: 0.88rem;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 0.26rem;
+    color: #323232;
+}
+.content1 li:nth-of-type(4){
+    border-top: 0.2rem solid #f2f2f2;
+}
+.content1 li label{
+    width: 2rem;
+}
+.content1 li input{
+    background: #fff;
+    flex: 1;
+}
+.content2 li{
+    line-height: 0.88rem;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 0.26rem;
+    color: #323232;
+}
+.content2 li:nth-of-type(6){
+    border-top: 0.2rem solid #f2f2f2;
+}
+.content2 li label{
+    width: 2rem;
+}
+.content2 li input{
+    background: #fff;
+    flex: 1;
+}
+.content3 li{
+    line-height: 0.88rem;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 0.26rem;
+    color: #323232;
+}
+.content3 li:nth-of-type(6){
+    border-top: 0.2rem solid #f2f2f2;
+}
+.content3 li label{
+    width:2rem;
+}
+.content3 li input{
+    background: #fff;
+    flex: 1;
+}
+.select{
+    background: url(../images/right.png) no-repeat right center;
+    background-size: 0.16rem 0.25rem;
+    -o-background-size: 0.16rem 0.25rem;
+    -webkit-background-size: 0.16rem 0.25rem;
+}
+#file{
+    background: #eee url(../images/add.png) no-repeat center center;
+    background-size: 0.5rem 0.5rem;
+    -o-background-size: 0.5rem 0.5rem;
+    -webkit-background-size: 0.5rem 0.5rem;
+    margin-left: 1.2rem;
+}
+#file1{
+    background: #eee url(../images/add.png) no-repeat center center;
+    background-size: 0.5rem 0.5rem;
+    -o-background-size: 0.5rem 0.5rem;
+    -webkit-background-size: 0.5rem 0.5rem;
+    margin-left: 1.2rem;
+}
+#file2{
+    background: #eee url(../images/add.png) no-repeat center center;
+    background-size: 0.5rem 0.5rem;
+    -o-background-size: 0.5rem 0.5rem;
+    -webkit-background-size: 0.5rem 0.5rem;
+    margin-left: 1.2rem;
+}
+input[type="file"]{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.content1 li:last-child{
+    padding:0.4rem 0;
+}
+.content2 li:last-child{
+    padding:0.4rem 0;
+}
+.content3 li:last-child{
+    padding:0.4rem 0;
+}
+input[type="submit"]{
+    display: block;
+    width: 6.3rem;
+    height: 0.75rem;
+    background: #2d9cff;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    line-height: 0.75rem;
+    border-radius: 0.1rem;
+    margin-bottom: 0.3rem;
+}
+.intro{
+    display: inline-block;
+    line-height: 0.44rem;
+    width: 2.7rem;
+    color: #999;
+    margin-left: 0.2rem;
+}
+.am-share {background-color: #fff; font-size: 0.14rem; border-radius: 0.1rem; top:4.7rem; left: 1.8rem; position: fixed; text-align: center; width: 3.9rem; z-index: 1110;display: none; }
+
+.am-share-title { color:#323232;    line-height: 0.88rem;font-size: 0.32rem;text-align: center;border-bottom: 0.02rem solid #f2f2f2; }
+
+.am-share div{
+    height: 0.88rem;
+    vertical-align: middle;
+    padding:0 0.55rem;
+}
+.am-share div button:first-child{
+    width: 1rem;
+    height: 0.6rem;
+    background: #ccc;
+    color: #fff;
+    font-size: 0.26rem;
+    border-radius: 0.04rem;
+}
+.am-share div button:last-child{
+    width: 1rem;
+    height: 0.6rem;
+    background: #2d9cff;
+    color: #fff;
+    font-size: 0.26rem;
+    border-radius: 0.04rem;
+}
+
+.sharebg { background-color: rgba(0, 0, 0, 0.6); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 1100; display:none; }
+.sharebg-active { opacity: 1; display:block; }
+.support{
+    height: 0.84rem;
+}
+.span{
+    width: 2.1rem;
+    height: 0.5rem;
+    border:1px solid #eee;
+    position: relative;
+}
+.support span input{
+    width: 2.1rem;
+    height: 0.5rem;
+    opacity: 0;
+}
+.support span b{
+    position: absolute;
+    left: 0;
+    z-index: 0;
+    width: 2.1rem;
+    height: 0.5rem;
+    color: #999;
+    font-weight: normal;
+    font-size: 0.26rem;
+    line-height: 0.5rem;
+    text-align: center;
+}
+.active2{
+    background:url(../images/active.png) no-repeat right top;
+    background-size: 0.15rem 0.15rem;
+    -webkit-background-size: 0.15rem 0.15rem;
+    -o-background-size: 0.15rem 0.15rem;
+    color: #2d9cff;
+    border: 1px solid #2d9cff;
+}
+.con{
+    padding-bottom: 0.9rem;
+}

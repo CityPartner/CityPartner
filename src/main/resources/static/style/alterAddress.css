@@ -1,0 +1,56 @@
+body{
+    background: #f2f2f2;
+}
+form{
+    margin-top: 0.2rem;
+}
+form ul li{
+    line-height: 0.88rem;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 0.26rem;
+    color: #323232;
+}
+form ul li:last-child{
+    padding-bottom: 0.9rem;
+}
+form ul li label{
+    width: 1.7rem;
+}
+form ul li input{
+    background: #fff;
+    flex: 1;
+}
+.select{
+    background: url(../images/right.png) no-repeat right center;
+    background-size: 0.16rem 0.25rem;
+    -o-background-size: 0.16rem 0.25rem;
+    -webkit-background-size: 0.16rem 0.25rem;
+}
+#file{
+    background: #eee url(../images/add.png) no-repeat center center;
+    background-size: 0.5rem 0.5rem;
+    -o-background-size: 0.5rem 0.5rem;
+    -webkit-background-size: 0.5rem 0.5rem;
+    margin-left: 0.25rem;
+}
+input[type="file"]{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+form>div{
+    padding:0.4rem 0;
+}
+input[type="submit"]{
+    display: block;
+    width: 6.3rem;
+    height: 0.75rem;
+    background: #2d9cff;
+    text-align: center;
+    font-size: 0.26rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    line-height: 0.75rem;
+    border-radius: 0.1rem;
+    margin-bottom: 0.3rem;
+}
