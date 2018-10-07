@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/invest")
 
 //项目投资控制器，包括展示项目投资人，进行投资等
-public class InvestmentController {
+public class InvestController {
 
     @RequestMapping("/detail")
     public String investList() {
