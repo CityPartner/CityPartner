@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head lang="en">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="format-detection" content="email=no" />
 		<meta charset="UTF-8">
-		<script type="text/javascript" src="js/common.js"></script>
-		<script src="js/jquery.js"></script>
-		<link href="style/reset.css" rel="stylesheet" type="text/css">
-		<link href="style/base.css" rel="stylesheet" type="text/css">
-		<link href="style/header.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="style/myProject.css" />
+		<script type="text/javascript" src="/js/common.js"></script>
+		<script src="/js/jquery.js"></script>
+		<link href="/style/reset.css" rel="stylesheet" type="text/css">
+		<link href="/style/base.css" rel="stylesheet" type="text/css">
+		<link href="/style/header.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="/style/myProject.css" />
 		<title>我的项目</title>
 	</head>
 	<body>
@@ -24,7 +24,7 @@
 		<ul id="content0" class="content">
 			<li onclick="window.location.href='projectDetail.html'">
 				<div class="container">
-					<img src="images/myProject/zjbg.jpg" alt="" class="banner" />
+					<img src="/images/myProject/zjbg.jpg" alt="" class="banner" />
 					<p class="intro">&nbsp;&nbsp;珍酒商城</p>
 				</div>
 				<div class="message">
@@ -39,7 +39,7 @@
 		</ul>
 		<ul id="content1" class="content" style="display: none;">
 			<li id="none">
-				<img src="images/myProject/none.png" alt="" />
+				<img src="/images/myProject/none.png" alt="" />
 				<p class="tc f26 g9">您还没有发起过项目</p>
 				<button>我要发起项目</button>
 			</li>
