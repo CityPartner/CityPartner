@@ -1,6 +1,7 @@
 package com.nchhr.platform.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.nchhr.platform.util.SHA1Util;
 import com.nchhr.platform.util.WeChatUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class JSSDKController {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);//时间戳
         String nonceStr = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
         String jsapi_ticket = WeChatUtil.jsapi_ticket;
-        String signature = WeChatUtil.getJSSDKSignature(jsapi_ticket, nonceStr, timestamp, url);
+        String signature = getJSSDKSignature(jsapi_ticket, nonceStr, timestamp, url);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("appId", appId);
@@ -36,5 +37,15 @@ public class JSSDKController {
         System.out.println("JS-SDK配置签名：" + signature + "\n\n--------------------------------\n");
 
         return jsonObject.toJSONString();
+    }
+
+
+    //获取JS-SDK配置签名
+    private String getJSSDKSignature(String jsapi_ticket, String noncestr, String timestamp, String url) {
+        String str = "jsapi_ticket=" + jsapi_ticket
+                + "&noncestr=" + noncestr
+                + "&timestamp=" + timestamp
+                + "&url=" + url;
+        return SHA1Util.encryptBySHA1(str);
     }
 }
