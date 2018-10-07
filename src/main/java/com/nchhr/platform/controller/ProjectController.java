@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("")
-//平台项目相关控制器层
+//平台项目相关控制器层，展示我的项目和项目详情
 public class ProjectController {
 
 }
