@@ -339,3 +339,15 @@ div.dib{*display:inline; *zoom:1;}/* other block level tag(eg. p, li, h1~h6), us
 .fx5 {flex: 5;}
 .fx6 {flex: 6;}
 /**/
+/*统一字体样式*/
+body, input, button, h1, h2, h3, h4, h5, h6, label {
+    height: 100%;
+    font-family: "微软雅黑", Tahoma, Helvetica, Arial, sans-serif;!important;
+    /*font-size: calc(100vw / 7.5);*/
+    /*font-size: -webkit-calc(100vw / 7.5);*/
+    /*font-size: -moz-calc(100vw / 7.5);*/
+    /*此时1rem = 100px*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+    color: #717171;
+}
