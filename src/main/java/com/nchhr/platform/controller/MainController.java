@@ -5,15 +5,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
+
+//测试用 请勿使用该控制器
 @Controller
 @RequestMapping("")
 public class MainController {
-
-    //登录页为默认页
-    @RequestMapping("")
-    public String main() {
-        return "login";
-    }
 
     @RequestMapping(value = "/{resourseName}")
     public ModelAndView index(@PathVariable("resourseName") String resourseName) {
