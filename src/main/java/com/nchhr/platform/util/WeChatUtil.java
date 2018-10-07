@@ -31,14 +31,6 @@ public class WeChatUtil {
         }).start();
     }
 
-    //获取JS-SDK配置签名
-    public static String getJSSDKSignature(String jsapi_ticket, String noncestr, String timestamp, String url) {
-        String str = "jsapi_ticket=" + jsapi_ticket
-                + "&noncestr=" + noncestr
-                + "&timestamp=" + timestamp
-                + "&url=" + url;
-        return SHA1Util.encryptBySHA1(str);
-    }
 
 
     //中控服务器统一获取刷新 access_token
