@@ -39,9 +39,22 @@ input[type="submit"]{
     width: 6.3rem;
     border-radius: 0.1rem;
     height: 0.75rem;
-    font-size: 0.26rem;
+    font-size: 16px;
     background: #2d9cff;
-    color: #fff;
+    color: #d85b5b;
+    margin-top: 0.1rem;
+}
+
+#login{
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    line-height: 0.75rem;
+    width: 6.3rem;
+    border-radius: 0.1rem;
+    height: 0.75rem;
+    font-size: 16px;
+    background: #2d9cff;
+    color: #d85b5b;
     margin-top: 0.1rem;
 }
 .miss{
