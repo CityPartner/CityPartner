@@ -20,6 +20,7 @@ public class AccountController {
     @Autowired
     AccountService accountService;
 
+    //登录
     @PostMapping("/login")
     @ResponseBody
     public String login(String phone, String pwd, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
@@ -28,10 +29,25 @@ public class AccountController {
 
     }
 
-    @RequestMapping("/register")
-    public String register() {
+    //获取验证码
+    @RequestMapping("/getCode")
+    @ResponseBody
+    public String getCode(String phone,HttpSession session){
+        System.out.println("phone:"+phone);
+       return accountService.getCode(phone,session);
+    }
+    //删除验证码
+    @RequestMapping("/deleteCode")
+    @ResponseBody
+    public String deleteCode(String phone, HttpSession session) {
+        return accountService.deleteCode(phone, session);
+    }
 
-        return "register";
+    //注册并登陆
+    @RequestMapping("/RegisterLogin")
+    public String register(String userPhone, String code, String pwd, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+
+        return accountService.RegisterLogin(userPhone, code, pwd, session,response,request);
     }
 
     @RequestMapping("/recover")
