@@ -1,0 +1,174 @@
+html,body{
+	width: 100%;
+	font-family: "微软雅黑";
+	font-size: 1em;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+img{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+/*index*/
+.main_page{
+	width: 100%;
+	height: 100%;
+}
+.top_div{
+	width: 100%;
+	height: 40vw;
+	background: #506695;
+	overflow: hidden;
+}
+.logo{
+	width: 18%;
+	margin: 10px auto 5px auto;
+}
+.top_text_1,.top_text_2{
+	width: 100%;
+	text-align: center;
+	line-height: 7vw;
+	color: white;
+	font-size: 4.5vw;
+}
+.top_text_2{
+	margin-bottom: 5vw;
+}
+.nine_button{
+	width: 100%;
+}
+.button{
+	width: 33.33%;
+	height: 33.33vw;
+	float: left;
+	font-size: 4vw;
+}
+.button_img{
+	width: 20%;
+	margin: 30% auto 5% auto;
+}
+.button_text{
+	width: 100%;
+	text-align: center;
+}
+/*release_record*/
+.release_main{
+	width: 100%;
+}
+.release_title{
+	width: 100%;
+	height: 15vw;
+	overflow: hidden;
+	background: #f2f2f2;
+}
+.release_title_left{
+	width: 49.5%;
+	height: 10vw;
+	margin:2.5vw 0;
+	float: left;
+	border-right: 2px solid #8E97AF;
+	overflow: hidden;
+}
+.left_img{
+	width: 15%;
+	margin: 1.4vw 3% 1.6vw 15%;
+	float: left;
+}
+.left_text{
+	width: 67%;
+	float: left;
+	font-size: 3vw;
+	line-height: 4vw;
+	margin-top: 1.5vw;
+	color: #506695;
+}
+.release_title_right{
+	width: 49.5%;
+	height: 10vw;
+	margin:2.5vw 0;
+	float: right;
+}
+.right_img{
+	width: 15%;
+	margin: 1.4vw 3% 1.6vw 15%;
+	float: left;
+}
+.right_text{
+	width: 67%;
+	float: left;
+	font-size: 3vw;
+	line-height: 4vw;
+	margin-top: 1.5vw;
+	color: #506695;
+}
+.gray_text{
+	color: #8D8D8D;
+}
+.release_records{
+	width: 100%;
+}
+.record{
+	width: 100%;
+	height:13vw ;
+	border-bottom: 1px solid #ECECEC;
+}
+.record_left{
+	width: 47%;
+	padding-left: 3%;
+	float: left;
+	text-align: left;
+	margin-top: 1vw;
+}
+.record_right{
+	width: 47%;
+	padding-right: 3%;
+	float: left;
+	text-align: right;
+	margin-top: 1vw;
+}
+.record_left_top,.record_right_top{
+	font-size: 4.1vw;
+	line-height: 7vw;
+}
+.record_left_bottom,.record_right_bottom{
+	font-size: 3.5vw;
+	color: #8D8D8D;
+}
+.record_small{
+	font-size: 2.5vw;
+	color: #8D8D8D;
+}
+/*select_record*/
+.select_start_date{
+	width: 100%;
+	height: 12vw;
+	font-size: 4vw;
+	color: #666666;
+	overflow: hidden;
+
+}
+.start_date_left{
+	width: 47%;
+
+	float: left;
+}
+.start_date_right{
+	width: 47%;
+	padding-right: 3%;
+	text-align: right;
+	float: left;
+}
+.start_date_right input{
+	background:transparent;
+	border: none;
+
+	color: #666666;
+	text-align: center;
+}
+.select_records{
+	width: 100%;
+	margin-top: 6vw;
+}
+

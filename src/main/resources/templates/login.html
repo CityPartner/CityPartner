@@ -11,18 +11,20 @@
     <link href="/style/base.css" rel="stylesheet" type="text/css">
     <link href="/style/header.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/style/login.css"/>
+
+    <link href="custom-css/sweetalert.css" rel="stylesheet">
     <title>登录</title>
 </head>
 <body>
     <header>登录</header>
-    <div class="head"></div>
-    <form action="/project/my">
+    <div class="head"></div><!--action="/project/my"-->
         <ul class="form">
-            <li><input type="text" placeholder="请输入手机号"/></li>
-            <li><input type="password" placeholder="请输入密码"/></li>
-            <li><input type="submit" value="登&nbsp;&nbsp;&nbsp;&nbsp;录"/></li>
+            <li><input type="text" id="loginPhone" oninput = "value=value.replace(/[^\d]/g,'')" name="phone" placeholder="请输入手机号"/></li>
+            <li id="format_phone" style="display: none;text-align: center; height: 20px;font-size: 16px;color: red;background-color: antiquewhite;"><span   >手机格式出错</span></li>
+            <li><input type="password" id="pwd" name="password" placeholder="请输入密码"/></li>
+            <li  id="format_pwd" style="display:none;text-align: center;height: 20px;font-size: 16px;color: red;background-color: antiquewhite;"><span   >密码格式出错</span></li>
+            <li ><button style="background-color: #ececec"  disabled id="login" value="登&nbsp;&nbsp;&nbsp;&nbsp;录" >登&nbsp;&nbsp;&nbsp;&nbsp;录</button></li>
         </ul>
-    </form>
     <ul class="fix miss">
         <li class="l"><a href="/recover">忘记密码？</a></li>
         <li class="r"><a href="/register">账号注册</a></li>
@@ -34,4 +36,8 @@
         <li><img src="images/login/icon3.png" alt=""/><p>微博</p></li>
     </ul> -->
 </body>
+
+<script src="custom-js/sweetalert.min.js"></script>
+<script src="custom-js/jquery-2.1.4.js"></script>
+<script src="custom-js/login.js"></script>
 </html>
