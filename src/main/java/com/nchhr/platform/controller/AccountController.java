@@ -24,18 +24,19 @@ public class AccountController {
     @PostMapping("/login")
     @ResponseBody
     public String login(String phone, String pwd, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println(phone+"::"+pwd);
-       return accountService.login(phone,pwd,session,request,response);
+        System.out.println(phone + "::" + pwd);
+        return accountService.login(phone, pwd, session, request, response);
 
     }
 
     //获取验证码
     @RequestMapping("/getCode")
     @ResponseBody
-    public String getCode(String phone,HttpSession session){
-        System.out.println("phone:"+phone);
-       return accountService.getCode(phone,session);
+    public String getCode(String phone, HttpSession session) {
+        System.out.println("phone:" + phone);
+        return accountService.getCode(phone, session);
     }
+
     //删除验证码
     @RequestMapping("/deleteCode")
     @ResponseBody
@@ -45,14 +46,24 @@ public class AccountController {
 
     //注册并登陆
     @RequestMapping("/RegisterLogin")
+    @ResponseBody
     public String register(String userPhone, String code, String pwd, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 
-        return accountService.RegisterLogin(userPhone, code, pwd, session,response,request);
+        return accountService.RegisterLogin(userPhone, code, pwd, session, response, request);
+    }
+    //重置密码
+    @RequestMapping("/ResetPassword")
+    @ResponseBody
+    public String ResetPassword(String phone,HttpServletResponse response,HttpSession session) {
+//        System.out.println(phone);
+        return  accountService.ResetPassword(phone,response,session);
+
     }
 
-    @RequestMapping("/recover")
-    public String recover() {
-
-        return "recover";
+    @RequestMapping("/ChangePassword")
+    @ResponseBody
+    public String ChangePassword(String newpwd,String code,String newphone,HttpSession session){
+        return accountService.ChangePassword(newpwd,code,newphone,session);
     }
+
 }
