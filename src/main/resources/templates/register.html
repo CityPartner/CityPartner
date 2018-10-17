@@ -6,24 +6,29 @@
     <meta name="format-detection" content="email=no"/>
     <meta charset="UTF-8">
     <script type="text/javascript" src="/js/common.js"></script>
-    <script src="/js/jquery.js"></script>
     <link href="/style/reset.css" rel="stylesheet" type="text/css">
     <link href="/style/base.css" rel="stylesheet" type="text/css">
     <link href="/style/header.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/style/register.css"/>
+
+    <link href="custom-css/sweetalert.css" rel="stylesheet">
     <title>注册</title>
 </head>
 <body>
     <header><span onclick="javascript:history.go(-1)"></span>注册</header>
-    <form action="">
+
         <ul class="form">
-            <li><input type="text" placeholder="请输入手机号"/></li>
-            <li><input type="text" placeholder="请输入验证码"/><span id="confirm">获取验证码</span></li>
-            <li><input type="password" placeholder="请输入密码"/></li>
-            <li><input type="password" placeholder="请确认密码"/></li>
-            <li><input type="submit" value="完&nbsp;&nbsp;&nbsp;&nbsp;成"/></li>
+            <li><input type="text" oninput = "value=value.replace(/[^\d]/g,'')" id="userPhone" placeholder="请输入手机号"/></li>
+            <li id="format_phone" style="display: none;text-align: center; height: 30px;font-size: 16px;color: red;background-color: antiquewhite;"><span   >手机格式出错</span></li>
+            <li><input type="text" id="code" oninput = "value=value.replace(/[^\d]/g,'')" placeholder="请输入验证码"/><button id="getCode">获取验证码</button></li>
+            <li><input type="password" id="pwd" placeholder="请输入密码"/></li>
+            <li><input type="password" id="repwd" placeholder="请确认密码"/></li>
+            <li id="checkPwd" style="display: none;text-align: center; height: 30px;font-size: 16px;color: red;background-color: antiquewhite;"><span  id="regExpPwd" >第二次密码出错</span></li>
+            <li><button id="but_regist" value="完&nbsp;&nbsp;&nbsp;&nbsp;成">注&nbsp;&nbsp;&nbsp;&nbsp;册&nbsp;&nbsp;&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;陆</button></li>
         </ul>
-    </form>
 
 </body>
+<script src="custom-js/sweetalert.min.js"></script>
+<script src="custom-js/jquery-2.1.4.js"></script>
+<script src="custom-js/regist.js"></script>
 </html>
