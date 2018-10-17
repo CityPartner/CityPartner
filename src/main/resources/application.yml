@@ -1,12 +1,12 @@
 server:
   port: 80
   servlet:
-    path: /
+    context-path: /
 
 spring:
   datasource:
     name: programer
-    url: jdbc:mysql://47.94.81.127:3306/hyzj
+    url: jdbc:mysql://47.94.81.127:3306/hyzj?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true
     username: hyzjdba
     password: hyzjprogroup
     driver-class-name: com.mysql.jdbc.Driver
