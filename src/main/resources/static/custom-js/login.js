@@ -94,7 +94,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "login",//注意路径
+            url: "/login",//注意路径
             data: param,
             dataType: "json",
             success: function (data) {
