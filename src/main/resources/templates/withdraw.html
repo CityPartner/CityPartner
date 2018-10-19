@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
     <meta name="format-detection" content="telephone=no"/>
@@ -15,39 +15,170 @@
 </head>
 <body>
 <header><span onclick="javascript:history.go(-1)"></span>提现</header>
-<form action="">
+<div>
     <ul class="bgwh content1">
+        <li class="df pr30 pl30"><label class="f26" for="amount">可提现金额</label>
+            <input type="text" id="amount" name="amount" th:value="${walletAmount}" value="2000.00" disabled/></li>
         <li class="df pr30 pl30"><label class="f26" for="name">申请人</label>
             <input type="text" id="name" name="name" placeholder="请输入姓名"/></li>
-        <li class="df pr30 pl30"><label class="f26" for="id">可提现金额</label>
-            <input type="text" id="id" name="id" value="2000.00" disabled/></li>
         <li class="pr30 pl30"><label class="f26" for="money">本次提现金额</label>
-            <input type="text" id="money" name="money" placeholder="请输入提现金额"/>元
+            <input type="text"  id="money" name="money" placeholder="请输入提现金额"/>元
         </li>
-        <li class="df pr30 pl30"><input type="text" id="pass" name="pass" placeholder="请输入短信验证码"/><span
-                id="get">获取验证码</span></li>
+        <li class="df pr30 pl30"><input type="number" id="code" name="code" placeholder="请输入短信验证码"/>
+            <span id="get">获取验证码</span></li>
     </ul>
-    <input type="submit" value="确认提现"/>
-</form>
-<p>提现手续费：2.00元（手续费从提现金额中扣除，因此 2元以下无法提现）</p>
+    <input id="applyWithdraw" type="submit" value="确认提现"/>
+</div>
+<p>&nbsp;&nbsp;提现手续费：2.00元，最低提现金额：10.00元</p>
+</body>
+
+<script type="text/javascript" src="/js/layer.js"></script>
 <script>
+
+
     $(function () {
-        $("select").change(function () {
-            if ($(this).val() != "default") {
-                $(this).css("paddingLeft", "0.68rem");
-            } else {
-                $(this).css("paddingLeft", "0");
-            }
-            switch ($(this).val()) {
-                case "工行":
-                    $(this).css("backgroundImage", "url(images/bank.png)");
-                    break;
-                default :
-                    $(this).css("backgroundImage", "url()");
-                    break;
+        //判断是否有提现申请未处理
+        $.ajax({
+            type: "POST",
+            url: "/wallet/withdraw/isApplying",
+            dataType: "text",
+            success: function (data) {
+                if (data === "1") {
+                    layer.open({
+                        anim: 'up'
+                        , content: '您当前还有一笔提现申请未被处理<br/>请等待处理完毕再申请'
+                        , btn: ['查看', '取消']
+                        , shadeClose: false
+                        , yes: function () {
+                            alert("正在跳转");
+                        }
+                        , no: function () {
+                            history.go(-1);
+                        }
+                    });
+                }
+            },
+            error: function () {
+                alert("error");
             }
         });
     });
+
+
+    function num(obj){//提现金额格式强制
+        obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符
+        obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字
+        obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个, 清除多余的
+        obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数
+    }
+
+    //申请提现
+    $("#applyWithdraw").click(function () {
+        var withdrawInfo = {};
+        withdrawInfo.name = $("#name").val();
+        withdrawInfo.money = $("#money").val();
+        withdrawInfo.code = $("#code").val();
+        $.ajax({
+            type: "POST",
+            url: "/wallet/withdraw/apply",
+            data: withdrawInfo,
+            dataType: "text",
+            success: function (data) {
+                if (data == 0) {
+                    layer.open({
+                        anim: 'up'
+                        , content: '您当前还有一笔提现申请未被处理<br/>请等待处理完毕再申请'
+                        , btn: ['查看', '取消']
+                        , shadeClose: false
+                        , yes: function () {
+                            alert("正在跳转");
+                        }
+                        , no: function () {
+                            history.go(-1);
+                        }
+                    });
+                } if (data == 1) {
+                    layer.open({
+                        content: '提现申请已提交'
+                        ,btn: '查看'
+                        , shadeClose: false
+                    });
+                } else {
+                    var contentMsg;
+                    if (data == 2) {
+                        contentMsg = "申请金额小于最低额度";
+                    } else if (data == 3) {
+                        contentMsg = "申请金额大于最高额度";
+                    } else if (data == 4) {
+                        contentMsg = "申请金额出错";
+                    } else {
+                        contentMsg = "验证码出错";
+                    }
+                    layer.open({
+                        content: contentMsg
+                        ,skin: 'msg'
+                        ,time: 3
+                    });
+                }
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    });
+
+
+
+    var GET_CODE_FLAG = true;
+    var TIME_COUNT_NUM = 10;
+    var TIME_COUNT_INTERVAL;
+    //获取二维码
+    $("#get").click(function () {
+        if (GET_CODE_FLAG) {
+            GET_CODE_FLAG = false;
+            $.ajax({
+                type: "POST",
+                url: "/wallet/withdraw/getCode",
+                dataType: "text",
+                success: function (data) {
+                    if (data === "1") {
+                        $("#get").text("验证码已发送");
+                        $("#get").css("background", "#C7C7C7");
+                        TIME_COUNT_INTERVAL = setInterval(countTime, 1000);
+                    } else {
+                        layer.open({
+                            content: "验证码获取频繁"
+                            ,skin: 'msg'
+                            ,time: 3
+                        });
+                        GET_CODE_FLAG = true;
+                    }
+                },
+                error: function () {
+                    layer.open({
+                        content: "验证码异常"
+                        ,skin: 'msg'
+                        ,time: 3
+                    });
+                    GET_CODE_FLAG = true;
+                }
+            });
+        } else {
+
+        }
+    });
+    //获取倒计时
+    function countTime() {
+        TIME_COUNT_NUM--;
+        $("#get").text(TIME_COUNT_NUM + "S");
+        if (TIME_COUNT_NUM === 0) {
+            $("#get").text("获取验证码");
+            $("#get").css("background", "#2d9cff");
+            GET_CODE_FLAG = true;
+            TIME_COUNT_NUM = 10;
+            clearInterval(TIME_COUNT_INTERVAL);
+        }
+    }
 </script>
-</body>
 </html>
