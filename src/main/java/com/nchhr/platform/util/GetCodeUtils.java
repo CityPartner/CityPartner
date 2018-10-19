@@ -79,6 +79,7 @@ public class GetCodeUtils {
         //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者
         // request.setOutId("yourOutId");
         //请求失败这里会抛ClientException异常
+
         SendSmsResponse sendSmsResponse = null;
         try {
             sendSmsResponse = acsClient.getAcsResponse(request);
