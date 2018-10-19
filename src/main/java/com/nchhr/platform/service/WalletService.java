@@ -63,6 +63,6 @@ public class WalletService {
             return false;
         if (walletDao.getWalletStatus(userId, projectId) != 0)
             return false;
-        return false;//true
+        return true;//true
     }
 }

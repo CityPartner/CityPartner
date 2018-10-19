@@ -18,23 +18,47 @@ public class WalletController {
     @Autowired
     WalletService walletService;
 
-    private String VERIFICATION_CODE;
+    /*
+        钱包
+        @Author HWG
+            1.从project_wallet读取数据，显示钱包数额
+            2.提供“收入”按钮，链接“收入详情”
+            3.提供“提现”按钮，链接“提现功能”
+                project_wallet数据的来源需要对接
+    */
+    @RequestMapping("")
+    public String wallet() {
+        return "wallet";
+    }
 
     /*
         钱包——收入详情
-
+        @Author HWG
+            从project_wallet_income读取数据显示
+                project_wallet_income数据的来源需要对接
      */
-    @RequestMapping("/income")
+    @RequestMapping("/income/detail")
     public String income() {
-        return "income";
+        return "incomeDetail";
     }
 
+    /*
+    钱包——提现详情
+    @Author HWG
+        从project_wallet_withdraw读取数据显示
+            project_wallet_withdraw数据的来源需要对接
+    */
+    @RequestMapping("/withdraw/detail")//
+    public String withdeawDetail(String withdrawId) {
+        // TODO 通过提现id查看提现详细信息
+        return "withdrawDetail";
+    }
 
 
 
     /*
         钱包——盈利提现
-
+        @Author JC
      */
     @RequestMapping("/withdraw")
     public String withdraw(HttpSession httpSession, Model model) {
@@ -74,11 +98,7 @@ public class WalletController {
         return walletService.addWalletApplyRecord(userId, projectId, name, money);
     }
 
-    @RequestMapping("/withdraw/detail")//提现申请和处理详情
-    public String withdeawDetail() {
 
-        return "withdrawDetail";
-    }
 
 
 
@@ -86,6 +106,6 @@ public class WalletController {
     @RequestMapping("/handle")
     public String dealwith() {
 
-        return "dealwith";//确少页面
+        return "handle";
     }
 }

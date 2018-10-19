@@ -8,7 +8,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
-import com.nchhr.platform.Enum.CodeEnum;
+import com.nchhr.platform.enums.CodeEnum;
 import com.nchhr.platform.dao.AccountDao;
 import com.nchhr.platform.dao.WeChatUserDao;
 import com.nchhr.platform.entity.PhoneCodeEntity;
