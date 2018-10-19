@@ -64,7 +64,7 @@ public class AccountService {
         PlatformUserEntity platformUserEntity = accountDao.loadByPhone(phone);
         if (platformUserEntity == null) {
 
-return GetCodeUtils.getCode(phone,session,CodeEnum.AccessId,CodeEnum.AccessKeySecre,CodeEnum.SignName,CodeEnum.SMSTemplateCode);
+            return GetCodeUtils.getCode(phone, session, CodeEnum.AccessId, CodeEnum.AccessKeySecre, CodeEnum.SignName, CodeEnum.SMSTemplateCode);
 
         }
         if (platformUserEntity != null) {
@@ -146,15 +146,15 @@ return GetCodeUtils.getCode(phone,session,CodeEnum.AccessId,CodeEnum.AccessKeySe
                     String Pid = "M" + codeUtils.createRandom(false, 16);
                     System.out.println(Pid);
 
-                    boolean b = accountDao.RegisterLogin(Pid, userPhone, pwd,TimeUtils.getTime(),"123456");
-                    System.out.println("是否添加成功平台用户："+b);
+                    boolean b = accountDao.RegisterLogin(Pid, userPhone, pwd, TimeUtils.getTime(), "123456");
+                    System.out.println("是否添加成功平台用户：" + b);
                     if (b == true) {
-                                PlatformUserEntity platformUserEntity1 = accountDao.loadByid(Pid);
-                                //保存cookies
-                                cookiesService.saveCookies(Pid,response,request);
-                                session.setAttribute("PlatformInfo", platformUserEntity1);
-                                //1代表成功
-                                return "1";
+                        PlatformUserEntity platformUserEntity1 = accountDao.loadByid(Pid);
+                        //保存cookies
+                        cookiesService.saveCookies(Pid, response, request);
+                        session.setAttribute("PlatformInfo", platformUserEntity1);
+                        //1代表成功
+                        return "1";
 
 
                     } else {
@@ -177,14 +177,14 @@ return GetCodeUtils.getCode(phone,session,CodeEnum.AccessId,CodeEnum.AccessKeySe
 
     }
 
-    public String  ResetPassword(String phone,  HttpServletResponse response, HttpSession session) {
+    public String ResetPassword(String phone, HttpServletResponse response, HttpSession session) {
 
         PlatformUserEntity platformUserEntity = accountDao.loadByPhone(phone);
 
-        if (platformUserEntity != null){
-            return GetCodeUtils.getCode(phone,session,CodeEnum.AccessId,CodeEnum.AccessKeySecre,CodeEnum.SignName,CodeEnum.SMSTemplateCode);
+        if (platformUserEntity != null) {
+            return GetCodeUtils.getCode(phone, session, CodeEnum.AccessId, CodeEnum.AccessKeySecre, CodeEnum.SignName, CodeEnum.SMSTemplateCode);
 
-        }else {
+        } else {
             //2该用户不存在，请去注册
             return "2";
         }
