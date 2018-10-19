@@ -1,6 +1,6 @@
 package com.nchhr.platform.entity;
 
-public class PlatformUser {
+public class PlatformUserEntity {
     private String P_id;
     private String name;
     private String ID_card;
@@ -9,6 +9,8 @@ public class PlatformUser {
     private String avatar;
     private String sex;
     private String password;
+    private String openid;
+
 
     public String getP_id() {
         return P_id;
@@ -74,9 +76,17 @@ public class PlatformUser {
         this.password = password;
     }
 
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
     @Override
     public String toString() {
-        return "PlatformUser{" +
+        return "PlatformUserEntity{" +
                 "P_id='" + P_id + '\'' +
                 ", name='" + name + '\'' +
                 ", ID_card='" + ID_card + '\'' +
@@ -85,6 +95,7 @@ public class PlatformUser {
                 ", avatar='" + avatar + '\'' +
                 ", sex='" + sex + '\'' +
                 ", password='" + password + '\'' +
+                ", openid='" + openid + '\'' +
                 '}';
     }
 }

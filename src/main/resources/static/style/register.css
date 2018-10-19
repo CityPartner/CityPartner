@@ -31,7 +31,31 @@ input[type="submit"]{
     color: #fff;
     margin-top: 0.1rem;
 }
-#confirm{
+#but_recover{
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    line-height: 0.75rem;
+    width: 6.3rem;
+    border-radius: 0.1rem;
+    height: 0.75rem;
+    font-size: 0.26rem;
+    background: #2d9cff;
+    color: #fff;
+    margin-top: 0.1rem;
+}
+#but_regist{
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    line-height: 0.75rem;
+    width: 6.3rem;
+    border-radius: 0.1rem;
+    height: 0.75rem;
+    font-size: 0.26rem;
+    background: #2d9cff;
+    color: #fff;
+    margin-top: 0.1rem;
+}
+#getCode{
     position: absolute;
     width: 2rem;
     height: 0.6rem;
