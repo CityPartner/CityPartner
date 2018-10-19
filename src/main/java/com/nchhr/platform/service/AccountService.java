@@ -13,7 +13,6 @@ import com.nchhr.platform.dao.AccountDao;
 import com.nchhr.platform.dao.WeChatUserDao;
 import com.nchhr.platform.entity.PhoneCodeEntity;
 import com.nchhr.platform.entity.PlatformUserEntity;
-import com.nchhr.platform.entity.WeChatUserEntity;
 import com.nchhr.platform.util.CodeUtils;
 import com.nchhr.platform.util.MD5Utils;
 import com.nchhr.platform.util.PhoneCodeUtils;
