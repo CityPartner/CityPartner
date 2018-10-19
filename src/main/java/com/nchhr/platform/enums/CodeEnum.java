@@ -1,4 +1,4 @@
-package com.nchhr.platform.enum;
+package com.nchhr.platform.enums;
 
 public enum CodeEnum {
 
