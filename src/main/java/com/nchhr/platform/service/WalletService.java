@@ -1,11 +1,13 @@
 package com.nchhr.platform.service;
 
 import com.nchhr.platform.dao.WalletDao;
+import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -32,7 +34,7 @@ public class WalletService {
             3：申请提现金额高于最高额度
             4：提现金额格式出错
      */
-    public String addWalletApplyRecord(String userId, String projectId, String applyName, String withdrawAmount) {
+    public String addWalletApplyRecord(String userId, String projectId, String applyName, String withdrawAmount, String verifyCode) {
         // TODO 判断验证码
 //        if (true)
 //            return "5";
@@ -50,7 +52,7 @@ public class WalletService {
                 String withdrawId = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
                 Timestamp applyTime = new Timestamp(new Date().getTime());
                 int withdrawStatus = 0;
-                walletDao.addWalletApplyRecord(withdrawId, userId, projectId, withdrawAmount, applyTime, withdrawStatus);
+                walletDao.addWalletApplyRecord(withdrawId, userId, projectId, withdrawAmount, applyTime, applyName, withdrawStatus);
                 return "1";
             }
         }
@@ -64,5 +66,17 @@ public class WalletService {
         if (walletDao.getWalletStatus(userId, projectId) != 0)
             return false;
         return true;//true
+    }
+
+    //获取某个项目所有的提现申请
+    public List<ProjectWalletWithdraw> getWithdrawApplyList(String projectId) {
+        int withdrawStatus = 0;
+        return walletDao.getProjectWithdrawList(projectId, withdrawStatus);
+    }
+
+    //处理一条提现申请
+    public Integer handleWithdraw(String withdrawId) {
+        int withdrawStatus = 1;
+        return walletDao.setWithdrawStatus(withdrawId, withdrawStatus);
     }
 }

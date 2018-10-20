@@ -85,6 +85,7 @@
             data: withdrawInfo,
             dataType: "text",
             success: function (data) {
+                console.log(data);
                 if (data == 0) {
                     layer.open({
                         anim: 'up'
@@ -98,11 +99,14 @@
                             history.go(-1);
                         }
                     });
-                } if (data == 1) {
+                } else if (data == 1) {
                     layer.open({
                         content: '提现申请已提交'
                         ,btn: '查看'
                         , shadeClose: false
+                        , yes: function () {
+                            alert("正在跳转");
+                        }
                     });
                 } else {
                     var contentMsg;

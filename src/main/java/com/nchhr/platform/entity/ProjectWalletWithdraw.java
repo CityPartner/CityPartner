@@ -8,9 +8,10 @@ public class ProjectWalletWithdraw {
     private String projectId;
     private Integer withdrawAmount;
     private Timestamp applyTime;
+    private String applyName;
     private Timestamp handleTime;
-    private String handleUser;
-    private Integer withdrawStaus;
+    private String handleName;
+    private Integer withdrawStatus;
 
     public ProjectWalletWithdraw() {
     }
@@ -55,6 +56,14 @@ public class ProjectWalletWithdraw {
         this.applyTime = applyTime;
     }
 
+    public String getApplyName() {
+        return applyName;
+    }
+
+    public void setApplyName(String applyName) {
+        this.applyName = applyName;
+    }
+
     public Timestamp getHandleTime() {
         return handleTime;
     }
@@ -63,20 +72,20 @@ public class ProjectWalletWithdraw {
         this.handleTime = handleTime;
     }
 
-    public String getHandleUser() {
-        return handleUser;
+    public String getHandleName() {
+        return handleName;
     }
 
-    public void setHandleUser(String handleUser) {
-        this.handleUser = handleUser;
+    public void setHandleName(String handleName) {
+        this.handleName = handleName;
     }
 
-    public Integer getWithdrawStaus() {
-        return withdrawStaus;
+    public Integer getWithdrawStatus() {
+        return withdrawStatus;
     }
 
-    public void setWithdrawStaus(Integer withdrawStaus) {
-        this.withdrawStaus = withdrawStaus;
+    public void setWithdrawStatus(Integer withdrawStatus) {
+        this.withdrawStatus = withdrawStatus;
     }
 
     @Override
@@ -85,11 +94,12 @@ public class ProjectWalletWithdraw {
                 "withdrawId='" + withdrawId + '\'' +
                 ", userId='" + userId + '\'' +
                 ", projectId='" + projectId + '\'' +
-                ", withdrawAmount='" + withdrawAmount + '\'' +
+                ", withdrawAmount=" + withdrawAmount +
                 ", applyTime=" + applyTime +
+                ", applyName='" + applyName + '\'' +
                 ", handleTime=" + handleTime +
-                ", handleUser='" + handleUser + '\'' +
-                ", withdrawStaus='" + withdrawStaus + '\'' +
+                ", handleName='" + handleName + '\'' +
+                ", withdrawStatus=" + withdrawStatus +
                 '}';
     }
 }
