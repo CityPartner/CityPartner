@@ -53,10 +53,8 @@ public class WalletController {
             project_wallet_withdraw数据的来源需要对接
     */
     @RequestMapping("/withdraw/detail")//
-    public String withdeawDetail(String withdrawId) {
+    public String withdeawDetail() {
 
-        // TODO 通过提现id查看提现详细信息
-        //如果id为空则查询最近一条
         return "withdrawDetail";
     }
 
