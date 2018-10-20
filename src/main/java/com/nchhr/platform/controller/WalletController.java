@@ -19,15 +19,16 @@ public class WalletController {
     WalletService walletService;
 
     /*
-        钱包
+        我的钱包
         @Author HWG
             1.从project_wallet读取数据，显示钱包数额
-            2.提供“收入”按钮，链接“收入详情”
-            3.提供“提现”按钮，链接“提现功能”
+            2.提供“收入”按钮，链接“收入详情页面”
+            3.提供“提现”按钮，链接“提现功能页面”
                 project_wallet数据的来源需要对接
     */
     @RequestMapping("")
     public String wallet() {
+
         return "wallet";
     }
 
@@ -39,6 +40,7 @@ public class WalletController {
      */
     @RequestMapping("/income/detail")
     public String income() {
+
         return "incomeDetail";
     }
 
@@ -50,9 +52,12 @@ public class WalletController {
     */
     @RequestMapping("/withdraw/detail")//
     public String withdeawDetail(String withdrawId) {
+
         // TODO 通过提现id查看提现详细信息
+        //如果id为空则查询最近一条
         return "withdrawDetail";
     }
+
 
 
 
@@ -73,36 +78,42 @@ public class WalletController {
 
         return "withdraw";
     }
-
-    @RequestMapping("/withdraw/getCode")//获取验证码
+    //获取验证码
+    @RequestMapping("/withdraw/getCode")
     @ResponseBody
     public String getCode() {
         //TODO 调用验证短信发送接口
         System.out.println("--短信已发送--");
         return "1";
     }
-
-    @RequestMapping("/withdraw/isApplying")//判断当前是否有申请未处理
+    //判断当前是否有申请未处理
+    @RequestMapping("/withdraw/isApplying")
     @ResponseBody
     public String isApplying(HttpSession httpSession) {
         String userId = (String) httpSession.getAttribute("userId");
         String projectId = (String) httpSession.getAttribute("projectId");
         return walletService.isApplying(userId, projectId) ? "1" : "0";
     }
-
-    @RequestMapping("/withdraw/apply")//添加申请
+    //添加申请
+    @RequestMapping("/withdraw/apply")
     @ResponseBody
     public String applyWithdraw(HttpSession httpSession, String name, String money, String code) {
         String userId = (String) httpSession.getAttribute("userId");
         String projectId = (String) httpSession.getAttribute("projectId");
-        return walletService.addWalletApplyRecord(userId, projectId, name, money);
+        return walletService.addWalletApplyRecord(userId, projectId, name, money, code);
     }
 
 
+    /*
+        处理提现
+        @author JC
+     */
+    @RequestMapping("/withdraw/msg")
+    public String withdrawMsg() {
 
+        return "withdrawMsg";
+    }
 
-
-    //钱包——项目发起人处理提现
     @RequestMapping("/handle")
     public String dealwith() {
 
