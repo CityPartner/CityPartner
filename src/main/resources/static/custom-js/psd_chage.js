@@ -26,13 +26,17 @@ $(document).ready(function () {
         }
     }
 
+    var curCount = 0;//当前剩余秒数
     //手机号格式判断
     $("#newphone").on('input', function (e) {
 
         if (phone($("#newphone").val())) {
             $("#format_phone").hide();
-            $("#getCode").attr('disabled', false);
-            $("#getCode").css("background-color", "#2d9cff");
+            if (curCount == 0) {
+                $("#getCode").attr('disabled', false);
+                $("#getCode").css("background-color", "#2d9cff");
+            }
+
 
             if (format_pwd($("#newpwd").val())) {
                 $("#format_pwd").hide();
@@ -63,9 +67,22 @@ $(document).ready(function () {
 
         if (format_pwd($("#newpwd").val())) {
             $("#format_pwd").hide();
-            if (phone($("#userPhone").val())) {
-                $("#but_recover").attr('disabled', false);
-                $("#but_recover").css("background-color", "#2d9cff");
+            if (rePwd()) {
+
+                $("#format_pwd").hide();
+                if (phone($("#newphone").val())) {
+                    $("#format_phone").hide();
+
+
+                    $("#but_recover").attr('disabled', false);
+                    $("#but_recover").css("background-color", "#2d9cff");
+                } else {
+                    $("#format_phone").show();
+                }
+
+            } else {
+                $("#regExpPwd").text("第二次密码输入错误");
+                $("#format_pwd").show();
             }
 
         } else {
@@ -80,7 +97,7 @@ $(document).ready(function () {
     //判断第二次密码输入的正确性
     $("#repwd").on('input', function (e) {
 
-        console.log(rePwd());
+
         if (rePwd()) {
 
             $("#regExpPwd").text("");
@@ -93,7 +110,7 @@ $(document).ready(function () {
                 $("#but_recover").css("background-color", "#2d9cff");
 
             }
-           else {
+            else {
                 // console.log("123");
                 $("#format_phone").show();
                 $("#but_recover").attr('disabled', true);
@@ -112,19 +129,22 @@ $(document).ready(function () {
 
 
     //清除code
-    var curCount;//当前剩余秒数
+
     var InterValObj; //timer变量，控制时间
     function SetRemainTime() {
         if (curCount == 0) {
             window.clearInterval(InterValObj);//停止计时器
-            $("#getCode").removeAttr("disabled");//启用按钮
-            $("#getCode").text("重新发送验证码");
-            $("#getCode").css("background-color", "#2d9cff");
+            if (phone($("#newphone").val())) {
+                $("#getCode").removeAttr("disabled");//启用按钮
+                $("#getCode").text("重新发送验证码");
+                $("#getCode").css("background-color", "#2d9cff");
+            }
+
             /**
              * 清除验证码
              */
             var temp = {};
-            temp.phone = $("#userPhone").val();
+            temp.phone = $("#newphone").val();
             // alert(temp.phone);
             $.ajax({
                 async: false,
@@ -170,6 +190,21 @@ $(document).ready(function () {
 
     }
 
+    //保存cookies
+    function setCookies(name) {
+
+        var expiresDate = new Date();
+        expiresDate.setTime(expiresDate.getTime() + (1 * 60 * 1000));
+//?替换成分钟数如果为60分钟则为 60 * 60 *1000
+        var m = expiresDate.getMinutes();     //获取当前分钟数(0-59)
+        var s = expiresDate.getSeconds();
+        $.cookie(name, m * 60 + s, {
+            path: '/',//cookie的作用域
+            expires: expiresDate
+        });
+
+    }
+
     //获取验证码
     $("#getCode").click(function (e) {
         // alert("123");
@@ -195,8 +230,23 @@ $(document).ready(function () {
         $("#getCode").attr("disabled", "true");
         $("#getCode").text(curCount + "秒再获取");
         $("#getCode").css("background-color", "#ccc");
+        var temp = true;
+        if ($.cookie(params.phone) != null) {
+            swal({
+                title: "<span style='color:#f6d224;font-size: 22px'>验证码获取频繁！<span>",
+                text: "2秒后自动关闭。",
+                timer: 2000,
+                showConfirmButton: true,
+                html: true
+            });
+            temp = false;
+        } else {
+            setCookies(params.phone);
+        }
         InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-
+        if (temp == false) {
+            return;
+        }
         $.ajax({
             async: false,
             type: "POST",

@@ -10,49 +10,48 @@ $(document).ready(function () {
     //     $("#checkPwd").hide();
     // });
     //
+    function phone(Phone) {
+        var pattern = /^1[34578]\d{9}$/;
+        var b = pattern.test(Phone);
+        return b;
+
+    }
+
+    function format_pwd(pwd) {
+        var regExp = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,21}$/;
+        var b = regExp.test(pwd);
+        return b;
+    }
+
+    function rePwd() {
+        var params = {};
+        params.pwd = $("#pwd").val();
+        params.repwd = $("#repwd").val();
+        if (params.pwd == params.repwd) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    var curCount = 0;//当前剩余秒数
     //校验手机号格式
 
     $("#userPhone").on('input', function (e) {
-        var pattern = /^1[34578]\d{9}$/;
-        var b = pattern.test($("#userPhone").val());
-        if (b == false) {
-            $("#format_phone").show();
-            $("#getCode").attr('disabled', true);
-            $("#getCode").css("background-color", "#ccc");
-            $("#but_regist").attr('disabled', true);
-            $("#but_regist").css("background-color", "#ccc");
 
-        }
-        if (b == true) {
+        if (phone($("#userPhone").val())) {
             // console.log("123");
             $("#format_phone").hide();
-            $("#getCode").attr('disabled', false);
-            $("#getCode").css("background-color", "#2d9cff");
+            if (curCount == 0) {
+                $("#getCode").attr('disabled', false);
+                $("#getCode").css("background-color", "#2d9cff");
+            }
 
-            var params = {};
-            params.pwd = $("#pwd").val();
-            params.repwd = $("#repwd").val();
-            if (params.pwd == params.repwd) {
+            if (rePwd()) {
                 $("#but_regist").attr('disabled', false);
                 $("#but_regist").css("background-color", "#2d9cff");
-            }
-            //手机加上密码判断
-            var regExp = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,21}$/;
-            var b = regExp.test($("#pwd").val());
-            if (b == false) {
-                $("#regExpPwd").text("密码格式不对");
-                $("#checkPwd").show();
-                $("#but_regist").attr('disabled', true);
-                $("#but_regist").css("background-color", "#ccc");
-            }
-            if (b == true) {
-
-                $("#checkPwd").hide();
-                $("#but_regist").attr('disabled', false);
-                $("#but_regist").css("background-color", "#2d9cff");
-
-            }
-            if (params.pwd != params.repwd) {
+            } else {
                 // console.log("123");
                 $("#regExpPwd").text("第二次密码输入错误");
                 $("#checkPwd").show();
@@ -60,36 +59,51 @@ $(document).ready(function () {
                 $("#but_regist").css("background-color", "#ccc");
 
             }
+            //手机加上密码判断
+            if (format_pwd($("#pwd").val())) {
+
+                $("#checkPwd").hide();
+                $("#but_regist").attr('disabled', false);
+                $("#but_regist").css("background-color", "#2d9cff");
+
+            } else {
+                $("#regExpPwd").text("密码格式不对");
+                $("#checkPwd").show();
+                $("#but_regist").attr('disabled', true);
+                $("#but_regist").css("background-color", "#ccc");
+            }
+
+        } else {
+            $("#format_phone").show();
+            $("#getCode").attr('disabled', true);
+            $("#getCode").css("background-color", "#ccc");
+            $("#but_regist").attr('disabled', true);
+            $("#but_regist").css("background-color", "#ccc");
+
         }
     });
     //判断第二次密码输入的正确性
     $("#repwd").on('input', function (e) {
-        var params = {};
-        params.pwd = $("#pwd").val();
-        params.repwd = $("#repwd").val();
-        if (params.pwd == params.repwd) {
+        if (rePwd()) {
 
             $("#regExpPwd").text("第二次密码输入错误");
             $("#checkPwd").hide();
 
-            var pattern = /^1[34578]\d{9}$/;
-            var b = pattern.test($("#userPhone").val());
-            if (b == false) {
-                $("#format_phone").show();
-                $("#but_regist").attr('disabled', true);
-                $("#but_regist").css("background-color", "#ccc");
-
-            }
-            if (b == true) {
+            if (phone($("#userPhone").val())) {
                 // console.log("123");
                 $("#format_phone").hide();
                 $("#but_regist").attr('disabled', false);
                 $("#but_regist").css("background-color", "#2d9cff");
 
+            } else {
+                $("#format_phone").show();
+                $("#but_regist").attr('disabled', true);
+                $("#but_regist").css("background-color", "#ccc");
+
             }
 
         }
-        if (params.pwd != params.repwd) {
+        else {
             // console.log("123");
             $("#regExpPwd").text("第二次密码输入错误");
             $("#checkPwd").show();
@@ -101,31 +115,44 @@ $(document).ready(function () {
 
     //校验密码是否6位
     $("#pwd").on('input', function (e) {
-        var regExp = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,21}$/;
-        var b = regExp.test($("#pwd").val());
-        if (b == false) {
+
+        if (format_pwd($("#pwd").val())) {
+            $("#checkPwd").hide();
+            if (rePwd()){
+                $("#checkPwd").hide();
+                if (phone($("#userPhone").val())){
+                    $("#format_phone").hide();
+                    $("#but_regist").attr('disabled', false);
+                    $("#but_regist").css("background-color", "#2d9cff");
+                }else {
+                    $("#format_phone").show();
+                }
+
+            }else {
+                $("#regExpPwd").text("第二次密码输入错误");
+                $("#checkPwd").show();
+            }
+
+
+        } else {
             $("#regExpPwd").text("密码格式不对");
             $("#checkPwd").show();
             $("#but_regist").attr('disabled', true);
             $("#but_regist").css("background-color", "#ccc");
         }
-        if (b == true) {
-
-            $("#checkPwd").hide();
-            $("#but_regist").attr('disabled', false);
-            $("#but_regist").css("background-color", "#2d9cff");
-
-        }
 
     });
-    var curCount;//当前剩余秒数
+
     var InterValObj; //timer变量，控制时间
     function SetRemainTime() {
         if (curCount == 0) {
             window.clearInterval(InterValObj);//停止计时器
-            $("#getCode").removeAttr("disabled");//启用按钮
-            $("#getCode").css("background-color", "#2d9cff");
-            $("#getCode").text("重新发送验证码");
+            if (phone($("#userPhone").val())) {
+                $("#getCode").removeAttr("disabled");//启用按钮
+                $("#getCode").css("background-color", "#2d9cff");
+                $("#getCode").text("重新发送验证码");
+            }
+
             /**
              * 清除验证码
              */
@@ -175,7 +202,20 @@ $(document).ready(function () {
         }
 
     }
+    //保存cookies
+    function setCookies(name) {
 
+        var expiresDate = new Date();
+        expiresDate.setTime(expiresDate.getTime() + (1 * 60 * 1000));
+//?替换成分钟数如果为60分钟则为 60 * 60 *1000
+        var m=expiresDate.getMinutes();     //获取当前分钟数(0-59)
+        var s=expiresDate.getSeconds();
+        $.cookie(name, m*60+s, {
+            path: '/',//cookie的作用域
+            expires: expiresDate
+        });
+
+    }
     //获取验证码
     $("#getCode").click(function (e) {
         // alert("123");
@@ -201,8 +241,23 @@ $(document).ready(function () {
         $("#getCode").attr("disabled", "true");
         $("#getCode").css("background-color", "#ccc");
         $("#getCode").text(curCount + "秒再获取");
+        var temp = true;
+        if ($.cookie(params.phone) !=null){
+            swal({
+                title: "<span style='color:#f6d224;font-size: 22px'>验证码获取频繁！<span>",
+                text: "2秒后自动关闭。",
+                timer: 2000,
+                showConfirmButton: true,
+                html: true
+            });
+            temp = false;
+        } else {
+            setCookies(params.phone);
+        }
         InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-
+        if (temp == false){
+            return;
+        }
         $.ajax({
             async: false,
             type: "POST",
@@ -281,7 +336,7 @@ $(document).ready(function () {
         params.pwd = $("#pwd").val();
         params.repwd = $("#repwd").val();
         // alert(JSON.stringify(params));
-        if ( params.pwd == "" ) {
+        if (params.pwd == "") {
             swal({
                 title: "<span style='color:#f6d224;font-size: 26px'>密码不能为空！<span>",
                 text: "2秒后自动关闭。",
