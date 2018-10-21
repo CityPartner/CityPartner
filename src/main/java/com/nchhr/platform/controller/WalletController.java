@@ -2,6 +2,7 @@ package com.nchhr.platform.controller;
 
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import com.nchhr.platform.service.WalletService;
+import com.nchhr.platform.util.GetCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,6 +71,7 @@ public class WalletController {
         //TODO 以下为测试数据
         httpSession.setAttribute("userId", "18160742626");//测试用户
         httpSession.setAttribute("projectId", "PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");//测试项目
+        httpSession.setAttribute("phone", "18160742626");//测试用户手机号
 
         String userId = (String) httpSession.getAttribute("userId");
         String projectId = (String) httpSession.getAttribute("projectId");
@@ -80,10 +82,10 @@ public class WalletController {
     //获取验证码
     @RequestMapping("/withdraw/getCode")
     @ResponseBody
-    public String getCode() {
-        //TODO 调用验证短信发送接口
+    public String getCode(HttpSession httpSession) {
         System.out.println("--短信已发送--");
-        return "1";
+        String phone = (String) httpSession.getAttribute("phone");
+        return GetCodeUtils.getCode(phone, httpSession, "0");
     }
     //判断当前是否有申请未处理
     @RequestMapping("/withdraw/isApplying")
@@ -99,7 +101,8 @@ public class WalletController {
     public String applyWithdraw(HttpSession httpSession, String name, String money, String code) {
         String userId = (String) httpSession.getAttribute("userId");
         String projectId = (String) httpSession.getAttribute("projectId");
-        return walletService.addWalletApplyRecord(userId, projectId, name, money, code);
+        String phone = (String) httpSession.getAttribute("phone");
+        return walletService.addWalletApplyRecord(userId, projectId, name, money, phone, code, httpSession);
     }
 
 

@@ -2,9 +2,11 @@ package com.nchhr.platform.service;
 
 import com.nchhr.platform.dao.WalletDao;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
+import com.nchhr.platform.util.GetCodeUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -30,25 +32,33 @@ public class WalletService {
         @return
             0：尚有申请未处理
             1：提现申请成功
-            2：申请提现金额低于最低额度
-            3：申请提现金额高于最高额度
-            4：提现金额格式出错
+            2：申请人实名格式出错
+            3：申请提现金额低于最低额度
+            4：申请提现金额高于最高额度
+            5：提现金额格式出错
+            6：验证码错误
      */
-    public String addWalletApplyRecord(String userId, String projectId, String applyName, String withdrawAmount, String verifyCode) {
-        // TODO 判断验证码
-//        if (true)
-//            return "5";
+    public String addWalletApplyRecord(String userId, String projectId, String applyName, String withdrawAmount, String phone, String verifyCode, HttpSession httpSession) {
         // 是否有提现申请正在处理
         if (isApplying(userId, projectId))
             return "0";
+
+        // 判断验证码
+        if (!GetCodeUtils.judgeCode(phone, verifyCode, httpSession).equals("1"))
+            return "6";
+
+        // 检查申请人姓名
+        if (null == applyName || applyName.trim().isEmpty())
+            return "2";
+
         // 检查提现金额
         if (null != withdrawAmount) {
             Pattern pattern = Pattern.compile("^[+]?([0-9]+(.[0-9]{1,2})?)$");
             if (pattern.matcher(withdrawAmount).matches()) {
                 if (Double.parseDouble(withdrawAmount) < MIN_WITHDRAW_AMOUNT)
-                    return "2";
-                if (Double.parseDouble(withdrawAmount) > getWalletAmount(userId, projectId))
                     return "3";
+                if (Double.parseDouble(withdrawAmount) > getWalletAmount(userId, projectId))
+                    return "4";
                 String withdrawId = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
                 Timestamp applyTime = new Timestamp(new Date().getTime());
                 int withdrawStatus = 0;
@@ -56,7 +66,7 @@ public class WalletService {
                 return "1";
             }
         }
-        return "4";
+        return "5";
     }
 
     //查看是否还有提现申请未处理
