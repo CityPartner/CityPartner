@@ -64,7 +64,7 @@ public class AccountService {
         PlatformUserEntity platformUserEntity = accountDao.loadByPhone(phone);
         if (platformUserEntity == null) {
 
-            return GetCodeUtils.getCode(phone, session, CodeEnum.AccessId, CodeEnum.AccessKeySecre, CodeEnum.SignName, CodeEnum.SMSTemplateCode);
+            return GetCodeUtils.getCode(phone, session,"3");
 
         }
         if (platformUserEntity != null) {
@@ -182,7 +182,7 @@ public class AccountService {
         PlatformUserEntity platformUserEntity = accountDao.loadByPhone(phone);
 
         if (platformUserEntity != null) {
-            return GetCodeUtils.getCode(phone, session, CodeEnum.AccessId, CodeEnum.AccessKeySecre, CodeEnum.SignName, CodeEnum.SMSTemplateCode);
+            return GetCodeUtils.getCode(phone, session, "4");
 
         } else {
             //2该用户不存在，请去注册

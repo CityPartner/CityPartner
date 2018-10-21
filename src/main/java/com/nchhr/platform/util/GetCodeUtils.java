@@ -25,13 +25,54 @@ public class GetCodeUtils {
     /**
      * @param phone                   手机
      * @param session
-     * @param codeEnumAccessId        签名id
-     * @param codeEnumAccessKeySecre  签名值
-     * @param codeEnumSignName        模板编号
-     * @param codeEnumSMSTemplateCode 模板值
+     * @param model //使用模板
      * @return
      */
-    public static String getCode(String phone, HttpSession session, CodeEnum codeEnumAccessId, CodeEnum codeEnumAccessKeySecre, CodeEnum codeEnumSignName, CodeEnum codeEnumSMSTemplateCode) {
+    public static String getCode(String phone, HttpSession session,String model) {
+
+
+        CodeEnum  codeEnumAccessId = CodeEnum.AccessId;
+        CodeEnum codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
+        CodeEnum codeEnumSignName = CodeEnum.SignName;
+        CodeEnum codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
+
+        if (model == "1"){
+            //注册
+            codeEnumAccessId = CodeEnum.AccessId;
+            codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
+            codeEnumSignName = CodeEnum.SignName;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
+        }
+        else if (model == "2"){
+            //商城找回密码
+            codeEnumAccessId = CodeEnum.AccessId;
+            codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
+            codeEnumSignName = CodeEnum.SignName;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
+        }
+        else if (model == "3"){
+            //平台注册
+            codeEnumAccessId = CodeEnum.AccessId;
+            codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
+            codeEnumSignName = CodeEnum.SignName;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
+        }
+        else if (model == "4"){
+            //平台找回密码
+            codeEnumAccessId = CodeEnum.AccessId;
+            codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
+            codeEnumSignName = CodeEnum.SignName;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
+        }
+        else {
+            //默认
+            codeEnumAccessId = CodeEnum.AccessId;
+            codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
+            codeEnumSignName = CodeEnum.SignName;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
+        }
+
+
 
         //获取随机验证码，保存在session中
         CodeUtils codeUtils = new CodeUtils();
