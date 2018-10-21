@@ -8,6 +8,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
+import com.nchhr.platform.entity.PhoneCodeEntity;
 import com.nchhr.platform.enums.CodeEnum;
 
 import javax.servlet.http.HttpSession;
@@ -76,7 +77,6 @@ public class GetCodeUtils {
 
         //获取随机验证码，保存在session中
         CodeUtils codeUtils = new CodeUtils();
-        PhoneCodeUtils phoneCodeUtils = new PhoneCodeUtils();
         //设置超时时间-可自行调整
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
@@ -89,7 +89,7 @@ public class GetCodeUtils {
         //获得随机验证码
         String usercode = codeUtils.createRandom(true, 6);
         //保存phone code到session中
-        if (phoneCodeUtils.save(phone, usercode, session) == false) {
+        if (GetCodeUtils.save(phone, usercode, session) == false) {
             //4代表获取验证码频繁
             return "4";
         }
@@ -136,6 +136,59 @@ public class GetCodeUtils {
         }
 
         return "3";
+    }
+
+        //保存验证码
+    public static boolean save(String phone, String code, HttpSession session){
+
+        if (session.getAttribute(phone)!= null){
+            return false;
+        }
+        try{
+            PhoneCodeEntity phoneCode = new PhoneCodeEntity();
+            MD5Utils md5Utils = new MD5Utils();
+            phoneCode.setPhone(phone);
+            phoneCode.setCode(md5Utils.MD5Encode(code,"utf8"));
+
+            session.setAttribute(phone,phoneCode);
+        }catch(Exception e){
+
+            return false;
+        }
+        return true;
+    }
+
+
+    //判断验证码
+
+    /**
+     *
+     * @param userPhone
+     * @param code
+     * @param session
+     * @return "5"验证码过期 ， ”4“系统异常, "1"验证码成功，”2“验证码错误
+     */
+    public static String JudgeCode(String userPhone, String code,HttpSession session){
+
+        MD5Utils md5Utils = new MD5Utils();
+        PhoneCodeEntity phoneCode = (PhoneCodeEntity) session.getAttribute(userPhone);
+        if (phoneCode == null){
+            return "5";
+        }else {
+            String mdCode;
+            try {
+                mdCode = md5Utils.MD5Encode(code, "utf8");
+
+            } catch (Exception e) {
+                return "4";
+            }
+            if (mdCode.equals(phoneCode.getCode())){
+                return "1";
+            }else {
+                //验证码错误
+                return "2";
+            }
+        }
     }
 
 
