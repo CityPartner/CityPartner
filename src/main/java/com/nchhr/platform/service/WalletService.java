@@ -2,9 +2,11 @@ package com.nchhr.platform.service;
 
 import com.nchhr.platform.dao.WalletDao;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
+import com.nchhr.platform.util.GetCodeUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -36,14 +38,14 @@ public class WalletService {
             5：提现金额格式出错
             6：验证码错误
      */
-    public String addWalletApplyRecord(String userId, String projectId, String applyName, String withdrawAmount, String verifyCode) {
+    public String addWalletApplyRecord(String userId, String projectId, String applyName, String withdrawAmount, String phone, String verifyCode, HttpSession httpSession) {
         // 是否有提现申请正在处理
         if (isApplying(userId, projectId))
             return "0";
 
-        // TODO 判断验证码
-//        if (true)
-//            return "6";
+        // 判断验证码
+        if (!GetCodeUtils.judgeCode(phone, verifyCode, httpSession).equals("1"))
+            return "6";
 
         // 检查申请人姓名
         if (null == applyName || applyName.trim().isEmpty())

@@ -168,7 +168,7 @@ public class GetCodeUtils {
      * @param session
      * @return "5"验证码过期 ， ”4“系统异常, "1"验证码成功，”2“验证码错误
      */
-    public static String JudgeCode(String userPhone, String code,HttpSession session){
+    public static String judgeCode(String userPhone, String code,HttpSession session){
 
         MD5Utils md5Utils = new MD5Utils();
         PhoneCodeEntity phoneCode = (PhoneCodeEntity) session.getAttribute(userPhone);
