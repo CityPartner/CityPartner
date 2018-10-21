@@ -8,6 +8,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
+import com.nchhr.platform.entity.WeChatUserEntity;
 import com.nchhr.platform.enums.CodeEnum;
 import com.nchhr.platform.dao.AccountDao;
 import com.nchhr.platform.dao.WeChatUserDao;
@@ -121,7 +122,7 @@ public class AccountService {
                     //1成功
                     //添加商城用户
                     CodeUtils codeUtils = new CodeUtils();
-                   /* //获取微信id
+                    //获取微信id
                     WeChatUserEntity weChatUserEntity = (WeChatUserEntity)session.getAttribute("weChatUser");
 //                    WeChatUserEntity weChatUserEntity = new WeChatUserEntity();
 
@@ -141,7 +142,7 @@ public class AccountService {
                             weChatUserEntity.getSubscribe_scene(),
                             weChatUserEntity.getSubscribe_time(),
                             weChatUserEntity.getTagid_list(),
-                            weChatUserEntity.getUnionid());*/
+                            weChatUserEntity.getUnionid());
 
                     String Pid = "M" + codeUtils.createRandom(false, 16);
                     System.out.println(Pid);
@@ -240,5 +241,17 @@ public class AccountService {
                 return "4";
             }
         }
+    }
+    /**
+     * 获取用户
+     */
+    public PlatformUserEntity loadByMid(String mid){
+        return accountDao.loadByid(mid);
+    }
+    /**
+     * 判断openid
+     */
+    public PlatformUserEntity loadByOenid(String openid){
+        return accountDao.loadByOpenid(openid);
     }
 }

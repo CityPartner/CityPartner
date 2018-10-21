@@ -10,28 +10,27 @@ import javax.servlet.http.HttpServletResponse;
 public class CookiesService {
 
     public boolean saveCookies(String MID, HttpServletResponse response, HttpServletRequest request) {
-        try{
-        Cookie[] cookies = request.getCookies();
-        if (cookies == null){
+        try {
+            Cookie[] cookies = request.getCookies();
+            if (cookies == null) {
 
-            Cookie WXIDCookie = new Cookie("MID", MID);
+                Cookie WXIDCookie = new Cookie("MID", MID);
 
-            WXIDCookie.setMaxAge(86400);//设置cookie生存时间：
-            response.addCookie(WXIDCookie);// 添加cookie：
-        }
-        else {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("MID")) {
-                    cookie.setMaxAge(0);
-                    response.addCookie(cookie);
+                WXIDCookie.setMaxAge(86400);//设置cookie生存时间：
+                response.addCookie(WXIDCookie);// 添加cookie：
+            } else {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("MID")) {
+                        cookie.setMaxAge(0);
+                        response.addCookie(cookie);
+                    }
                 }
-            }
 
-        }
+            }
             Cookie WXIDCookie = new Cookie("MID", MID);
             WXIDCookie.setMaxAge(86400);//设置cookie生存时间：
             response.addCookie(WXIDCookie);// 添加cookie：
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
 
         }
@@ -48,5 +47,37 @@ public class CookiesService {
         }
 
         return true;
+    }
+
+    public boolean alreadyCookies(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return false;
+        } else {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("MID")) {
+
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+
+    }
+    public String printCookies(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return "0";
+        } else {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("MID")) {
+
+                    return cookie.getValue();
+                }
+                return "0";
+            }
+            return "0";
+        }
     }
 }
