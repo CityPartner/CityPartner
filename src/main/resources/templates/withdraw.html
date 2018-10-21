@@ -19,7 +19,7 @@
     <ul class="bgwh content1">
         <li class="df pr30 pl30"><label class="f26" for="amount">可提现金额</label>
             <input type="text" id="amount" name="amount" th:value="${walletAmount}" value="2000.00" disabled/></li>
-        <li class="df pr30 pl30"><label class="f26" for="name">申请人</label>
+        <li class="df pr30 pl30"><label class="f26" for="name">申请人实名</label>
             <input type="text" id="name" name="name" placeholder="请输入姓名"/></li>
         <li class="pr30 pl30"><label class="f26" for="money">本次提现金额</label>
             <input type="text"  id="money" name="money" placeholder="请输入提现金额"/>元
@@ -85,6 +85,7 @@
             data: withdrawInfo,
             dataType: "text",
             success: function (data) {
+                console.log(data);
                 if (data == 0) {
                     layer.open({
                         anim: 'up'
@@ -98,19 +99,24 @@
                             history.go(-1);
                         }
                     });
-                } if (data == 1) {
+                } else if (data == 1) {
                     layer.open({
                         content: '提现申请已提交'
                         ,btn: '查看'
                         , shadeClose: false
+                        , yes: function () {
+                            alert("正在跳转");
+                        }
                     });
                 } else {
                     var contentMsg;
                     if (data == 2) {
-                        contentMsg = "申请金额小于最低额度";
+                        contentMsg = "申请人实名格式出错";
                     } else if (data == 3) {
-                        contentMsg = "申请金额大于最高额度";
+                        contentMsg = "申请金额小于最低额度";
                     } else if (data == 4) {
+                        contentMsg = "申请金额大于最高额度";
+                    } else if (data == 5) {
                         contentMsg = "申请金额出错";
                     } else {
                         contentMsg = "验证码出错";

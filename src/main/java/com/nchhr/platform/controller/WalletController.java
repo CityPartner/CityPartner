@@ -1,5 +1,6 @@
 package com.nchhr.platform.controller;
 
+import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import com.nchhr.platform.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/wallet")
@@ -51,10 +53,8 @@ public class WalletController {
             project_wallet_withdraw数据的来源需要对接
     */
     @RequestMapping("/withdraw/detail")//
-    public String withdeawDetail(String withdrawId) {
+    public String withdeawDetail() {
 
-        // TODO 通过提现id查看提现详细信息
-        //如果id为空则查询最近一条
         return "withdrawDetail";
     }
 
@@ -73,8 +73,7 @@ public class WalletController {
 
         String userId = (String) httpSession.getAttribute("userId");
         String projectId = (String) httpSession.getAttribute("projectId");
-        int walletAmount = walletService.getWalletAmount(userId, projectId);
-        model.addAttribute("walletAmount", walletAmount);
+        model.addAttribute("walletAmount", walletService.getWalletAmount(userId, projectId));
 
         return "withdraw";
     }
@@ -109,14 +108,15 @@ public class WalletController {
         @author JC
      */
     @RequestMapping("/withdraw/msg")
-    public String withdrawMsg() {
-
+    public String withdrawMsg(HttpSession httpSession, Model model) {
+        String projectId = (String) httpSession.getAttribute("projectId");
+        model.addAttribute("withdrawMsgs", walletService.getWithdrawApplyList(projectId));
         return "withdrawMsg";
     }
 
-    @RequestMapping("/handle")
-    public String dealwith() {
-
-        return "handle";
+    @RequestMapping("/withdraw/handle")
+    @ResponseBody
+    public String dealwith(String withdrawId) {
+        return walletService.handleWithdraw(withdrawId).toString();
     }
 }

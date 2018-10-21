@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script src="/js/jquery.js"></script>
+    <link href="/style/reset.css" rel="stylesheet" type="text/css">
+    <link href="/style/base.css" rel="stylesheet" type="text/css">
+    <link href="/style/header.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/style/message.css"/>
+    <title>消息</title>
+</head>
+<body>
+<header><span onclick="javascript:history.go(-1)"></span>提现管理</header>
+<ul>
+    <li th:each="withdrawMsg:${withdrawMsgs}" th:onclick="'handleWithdraw(\''+${withdrawMsg.getWithdrawId()}+'\')'">
+        <div>
+            <p><span></span>&nbsp;提现申请通知</p>
+            <p>
+                <span th:text="${withdrawMsg.getApplyName()}"></span>
+                <span>申请提现</span>
+                <span th:text="'￥' + ${withdrawMsg.getWithdrawAmount()}"></span>
+            </p>
+        </div>
+        <p th:text="${withdrawMsg.getApplyTime()}">2018-10-01</p>
+    </li>
+</ul>
+</body>
+
+<script type="text/javascript" src="/js/layer.js"></script>
+<script>
+    function handleWithdraw(withdrawId) {
+        layer.open({
+            anim: 'up'
+            , content: '确定已经拨付资金给申请人了吗？<br/>确定之后将从申请人钱包减少对应金额'
+            , btn: ['取消', '确定']
+            , shadeClose: false
+            // 取消即为yes
+            , no: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/wallet/withdraw/handle",
+                    data: "withdrawId=" + withdrawId,
+                    dataType: "text",
+                    success: function (data) {
+                        layer.open({
+                            content: '已经从用户钱包减少对应金额'
+                            ,skin: 'msg'
+                            ,time: 3
+                        });
+                        location.reload();
+                    },
+                    error: function () {
+                        layer.open({
+                            content: '处理失败！'
+                            ,skin: 'msg'
+                            ,time: 3
+                        });
+                    }
+                });
+            }
+        });
+    }
+</script>
+</html>
