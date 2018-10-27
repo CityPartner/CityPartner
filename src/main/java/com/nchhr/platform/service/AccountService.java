@@ -48,7 +48,7 @@ public class AccountService {
                 //保存session
                 session.setAttribute("PlatformInfo", platformUserEntity);
                 //保存cookies
-                cookiesService.saveCookies(platformUserEntity.getP_id(), response, request);
+                cookiesService.saveCookies(platformUserEntity.getP_id(),"PID", response, request);
                 //登录成功
                 return "1";
             } else {
@@ -152,7 +152,7 @@ public class AccountService {
                     if (b == true) {
                         PlatformUserEntity platformUserEntity1 = accountDao.loadByid(Pid);
                         //保存cookies
-                        cookiesService.saveCookies(Pid, response, request);
+                        cookiesService.saveCookies(Pid,"PID", response, request);
                         session.setAttribute("PlatformInfo", platformUserEntity1);
                         //1代表成功
                         return "1";

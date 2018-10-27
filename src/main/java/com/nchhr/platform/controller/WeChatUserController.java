@@ -51,8 +51,8 @@ public class WeChatUserController {
          * 1、先判断有无cookies
          * 2、再判断openid
          */
-        if (cookiesService.alreadyCookies(request)){
-           String mid =  cookiesService.printCookies(request);
+        if (cookiesService.alreadyCookies(request,"PID")){
+           String mid =  cookiesService.printCookies(request,"PID");
            if (mid.equals("0")){
                //判断openid
                return "/login";
