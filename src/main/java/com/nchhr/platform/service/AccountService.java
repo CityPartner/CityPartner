@@ -48,6 +48,7 @@ public class AccountService {
                 //保存session
                 session.setAttribute("PlatformInfo", platformUserEntity);
                 //保存cookies
+                cookiesService.clear(response,"MID",request);
                 cookiesService.saveCookies(platformUserEntity.getP_id(),"PID", response, request);
                 //登录成功
                 return "1";
@@ -151,6 +152,8 @@ public class AccountService {
                     System.out.println("是否添加成功平台用户：" + b);
                     if (b == true) {
                         PlatformUserEntity platformUserEntity1 = accountDao.loadByid(Pid);
+                        //清除cookies原来的
+                        cookiesService.clear(response,"MID",request);
                         //保存cookies
                         cookiesService.saveCookies(Pid,"PID", response, request);
                         session.setAttribute("PlatformInfo", platformUserEntity1);

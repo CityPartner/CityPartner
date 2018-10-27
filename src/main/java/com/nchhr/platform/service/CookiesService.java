@@ -37,10 +37,13 @@ public class CookiesService {
         return true;
     }
 
-    public boolean clear(HttpServletResponse response, HttpServletRequest request) {
+    public boolean clear(HttpServletResponse response,String cookiesName, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
+        if (cookies == null){
+            return true;
+        }
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("MID")) {
+            if (cookie.getName().equals(cookiesName)) {
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
             }
