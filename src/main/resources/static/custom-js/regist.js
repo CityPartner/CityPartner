@@ -371,13 +371,6 @@ $(document).ready(function () {
                 var item = data;
                 if (item == "1") {
 
-                    swal({
-                        title: "<span style='color:#6ddb8d;font-size: 26px'>注册成功！<span>",
-                        text: "2秒后自动关闭。",
-                        timer: 2000,
-                        showConfirmButton: false,
-                        html: true
-                    });
                     window.location.href = "/project/my";
                     return;
 

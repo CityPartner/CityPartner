@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class CookiesService {
 
-    public boolean saveCookies(String MID,String cookiesName, HttpServletResponse response, HttpServletRequest request) {
+    public  boolean saveCookies(String MID,String cookiesName, HttpServletResponse response, HttpServletRequest request) {
         try {
             Cookie[] cookies = request.getCookies();
             if (cookies == null) {
@@ -37,7 +37,7 @@ public class CookiesService {
         return true;
     }
 
-    public boolean clear(HttpServletResponse response,String cookiesName, HttpServletRequest request) {
+    public  boolean clear(HttpServletResponse response,String cookiesName, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         if (cookies == null){
             return true;
@@ -52,7 +52,7 @@ public class CookiesService {
         return true;
     }
 
-    public boolean alreadyCookies(HttpServletRequest request,String cookiesName) {
+    public  boolean alreadyCookies(HttpServletRequest request,String cookiesName) {
         Cookie[] cookies = request.getCookies();
         if (cookies == null) {
             return false;
@@ -68,7 +68,7 @@ public class CookiesService {
         }
 
     }
-    public String printCookies(HttpServletRequest request,String cookiesName){
+    public  String printCookies(HttpServletRequest request,String cookiesName){
         Cookie[] cookies = request.getCookies();
         if (cookies == null) {
             return "0";
