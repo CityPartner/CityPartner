@@ -13,6 +13,7 @@ import javax.print.DocFlavor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sound.midi.Soundbank;
 
 @Controller
 @RequestMapping("")
@@ -115,10 +116,11 @@ public class AccountController {
     //注册中间跳转
     @RequestMapping("/register")
     public String register(HttpSession session){
+        System.out.println("123");
         if (session.getAttribute("weChatUser") == null) {
-            return "redirect: /wechatuser";
+            return "redirect:/wechatuser";
         }else {
-            return "redirect: /register.html";
+            return "redirect:/register.html";
         }
     }
     //单纯获取平台用户
@@ -130,7 +132,7 @@ public class AccountController {
             return "redirect:/login.html";
         }
         session.setAttribute("getPlatformInfo",platformUserEntity);
-        return "redirect: /project/my";
+        return "redirect:/project/my";
     }
 
     
