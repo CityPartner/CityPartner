@@ -58,8 +58,8 @@ public class LoginFilter implements Filter {
                 && !requestURI.contains("/404.html")
                 && !requestURI.contains("/register.html")
                 && !requestURI.contains("/recover.html")
-
-//                && !requestURI.contains("/print")
+                //测试接口
+                && !requestURI.contains("/test")
                 ) {
             //判断cookies中是否有用户信息，如果没有则重定向到登录页面
             String PID = "" ;
