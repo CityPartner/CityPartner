@@ -28,4 +28,8 @@ public interface AccountDao {
 
     @Update("update platform_user set password = #{1} where P_id = #{0}")
     boolean updatePwd(@Param("0") String p_id, @Param("1") String newpwd);
+
+
+    @Select("select * from platform_user where openid = #{0}")
+    PlatformUserEntity loadByOpenid(@Param("0") String openid);
 }

@@ -79,7 +79,7 @@ $(document).ready(function () {
         param.phone = $("#loginPhone").val();
         param.pwd = $("#pwd").val();
         // alert(param.pwd);
-        if (param.phone == ""|| param.pwd == ''){
+        if (param.phone == "" || param.pwd == '') {
             swal({
                 title: "<span style='color:#f6d224;font-size: 26px'>手机号、密码不能为空！<span>",
                 text: "2秒后自动关闭。",
@@ -87,7 +87,7 @@ $(document).ready(function () {
                 showConfirmButton: true,
                 html: true
             });
-            $("#loading_login").css("display","none");
+            $("#loading_login").css("display", "none");
             return;
         }
 
@@ -102,26 +102,9 @@ $(document).ready(function () {
                 var itm = data;
 
                 if (itm == "1") {
-                    swal({
-                        title: "<span style='color:#6ddb8d;font-size: 26px'>登陆成功，正在跳转！<span>",
-                        text: "2秒后自动关闭。",
-                        timer: 2000,
-                        showConfirmButton: false,
-                        html: true
-                    });
-                    function jump(count) {
-                        window.setTimeout(function(){
-                            count--;
-                            if(count > 0) {
-                                $('#num').attr('innerHTML', count);
-                                jump(count);
-                            } else {
-                                window.location.href="/project/my";
-                                return;
-                            }
-                        }, 1000);
-                    }
-                    jump(2);
+
+                    window.location.href = "/project/my";
+                    return;
 
                 }
                 if (itm == "2") {
@@ -152,7 +135,7 @@ $(document).ready(function () {
                     });
                 }
 
-            },error:function (data) {
+            }, error: function (data) {
                 swal({
                     title: "<span style='color:#ef3737;font-size: 26px'>系统异常！<span>",
                     text: "2秒后自动关闭。",
@@ -163,7 +146,7 @@ $(document).ready(function () {
 
             }
         });
-        $("#loading_login").css("display","none");
+        $("#loading_login").css("display", "none");
     });
 
 });

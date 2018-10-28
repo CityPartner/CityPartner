@@ -8,6 +8,7 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
+import com.nchhr.platform.entity.WeChatUserEntity;
 import com.nchhr.platform.enums.CodeEnum;
 import com.nchhr.platform.dao.AccountDao;
 import com.nchhr.platform.dao.WeChatUserDao;
@@ -47,7 +48,8 @@ public class AccountService {
                 //保存session
                 session.setAttribute("PlatformInfo", platformUserEntity);
                 //保存cookies
-                cookiesService.saveCookies(platformUserEntity.getP_id(), response, request);
+                cookiesService.clear(response,"MID",request);
+                cookiesService.saveCookies(platformUserEntity.getP_id(),"PID", response, request);
                 //登录成功
                 return "1";
             } else {
@@ -121,7 +123,7 @@ public class AccountService {
                     //1成功
                     //添加商城用户
                     CodeUtils codeUtils = new CodeUtils();
-                   /* //获取微信id
+                    //获取微信id
                     WeChatUserEntity weChatUserEntity = (WeChatUserEntity)session.getAttribute("weChatUser");
 //                    WeChatUserEntity weChatUserEntity = new WeChatUserEntity();
 
@@ -141,7 +143,7 @@ public class AccountService {
                             weChatUserEntity.getSubscribe_scene(),
                             weChatUserEntity.getSubscribe_time(),
                             weChatUserEntity.getTagid_list(),
-                            weChatUserEntity.getUnionid());*/
+                            weChatUserEntity.getUnionid());
 
                     String Pid = "M" + codeUtils.createRandom(false, 16);
                     System.out.println(Pid);
@@ -150,8 +152,10 @@ public class AccountService {
                     System.out.println("是否添加成功平台用户：" + b);
                     if (b == true) {
                         PlatformUserEntity platformUserEntity1 = accountDao.loadByid(Pid);
+                        //清除cookies原来的
+                        cookiesService.clear(response,"MID",request);
                         //保存cookies
-                        cookiesService.saveCookies(Pid, response, request);
+                        cookiesService.saveCookies(Pid,"PID", response, request);
                         session.setAttribute("PlatformInfo", platformUserEntity1);
                         //1代表成功
                         return "1";
@@ -240,5 +244,17 @@ public class AccountService {
                 return "4";
             }
         }
+    }
+    /**
+     * 获取用户
+     */
+    public PlatformUserEntity loadByMid(String mid){
+        return accountDao.loadByid(mid);
+    }
+    /**
+     * 判断openid
+     */
+    public PlatformUserEntity loadByOenid(String openid){
+        return accountDao.loadByOpenid(openid);
     }
 }
