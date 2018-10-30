@@ -21,12 +21,9 @@ import java.net.URLEncoder;
 
 //微信用户控制器
 public class WeChatUserController {
+
     @Autowired
     WeChatUserService weChatUserService;
-    @Autowired
-    CookiesService cookiesService;
-    @Autowired
-    AccountService accountService;
 
     @RequestMapping("")
     private String weChatAuthorize() {
@@ -47,33 +44,10 @@ public class WeChatUserController {
             session.removeAttribute("weChatUser");
         }
         session.setAttribute("weChatUser",weChatUser);
-        /**
-         * 1、先判断有无cookies
-         * 2、再判断openid
-         */
-        if (cookiesService.alreadyCookies(request)){
-           String mid =  cookiesService.printCookies(request);
-           if (mid.equals("0")){
-               //判断openid
-               return "/login";
-           }else {
-              PlatformUserEntity platformUserEntity =  accountService.loadByMid(mid);
-               session.setAttribute("PlatformInfo",platformUserEntity);
-               return "/index";
-           }
-        }else {
-            if (accountService.loadByOenid(openid) ==null){
-                return "/register";
-            }else {
-                return "/login";
-            }
-
-        }
-
 
         //微信id存在 有账号 return“login”
 
         //不存在 没有账号 return “register”
-
+        return "redirect:/register.html";
     }
 }
