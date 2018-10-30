@@ -1,103 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-  <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
-<title>首页</title>
-<link rel="stylesheet" type="text/css" href="funds/common.css" />
-<script type="text/javascript" src="funds/jquery.js"></script>
-<script type="text/javascript" src="funds/column.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="/funds/common.css"/>
+    <script type="text/javascript" src="/funds/jquery.js"></script>
+    <script type="text/javascript" src="/funds/column.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="funds/index.css" />
-  <link rel="stylesheet" type="text/css" href="funds/LCalendar/css/LCalendar.css" />
+    <link rel="stylesheet" type="text/css" href="/funds/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/funds/LCalendar/css/LCalendar.css"/>
 </head>
 <body>
 <!-- 页面头部 -->
 <section>
-  <div class="navigation-bar"> <a href="#" class="z-01"></a> <span>资金情况</span> </div>
+    <div class="navigation-bar"><a href="#" class="z-01"></a> <span>资金情况</span></div>
 </section>
 <!-- 中间内容 -->
 <div class="main">
-  <div class="cre-tabs">
-    <div class="tab-border"></div>
-    <a id="one1" onClick="setTab('one',1,2)" class="hover" style="width: 45%">收入支出</a> <span class="split-line ">|</span><a id="one2" onClick="setTab('one',2,2)" style="width: 45%">利润</a> </div>
-  <div class="invest_menuinfo" id="con_one_1" style="background: #eee">
-    <div class="clear"></div>
-    <ul class="term" style="text-align: center">
-
-     <li style="width:100% ;font-size: 16px"> <div class="select_start_date">
-        <div class="start_date_left" style="text-align: center;">
-          选择时间
-        </div>
-        <div class="start_date_right" style="text-align: center;">
-          <input type="text" name="start_date" id="start_date" placeholder="选择开始日期" readonly="readonly" />
-        </div>
-      </div></li>
-    </ul>
-    <div class="invest_menuinfo" id="" style="background-color: rebeccapurple;">
-      <div class="clear"></div>
-      <ul class="term">
-        <li style="    width: 50%;
-    height: 25px;"><a href="#">收入</a></li>
-        <li style="    width: 50%;
-    height: 25px;"><a href="#">支出</a></li>
-      </ul>
+    <div class="cre-tabs">
+        <div class="tab-border"></div>
+        <a id="one1" onClick="setTab('one',1,3)" class="hover" style="width: 30%">收入</a>
+        <span class="split-line ">|</span>
+        <a id="one3" onClick="setTab('one',3,3)" style="width: 30%">支出</a>
+        <span class="split-line ">|</span>
+        <a id="one2" onClick="setTab('one',2,3)" style="width: 30%">利润</a>
     </div>
-    <div class="index-list-wrap">
-      <!--车-->
-      <div class="index-pad"> <a class="index-list index-fang" href="#">
-        <div class="list-tit clear"> <span class="fl tit-name"><i></i><strong>2018-10.8 12.56.23</strong></span><span class="fr tit-site"><i></i> <strong>林昊 </strong> </span></div>
-        <div class="list-main">
-          <div class="main-l" style="width: 50%;text-align: center;"><span style="font-size: 27px;color: red" >500<i>元</i></span> </div>
-          <!--<div class="main-m main-m-1"> <span>500.<em>00</em><i>万</i></span> </div>-->
-          <!--<div class="main-m main-m-2"> <span class="day">180<i>天</i></span> </div>-->
-          <div class="main-l" style="width: 50%;text-align: center;"><span style="font-size: 27px;color:#0caffa " >500<i>元</i></span> </div>
-        </div>
-      </a> </div>
-      <!--房-->
-      <div class="index-pad"> <a class="index-list index-fang" href="#">
-        <div class="list-tit clear"> <span class="fl tit-name"><i></i><strong>HBSF-FFFO-0021</strong></span>  </div>
-        <div class="list-main">
-          <div class="main-l"> <span class="per">15.0<i>%</i></span> <span class="add">A</span> </div>
-          <div class="main-m main-m-1"> <span>80 <i>万</i></span> </div>
-          <div class="main-m main-m-2"> <span class="day">180<i>天</i></span> </div>
-          <div class="main-r"> <span class="circle-gray"></span> <span class="val-txt">回款中</span> </div>
-        </div>
-      </a> </div>
+    <div class="invest_menuinfo" id="con_one_1" style="background: #eee">
 
-      <!--end-->
+        <ul class="term" style="text-align: center">
+
+            <li style="width:100% ;font-size: 16px">
+                <div class="select_start_date">
+                    <div class="start_date_left" style="text-align: center;">
+                        选择时间
+                    </div>
+                    <div class="start_date_right" style="text-align: center;">
+                        <input type="text" name="start_date" id="start_dateIncome" placeholder="选择开始日期"
+                               readonly="readonly"/>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="invest_menuinfo" id="" style="background-color: rebeccapurple;">
+            <div class="clear"></div>
+            <ul class="term">
+                <li style="    width: 100%;
+        height: 25px;"><a href="#">收入</a></li>
+            </ul>
+        </div>
+        <div class="index-list-wrap">
+            <!--车-->
+            <div class="index-pad" th:each="income : ${IncomeModel.Incomes}">
+                <a class="index-list index-fang" href="#" >
+                    <div class="list-tit clear"><span
+                            class="fl tit-name"><i></i><strong th:text = "${income.incomeEntity.time}"></strong></span><span
+                            class="fr tit-site"><i></i> <strong th:text="${income.mall_userEntity.name}"> </strong> </span></div>
+                    <div class="list-main">
+                        <div class="main-l" style="width: 100%;text-align: center;"><span
+                                style="font-size: 27px;color: red" th:text="${income.incomeEntity.income_amount}">500</span><i>元</i>
+                        </div>
+                        <!--<div class="main-m main-m-1"> <span>500.<em>00</em><i>万</i></span> </div>-->
+                        <!--<div class="main-m main-m-2"> <span class="day">180<i>天</i></span> </div>-->
+                        <!--<div class="main-l" style="width: 50%;text-align: center;"><span-->
+                                <!--style="font-size: 27px;color:#0caffa ">500<i>元</i></span></div>-->
+                    </div>
+                </a>
+            </div>
+            <!--房-->
+            <!--<div class="index-pad"><a class="index-list index-fang" href="#">-->
+                <!--<div class="list-tit clear"><span class="fl tit-name"><i></i><strong>HBSF-FFFO-0021</strong></span>-->
+                <!--</div>-->
+                <!--<div class="list-main">-->
+                    <!--<div class="main-l"><span class="per">15.0<i>%</i></span> <span class="add">A</span></div>-->
+                    <!--<div class="main-m main-m-1"><span>80 <i>万</i></span></div>-->
+                    <!--<div class="main-m main-m-2"><span class="day">180<i>天</i></span></div>-->
+                    <!--<div class="main-r"><span class="circle-gray"></span> <span class="val-txt">回款中</span></div>-->
+                <!--</div>-->
+            <!--</a></div>-->
+
+            <!--end-->
+        </div>
+
+    </div>
+    <div class="invest_menuinfo" id="con_one_2" style="display:none;">
+        <ul class="term">
+            <li><a href="#">即将上线</a></li>
+            <li><a href="#">正在募集</a></li>
+            <li><a href="#">正在回款</a></li>
+            <li><a href="#">回款完毕</a></li>
+        </ul>
     </div>
 
-  </div>
-  <div class="invest_menuinfo" id="con_one_2" style="display:none">
-    <ul class="term">
-      <li><a href="#">即将上线</a></li>
-      <li><a href="#">正在募集</a></li>
-      <li><a href="#">正在回款</a></li>
-      <li><a href="#">回款完毕</a></li>
-    </ul>
-  </div>
+    <div class="invest_menuinfo" id="con_one_3" style="display:none;background: #eee">
 
-  <!--<div class="invest_menuinfo" id="con_one_2" style="display:none">
-    <h2>分站区域</h2>
-    <div class="cityen"> <a href="#" class="on">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a><a href="#">E</a><a href="#">F</a><a href="#">G</a><a href="#">H</a><a href="#">I</a><a href="#">J</a><a href="#">K</a><a href="#">L</a><a href="#">M</a><a href="#">N</a><a href="#">O</a><a href="#">P</a><a href="#">Q</a><a href="#">R</a><a href="#">S</a><a href="#">T</a><a href="#">U</a><a href="#">V</a><a href="#">W</a><a href="#">X</a><a href="#">Y</a><a href="#">Z</a></div>
-    <div class="cityname"><a href="#" class="on">安徽合肥</a></div>
-  </div>-->
+        <ul class="term" style="text-align: center">
+
+            <li style="width:100% ;font-size: 18px">
+                <div class="select_start_date">
+                    <div class="start_date_left" style="text-align: center;">
+                        选择时间
+                    </div>
+                    <div class="start_date_right" style="text-align: center;">
+                        <input type="text" name="start_date" id="start_dateExpenses" placeholder="选择开始日期"
+                               readonly="readonly"/>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="invest_menuinfo" style="background-color: rebeccapurple;">
+            <div class="clear"></div>
+            <ul class="term">
+                <li style="    width: 100%;
+        height: 25px;"><a href="#">支出</a></li>
+            </ul>
+        </div>
+        <div class="index-list-wrap">
+            <!--车-->
+            <div class="index-pad" th:each="expenses : ${IncomeModel.Expenses}"><a class="index-list index-fang" href="#">
+                <div class="list-tit clear"><span
+                        class="fl tit-name"><i></i><strong th:text="${expenses.rebate_time}"></strong></span><span
+                        class="fr tit-site"><i></i> <strong>林昊 </strong> </span></div>
+                <div class="list-main">
+                    <!--<div class="main-l" style="width: 50%;text-align: center;"><span style="font-size: 27px;color: red">500<i>元</i></span>-->
+                    <!--</div>-->
+                    <!--<div class="main-m main-m-1"> <span>500.<em>00</em><i>万</i></span> </div>-->
+                    <!--<div class="main-m main-m-2"> <span class="day">180<i>天</i></span> </div>-->
+                    <div class="main-l" style="width: 100%;text-align: center;"><span
+                            style="font-size: 27px;color:#0caffa " th:text="${expenses.rebate_amount}"></span><i>元</i></div>
+                </div>
+            </a></div>
+            <!--房-->
+            <div class="index-pad"><a class="index-list index-fang" href="#">
+                <div class="list-tit clear"><span class="fl tit-name"><i></i><strong>HBSF-FFFO-0021</strong></span>
+                </div>
+                <div class="list-main">
+                    <div class="main-l"><span class="per">15.0<i>%</i></span> <span class="add">A</span></div>
+                    <div class="main-m main-m-1"><span>80 <i>万</i></span></div>
+                    <div class="main-m main-m-2"><span class="day">180<i>天</i></span></div>
+                    <div class="main-r"><span class="circle-gray"></span> <span class="val-txt">回款中</span></div>
+                </div>
+            </a></div>
+
+            <!--end-->
+        </div>
+    </div>
 
 </div>
 <!-- 页面底部 -->
 <!--<nav class="footer border_t" id="footer"> <a href="#" class="" id="jx"><span></span>精选</a> <a href="#" id="lc" class="nav_on"><span></span>理财</a> <a href="#" id="jk" class=""><span></span>借款</a> <a href="#" id="cf" class=""><span></span>我的财富</a> </nav>-->
 </body>
-<script src="funds/LCalendar/js/LCalendar.js" type="text/javascript"></script>
+<script src="/funds/LCalendar/js/LCalendar.js" type="text/javascript"></script>
 <script type="text/javascript">
-    var calendar = new LCalendar();
-    calendar.init({
-        'trigger': '#start_date', //标签id
+    var calendarIncome = new LCalendar();
+    calendarIncome.init({
+        'trigger': '#start_dateIncome', //标签id
         'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
-        'minDate': (new Date().getFullYear()-3) + '-' + 1 + '-' + 1, //最小日期
-        'maxDate': (new Date().getFullYear()+3) + '-' + 12 + '-' + 31 //最大日期
+        'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+        'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
+    });
+    var calendarExpenses = new LCalendar();
+    calendarExpenses.init({
+        'trigger': '#start_dateExpenses', //标签id
+        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+        'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+        'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期
     });
     // var calendar = new LCalendar();
     // calendar.init({
