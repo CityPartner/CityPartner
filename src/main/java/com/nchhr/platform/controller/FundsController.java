@@ -1,5 +1,6 @@
 package com.nchhr.platform.controller;
 
+import com.nchhr.platform.ModelVo.IncomeVo;
 import com.nchhr.platform.entity.FixedOverheadEntity;
 import com.nchhr.platform.entity.IncomeEntity;
 import com.nchhr.platform.service.FundsService;
@@ -21,10 +22,11 @@ public class FundsController {
     //项目收入
     @RequestMapping("/income")
     public String income() {
-        List<IncomeEntity> incomeEntity = fundsService.income();
+        List<IncomeVo> incomeVos = fundsService.income();
+        List<FixedOverheadEntity> fixedOverheadEntity = fundsService.overHead();
 
 
-        return "";//没有静态页面
+        return "funds";//没有静态页面
     }
 
     //项目支出
