@@ -11,7 +11,7 @@ public interface IncomeDao {
      * 从income中获取数据
      * @return
      */
-    @Select("select * from income")
+    @Select("SELECT * FROM income ORDER BY time DESC")
     List<IncomeEntity> loadList();
 
 

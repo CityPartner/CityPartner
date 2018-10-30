@@ -6,7 +6,10 @@ import com.nchhr.platform.entity.IncomeEntity;
 import com.nchhr.platform.service.FundsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -21,20 +24,22 @@ public class FundsController {
 
     //项目收入
     @RequestMapping("/income")
-    public String income() {
+    @ResponseBody
+    public ModelAndView income(Model model) {
         List<IncomeVo> incomeVos = fundsService.income();
         List<FixedOverheadEntity> fixedOverheadEntity = fundsService.overHead();
-
-
-        return "funds";//没有静态页面
+        model.addAttribute("Incomes",incomeVos);
+        model.addAttribute("Expenses",fixedOverheadEntity);
+        return new ModelAndView("funds","IncomeModel",model);
     }
 
     //项目支出
     @RequestMapping("/expenses")
-    public String expenses() {
+    @ResponseBody
+    public  String expenses(Model model) {
         List<FixedOverheadEntity> fixedOverheadEntity = fundsService.overHead();
-
-        return "";//没有静态页面
+        model.addAttribute("expenses",fixedOverheadEntity);
+        return "";
     }
 
     //项目分红
