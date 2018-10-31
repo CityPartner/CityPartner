@@ -76,7 +76,7 @@ public class WalletController {
         String userId = (String) httpSession.getAttribute("userId");
         String projectId = (String) httpSession.getAttribute("projectId");
         model.addAttribute("walletAmount", walletService.getWalletAmount(userId, projectId));
-
+        model.addAttribute("applyName", walletService.getApplyName(userId, projectId));
         return "withdraw";
     }
     //获取验证码

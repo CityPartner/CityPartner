@@ -19,8 +19,8 @@
     <ul class="bgwh content1">
         <li class="df pr30 pl30"><label class="f26" for="amount">可提现金额</label>
             <input type="text" id="amount" name="amount" th:value="${walletAmount}" value="2000.00" disabled/></li>
-        <li class="df pr30 pl30"><label class="f26" for="name">申请人实名</label>
-            <input type="text" id="name" name="name" placeholder="请输入姓名"/></li>
+        <li class="df pr30 pl30"><label class="f26" for="name">申请人</label>
+            <input type="text" id="name" name="name" th:value="${applyName}" disabled/></li>
         <li class="pr30 pl30"><label class="f26" for="money">本次提现金额</label>
             <input type="text"  id="money" name="money" placeholder="请输入提现金额"/>元
         </li>

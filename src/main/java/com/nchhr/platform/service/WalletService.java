@@ -1,5 +1,6 @@
 package com.nchhr.platform.service;
 
+import com.nchhr.platform.dao.InvestDao;
 import com.nchhr.platform.dao.WalletDao;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import com.nchhr.platform.util.GetCodeUtils;
@@ -17,6 +18,8 @@ import java.util.regex.Pattern;
 public class WalletService {
     @Resource
     WalletDao walletDao;
+    @Resource
+    InvestDao investDao;
 
     private final static int MIN_WITHDRAW_AMOUNT = 10;
 
@@ -25,6 +28,7 @@ public class WalletService {
 
         return walletDao.getWalletAmount(userId, projectId);
     }
+
     /*
         添加一条钱包提现申请记录
         @author JC
@@ -63,6 +67,9 @@ public class WalletService {
                 Timestamp applyTime = new Timestamp(new Date().getTime());
                 int withdrawStatus = 0;
                 walletDao.addWalletApplyRecord(withdrawId, userId, projectId, withdrawAmount, applyTime, applyName, withdrawStatus);
+
+                GetCodeUtils.getCode(phone, httpSession, "2");
+
                 return "1";
             }
         }
@@ -88,5 +95,10 @@ public class WalletService {
     public Integer handleWithdraw(String withdrawId) {
         int withdrawStatus = 1;
         return walletDao.setWithdrawStatus(withdrawId, withdrawStatus);
+    }
+
+    //获取申请提现人的姓名，前期从项目投资表获取，后期即为实名
+    public String getApplyName(String userId, String projectId) {
+        return investDao.getInvestorNameById(userId, projectId);
     }
 }
