@@ -127,23 +127,7 @@ public class AccountService {
                     WeChatUserEntity weChatUserEntity = (WeChatUserEntity)session.getAttribute("weChatUser");
 //                    WeChatUserEntity weChatUserEntity = new WeChatUserEntity();
 
-                    weChatUserDao.addWeCharUser(weChatUserEntity.getOpenid(),
-                            weChatUserEntity.getCity(),
-                            weChatUserEntity.getCountry(),
-                            weChatUserEntity.getGroupid(),
-                            weChatUserEntity.getHeadimgurl(),
-                            weChatUserEntity.getLanguage(),
-                            weChatUserEntity.getNickname(),
-                            weChatUserEntity.getProvince(),
-                            weChatUserEntity.getQr_scene(),
-                            weChatUserEntity.getQr_scene_str(),
-                            weChatUserEntity.getRemark(),
-                            weChatUserEntity.getSex(),
-                            weChatUserEntity.getSubscribe(),
-                            weChatUserEntity.getSubscribe_scene(),
-                            weChatUserEntity.getSubscribe_time(),
-                            weChatUserEntity.getTagid_list(),
-                            weChatUserEntity.getUnionid());
+                    weChatUserDao.addWeCharUser(weChatUserEntity);
 
                     String Pid = "M" + codeUtils.createRandom(false, 16);
                     System.out.println(Pid);
