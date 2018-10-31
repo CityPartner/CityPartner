@@ -94,9 +94,9 @@ public class AccountController {
     //注册并登陆
     @RequestMapping("/RegisterLogin")
     @ResponseBody
-    public String register(String userPhone, String code, String pwd, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
+    public String register(String userPhone, String codess, String pwd, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 
-        return accountService.RegisterLogin(userPhone, code, pwd, session, response, request);
+        return accountService.RegisterLogin(userPhone, codess, pwd, session, response, request);
     }
 
     //重置密码

@@ -126,7 +126,10 @@ public class AccountService {
                     //获取微信id
                     WeChatUserEntity weChatUserEntity = (WeChatUserEntity)session.getAttribute("weChatUser");
 //                    WeChatUserEntity weChatUserEntity = new WeChatUserEntity();
-
+                    if (weChatUserEntity == null){
+                        //4其他错误
+                        return "4";
+                    }
                     weChatUserDao.addWeCharUser(weChatUserEntity);
 
                     String Pid = "M" + codeUtils.createRandom(false, 16);

@@ -332,7 +332,7 @@ $(document).ready(function () {
     $("#but_regist").click(function () {
         var params = {};
         params.userPhone = $("#userPhone").val();
-        params.code = $("#code").val();
+        params.codess = $("#code").val();
         params.pwd = $("#pwd").val();
         params.repwd = $("#repwd").val();
         // alert(JSON.stringify(params));
@@ -346,7 +346,7 @@ $(document).ready(function () {
             });
             return;
         }
-        if (params.userPhone == "" || params.code == "" || params.pwd == "" || params.repwd == "") {
+        if (params.userPhone == "" || params.codess == "" || params.pwd == "" || params.repwd == "") {
 
             swal({
                 title: "<span style='color:#f6d224;font-size: 26px'>验证码不能为空！<span>",
@@ -399,10 +399,10 @@ $(document).ready(function () {
                 }
                 if (item == "4") {
                     swal({
-                        title: "<span style='color:#ef3737;font-size: 26px'>未知错误！<span>",
+                        title: "<span style='color:#ef3737;font-size: 26px'>注册失败！<span>",
                         text: "2秒后自动关闭。",
                         timer: 2000,
-                        showConfirmButton: false,
+                        showConfirmButton: true,
                         html: true
                     });
                     return;
@@ -417,6 +417,17 @@ $(document).ready(function () {
                     });
                     return;
                 }
+                if (item == null) {
+                    swal({
+                        title: "<span style='color:#ef3737;font-size: 26px'>注册失败！<span>",
+                        text: "2秒后自动关闭。",
+                        timer: 2000,
+                        showConfirmButton: false,
+                        html: true
+                    });
+                    return;
+                }
+
 
             },
             error: function (data) {
