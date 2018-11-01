@@ -1,7 +1,9 @@
 package com.nchhr.platform.service;
 
+import com.nchhr.platform.ModelVo.WalletProVo;
 import com.nchhr.platform.dao.InvestDao;
 import com.nchhr.platform.dao.WalletDao;
+import com.nchhr.platform.entity.ProjectWalletIncome;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import com.nchhr.platform.util.GetCodeUtils;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,31 @@ public class WalletService {
     InvestDao investDao;
 
     private final static int MIN_WITHDRAW_AMOUNT = 10;
+
+    /*
+     *获取用户收入list
+     * @author HWG
+     */
+    public List<ProjectWalletIncome> getAllIncome(String user_id){
+        return walletDao.getAllIncomeList(user_id);
+    }
+
+
+    /*
+     *获取用户提现list
+     * @author HWG
+     */
+    public List<ProjectWalletWithdraw> getAllWithdraw(String user_id){
+        return walletDao.getAllWithdrawList(user_id);
+    }
+
+    /*
+      分项目获取用户钱包余额
+      @author HWG
+     */
+    public List<WalletProVo> getAllAmount(String P_id){
+        return walletDao.getWallet(P_id);
+    }
 
     //获取项目钱包金额
     public int getWalletAmount(String userId, String projectId) {

@@ -43,6 +43,7 @@ public class WeChatUserController {
         if (session.getAttribute("weChatUser") != null){
             session.removeAttribute("weChatUser");
         }
+        System.out.println(weChatUser);
         session.setAttribute("weChatUser",weChatUser);
 
         //微信id存在 有账号 return“login”
