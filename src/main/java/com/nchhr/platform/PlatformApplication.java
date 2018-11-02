@@ -15,13 +15,12 @@ public class PlatformApplication extends SpringBootServletInitializer implements
 
     public static void main(String[] args) {
         SpringApplication.run(PlatformApplication.class, args);
-
         WeChatUtil.CCSR();
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-
+        WeChatUtil.CCSR();
         return builder.sources(PlatformApplication.class);
     }
 }
