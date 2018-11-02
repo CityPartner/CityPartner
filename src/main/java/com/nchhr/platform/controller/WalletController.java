@@ -69,7 +69,7 @@ public class WalletController {
     @RequestMapping("/withdraw")
     public String withdraw(HttpSession httpSession, Model model) {
         //TODO 以下为测试数据
-        httpSession.setAttribute("userId", "18160742626");//测试用户
+        httpSession.setAttribute("userId", "MVsmdpmqG0p7FqSi7");//测试用户
         httpSession.setAttribute("projectId", "PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");//测试项目
         httpSession.setAttribute("phone", "18160742626");//测试用户手机号
 
