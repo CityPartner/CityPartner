@@ -40,6 +40,11 @@ public class AccountController {
                    return "/login.html";
                }
                session.setAttribute("PlatformInfo",platformUserEntity);
+                //-------------------!!!
+                session.setAttribute("userId", platformUserEntity.getP_id());//用户id
+                session.setAttribute("projectId", "PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");//项目id
+                session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
+                //-------------------!!!
                return "redirect:/project/my";
             }
         }

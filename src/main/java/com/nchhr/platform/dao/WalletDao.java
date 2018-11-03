@@ -13,6 +13,7 @@ public interface WalletDao {
 
     /**
      * 查询用户项目的钱包数额
+     * @author JC
      * @param userId 用户id
      * @param projectId 项目id
      * @return 钱包数额
@@ -34,6 +35,7 @@ public interface WalletDao {
 
     /**
      * 添加一条提现申请
+     * @author JC
      * @param withdrawId 提现id
      * @param userId 用户id
      * @param projectId 项目id
@@ -66,6 +68,7 @@ public interface WalletDao {
 
     /**
      * 查询有没有正在申请的提现（钱包最近一条提现状态）
+     * @author JC
      * @param userId 用户id
      * @param projectId 项目id
      * @return 最近一条提现申请的状态
@@ -78,6 +81,7 @@ public interface WalletDao {
 
     /**
      * 查询项目中对应状态的提现记录（申请时间降序）
+     * @author JC
      * @param projectId 项目id
      * @param withdrawStatus 提现状态
      * @return 项目中对应状态的所有提现记录
@@ -99,16 +103,14 @@ public interface WalletDao {
     })
     List<ProjectWalletWithdraw> getProjectWithdrawList(@Param("projectId") String projectId
             , @Param("withdrawStatus") Integer withdrawStatus);
+
     /**
      * 查询用户的所有提现记录（申请时间降序）
-     * @param user_id 用户平台id
+     * @param userId 用户平台id
      * @return 用户的所有提现记录
      */
-//    @Select("select * from project_wallet_withdraw" +
-//            " where user_id = #{user_id}" +
-//            " order by apply_time desc")
     @Select("SELECT * from " +
-            "(SELECT * from project_wallet_withdraw where user_id=#{user_id}) AS w" +
+            "(SELECT * from project_wallet_withdraw where user_id=#{userId}) AS w" +
             " join project as p " +
             "on w.project_id= p.project_id ;")
     @Results({
@@ -122,7 +124,7 @@ public interface WalletDao {
             @Result(property = "handleName", column = "handle_name"),
             @Result(property = "withdrawStatus", column = "withdraw_status")
     })
-    List<ProjectWalletWithdraw> getAllWithdrawList(@Param("user_id") String user_id);
+    List<ProjectWalletWithdraw> getAllWithdrawList(@Param("userId") String userId);
 
 
     /*
@@ -141,12 +143,11 @@ public interface WalletDao {
             @Result(property = "incomeType",column = "income_type"),
             @Result(property = "attachInfo",column = "attach_info")
     })
-    public List<ProjectWalletIncome> getAllIncomeList(@Param("user_id")String user_id);
-
-
+    List<ProjectWalletIncome> getAllIncomeList(@Param("user_id")String user_id);
 
     /**
-     * 设置提现状态
+     * 更新提现状态
+     * @author JC
      * @param withdrawId 提现ID
      * @param withdrawStatus 提现状态
      * @return 1成功，0失败
@@ -156,6 +157,15 @@ public interface WalletDao {
     Integer setWithdrawStatus(@Param("withdrawId") String withdrawId
             , @Param("withdrawStatus") Integer withdrawStatus);
 
-    @Update("update project_wallet set wallet_amount = #{1} where user_id = #{0}")
-    boolean updateWalletAmount(@Param("0") String income_user_id, @Param("1") int income_amount);
+    /**
+     * 更新用户项目钱包数额
+     * @author JC
+     * @param userId 用户钱包
+     * @param walletAmount 钱包数额
+     * @return 更新钱包状态
+     */
+    @Update("update project_wallet set wallet_amount = #{walletAmount} " +
+            "where user_id = #{userId}")
+    boolean updateWalletAmount(@Param("userId") String userId
+            , @Param("walletAmount") int walletAmount);
 }

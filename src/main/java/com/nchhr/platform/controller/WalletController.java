@@ -91,7 +91,7 @@ public class WalletController {
     @RequestMapping("/withdraw/getCode")
     @ResponseBody
     public String getCode(HttpSession httpSession) {
-        System.out.println("--短信已发送--");
+        System.out.println("--申请提现短信验证码已发送");
         String phone = (String) httpSession.getAttribute("phone");
         return GetCodeUtils.getCode(phone, httpSession, "0");
     }
