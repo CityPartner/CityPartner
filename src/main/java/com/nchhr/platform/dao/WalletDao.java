@@ -99,4 +99,6 @@ public interface WalletDao {
     Integer setWithdrawStatus(@Param("withdrawId") String withdrawId
             , @Param("withdrawStatus") Integer withdrawStatus);
 
+    @Update("update project_wallet set wallet_amount = #{1} where user_id = #{0}")
+    boolean updateWalletAmount(@Param("0") String income_user_id, @Param("1") int income_amount);
 }
