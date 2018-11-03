@@ -1,5 +1,8 @@
 package com.nchhr.platform.controller;
 
+import com.nchhr.platform.ModelVo.WalletProVo;
+import com.nchhr.platform.entity.PlatformUserEntity;
+import com.nchhr.platform.entity.ProjectWalletIncome;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import com.nchhr.platform.service.WalletService;
 import com.nchhr.platform.util.GetCodeUtils;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -30,9 +34,18 @@ public class WalletController {
                 project_wallet数据的来源需要对接
     */
     @RequestMapping("")
-    public String wallet() {
-
-        return "wallet";
+    public ModelAndView wallet(HttpSession session,Model model) {
+        PlatformUserEntity platformUserEntity= (PlatformUserEntity) session.getAttribute("PlatformInfo");
+        String user_id=platformUserEntity.getP_id();
+//        String user_id="WOSHIHUANG";
+        List<WalletProVo> allAmount = walletService.getAllAmount(user_id);
+        List<ProjectWalletWithdraw> allWithdraw = walletService.getAllWithdraw(user_id);
+        List<ProjectWalletIncome> allIncome = walletService.getAllIncome(user_id);
+//        System.out.println(allWithdraw.toString());
+        model.addAttribute("AA",allAmount);
+        model.addAttribute("AW",allWithdraw);
+        model.addAttribute("AI",allIncome);
+        return new ModelAndView("MyWallets","WM",model);
     }
 
     /*
@@ -44,7 +57,7 @@ public class WalletController {
     @RequestMapping("/income/detail")
     public String income() {
 
-        return "incomeDetail";
+        return "myIncome";
     }
 
     /*
@@ -69,7 +82,7 @@ public class WalletController {
     @RequestMapping("/withdraw")
     public String withdraw(HttpSession httpSession, Model model) {
         //TODO 以下为测试数据
-        httpSession.setAttribute("userId", "18160742626");//测试用户
+        httpSession.setAttribute("userId", "MVsmdpmqG0p7FqSi7");//测试用户
         httpSession.setAttribute("projectId", "PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");//测试项目
         httpSession.setAttribute("phone", "18160742626");//测试用户手机号
 

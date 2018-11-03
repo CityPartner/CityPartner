@@ -1,5 +1,7 @@
 package com.nchhr.platform.dao;
 
+import com.nchhr.platform.ModelVo.WalletProVo;
+import com.nchhr.platform.entity.ProjectWalletIncome;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import org.apache.ibatis.annotations.*;
 
@@ -19,6 +21,16 @@ public interface WalletDao {
             "where user_id = #{userId} and project_id = #{projectId}")
     int getWalletAmount(@Param("userId") String userId
             , @Param("projectId") String projectId);
+
+
+    /**
+     * 查询用户项目的钱包
+     * @param P_id 用户id
+     */
+    @Select("SELECT w.wallet_id,w.user_id,w.project_id,w.wallet_amount,p.name from " +
+            "(select * from project_wallet where user_id=#{user_id}) AS w JOIN " +
+            "project as p ON w.project_id=p.project_id")
+    List<WalletProVo> getWallet(@Param("user_id") String P_id);
 
     /**
      * 添加一条提现申请
@@ -87,6 +99,51 @@ public interface WalletDao {
     })
     List<ProjectWalletWithdraw> getProjectWithdrawList(@Param("projectId") String projectId
             , @Param("withdrawStatus") Integer withdrawStatus);
+    /**
+     * 查询用户的所有提现记录（申请时间降序）
+     * @param user_id 用户平台id
+     * @return 用户的所有提现记录
+     */
+//    @Select("select * from project_wallet_withdraw" +
+//            " where user_id = #{user_id}" +
+//            " order by apply_time desc")
+    @Select("SELECT * from " +
+            "(SELECT * from project_wallet_withdraw where user_id=#{user_id}) AS w" +
+            " join project as p " +
+            "on w.project_id= p.project_id ;")
+    @Results({
+            @Result(property = "withdrawId", column = "withdraw_id"),
+            @Result(property = "userId", column = "user_id"),
+            @Result(property = "projectId", column = "name"),
+            @Result(property = "withdrawAmount", column = "withdraw_amount"),
+            @Result(property = "applyTime", column = "apply_time"),
+            @Result(property = "applyName", column = "apply_name"),
+            @Result(property = "handleTime", column = "handle_time"),
+            @Result(property = "handleName", column = "handle_name"),
+            @Result(property = "withdrawStatus", column = "withdraw_status")
+    })
+    List<ProjectWalletWithdraw> getAllWithdrawList(@Param("user_id") String user_id);
+
+
+    /*
+     *获取用户所有收入信息
+     * @author HWG
+     */
+    @Select("select * from " +
+            "(select * from project_wallet_income where user_id=#{user_id}) as i " +
+            "JOIN project as p on i.project_id=p.project_id;")
+    @Results({
+            @Result(property = "incomeId",column = "income_id"),
+            @Result(property = "userId",column = "user_id"),
+            @Result(property = "projectId",column = "name"),
+            @Result(property = "incomeAmount",column = "income_amount"),
+            @Result(property = "incomeTime",column = "income_time"),
+            @Result(property = "incomeType",column = "income_type"),
+            @Result(property = "attachInfo",column = "attach_info")
+    })
+    public List<ProjectWalletIncome> getAllIncomeList(@Param("user_id")String user_id);
+
+
 
     /**
      * 设置提现状态
