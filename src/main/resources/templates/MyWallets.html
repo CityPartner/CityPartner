@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta charset="UTF-8">
+    <title>钱包</title>
+    <script type="text/javascript" src="/funds/jquery.js"></script>
+    <script type="text/javascript" src="/funds/column.js"></script>
+    <script type="text/javascript" src="/js/myIncome.js"></script>
+    <link rel="stylesheet" type="text/css" href="/funds/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/funds/index.css"/>
+</head>
+<body>
+<!-- 页面头部 -->
+<section>
+    <div class="navigation-bar" onclick="javascript:window.history.back()">
+        <span>我的钱包</span>
+    </div>
+</section>
+<!-- 中间内容 -->
+<div class="main">
+    <div class="cre-tabs">
+        <div class="tab-border"></div>
+        <a id="one1" onClick="setTab('one',1,3)" class="hover" style="width: 30%">项目余额</a>
+        <span class="split-line ">|</span>
+        <a id="one3" onClick="setTab('one',3,3)" style="width: 30%">提现记录</a>
+        <span class="split-line ">|</span>
+        <a id="one2" onClick="setTab('one',2,3)" style="width: 30%">收入记录</a>
+    </div>
+
+    <!--//余额-->
+    <div class="invest_menuinfo" id="con_one_1" style="background: #eee">
+        <div class="index-list-wrap">
+
+            <div class="index-pad" th:each="wp : ${WM.AA}" style="height: auto;">
+                <a class="index-list index-fang" style="height: auto;" href="javascript:;" >
+                    <div class="list-tit clear">
+                        <span class="fl tit-site">
+                            <strong th:text = "${wp.name}"></strong>
+                            </span>
+                        <span class="fr tit-site-hwg">
+                            <strong >申请提现</strong>
+                        </span>
+                    </div>
+                    <div class="list-main">
+                        <div class="main-l" style="width: 100%;text-align: center;">
+                            <span style="font-size: 27px;color: red" th:text="${wp.wallet_amount}+ 元"></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!--//收入记录-->
+    <div class="invest_menuinfo" id="con_one_2" style="display:none;background: #eee">
+        <div class="index-list-wrap">
+            <div class="index-pad" th:each="ic : ${WM.AI}" style="height: auto;">
+                <a class="index-list index-fang test1111" style="height: auto;" href="javascript:;" >
+                    <!--上部-->
+                    <div class="list-tit clear">
+                        <span class="fl tit-site">
+                            <strong th:text = "${ic.projectId}"></strong>
+                        </span>
+                        <span class="fr tit-site-hwg">
+                            <strong >收入详情</strong>
+                        </span>
+                    </div>
+                    <!--中部-->
+                    <div class="list-main">
+                        <div class="main-l" style="width: 100%;text-align: center;">
+                            <span style="font-size: 27px;color: green" th:text="＋ + ${ic.incomeAmount}+ 元"></span>
+                        </div>
+                    </div>
+                    <!--隐藏部-->
+                    <div class="hzhz" style="width:100%;height: auto;display: none;">
+                        <table cellspacing="10">
+                            <tr>
+                                <td class="td-left-hwg">入账日期</td>
+                                <td class="td-right-hwg" th:text="${ic.incomeTime}"></td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-left-hwg">资金来源</td>
+                                <td class="td-right-hwg" th:if="${ic.incomeType} eq 0">订单提成</td>
+                                <td class="td-right-hwg" th:if="${ic.incomeType} eq 1">项目分红</td>
+                            </tr>
+                        </table>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!--//提现记录-->
+    <div class="invest_menuinfo" id="con_one_3" style="display:none;background: #eee">
+        <div class="index-list-wrap">
+            <div class="index-pad" th:each="wd : ${WM.AW}" style="height: auto;">
+                <a class="index-list index-fang test1111" style="height: auto;" href="javascript:;" >
+                    <div class="list-tit clear">
+                        <span class="fl tit-site">
+                            <strong th:text = "${wd.projectId}"></strong>
+                            </span>
+                        <!--<span class="fr tit-site-hwg">-->
+                            <!--<strong >申请提现</strong>-->
+                        <!--</span>-->
+                    </div>
+                    <div class="list-main">
+                        <div class="main-l" style="width: 100%;text-align: center;">
+                            <span th:if="${wd.withdrawStatus} eq 0" style="font-size: 27px;color: red" th:text="-${wd.withdrawAmount}+ 元"></span>
+                            <span th:if="${wd.withdrawStatus} eq 1" style="font-size: 27px;color: green" th:text="-${wd.withdrawAmount}+ 元"></span>
+                            <span th:if="${wd.withdrawStatus} eq 2" style="font-size: 27px;color: gray" th:text="-${wd.withdrawAmount}+ 元"></span>
+                        </div>
+                    </div>
+                    <div class="hzhz" style="width:100%;height: auto;display: none;">
+                        <table cellspacing="10">
+                            <tr>
+                                <td class="td-left-hwg">申请人</td>
+                                <td class="td-right-hwg" th:text="${wd.applyName}"></td>
+                            </tr>
+                            <tr>
+                                <td class="td-left-hwg">申请时间</td>
+                                <td class="td-right-hwg" th:text="${wd.applyTime}"></td>
+                            </tr>
+                            <tr>
+                                <td class="td-left-hwg">处理人</td>
+                                <td class="td-right-hwg" th:text="${wd.handleName}"></td>
+                            </tr>
+                            <tr>
+                                <td class="td-left-hwg">处理时间</td>
+                                <td class="td-right-hwg" th:text="${wd.handleTime}"></td>
+                            </tr>
+                            <tr>
+                                <td class="td-left-hwg">状态</td>
+                                <td class="td-right-hwg" th:if="${wd.withdrawStatus} eq 0">待处理</td>
+                                <td class="td-right-hwg" th:if="${wd.withdrawStatus} eq 1">已到账</td>
+                                <td class="td-right-hwg" th:if="${wd.withdrawStatus} eq 2">已取消</td>
+                            </tr>
+                        </table>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- 页面底部 -->
+<!--<nav class="footer border_t" id="footer"> <a href="#" class="" id="jx"><span></span>精选</a> <a href="#" id="lc" class="nav_on"><span></span>理财</a> <a href="#" id="jk" class=""><span></span>借款</a> <a href="#" id="cf" class=""><span></span>我的财富</a> </nav>-->
+</body>
+<!--<script src="/funds/LCalendar/js/LCalendar.js" type="text/javascript"></script>-->
+<!--<script type="text/javascript">-->
+    <!--var calendarIncome = new LCalendar();-->
+    <!--calendarIncome.init({-->
+        <!--'trigger': '#start_dateIncome', //标签id-->
+        <!--'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,-->
+        <!--'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期-->
+        <!--'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期-->
+    <!--});-->
+    <!--var calendarExpenses = new LCalendar();-->
+    <!--calendarExpenses.init({-->
+        <!--'trigger': '#start_dateExpenses', //标签id-->
+        <!--'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,-->
+        <!--'minDate': (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期-->
+        <!--'maxDate': (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31 //最大日期-->
+    <!--});-->
+    <!--// var calendar = new LCalendar();-->
+    <!--// calendar.init({-->
+    <!--//     'trigger': '#end_date', //标签id-->
+    <!--//     'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,-->
+    <!--//     'minDate': (new Date().getFullYear()-3) + '-' + 1 + '-' + 1, //最小日期-->
+    <!--//     'maxDate': (new Date().getFullYear()+3) + '-' + 12 + '-' + 31 //最大日期-->
+    <!--// });-->
+    <!--//		$(function() {-->
+    <!--//			$('#start_date').date();-->
+    <!--//			$('#end_date').date();-->
+    <!--//		});-->
+<!--</script>-->
+</html>

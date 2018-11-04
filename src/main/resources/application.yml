@@ -3,6 +3,9 @@ server:
   servlet:
     context-path: /
 
+web:
+  upload-path: /usr/local/tomcat/webapps/platform/
+
 spring:
   datasource:
     name: programer
@@ -15,4 +18,4 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
   resources:
-    static-locations: classpath:/static/, classpath:/templates/
+    static-locations: classpath:/static/, classpath:/templates/,file:${web.upload-path}

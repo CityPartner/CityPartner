@@ -40,6 +40,10 @@ public class AccountController {
                    return "/login.html";
                }
                session.setAttribute("PlatformInfo",platformUserEntity);
+                //-------------------!!!
+                session.setAttribute("userId", platformUserEntity.getP_id());//用户id
+                session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
+                //-------------------!!!
                return "redirect:/project/my";
             }
         }
@@ -61,6 +65,10 @@ public class AccountController {
             } else {
                 PlatformUserEntity platformUserEntity = accountService.loadByMid(pid);
                 session.setAttribute("PlatformInfo", platformUserEntity);
+                //-------------------!!!
+                session.setAttribute("userId", platformUserEntity.getP_id());//用户id
+                session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
+                //-------------------!!!
                 return "redirect:/project/my";
             }
         }
@@ -131,7 +139,11 @@ public class AccountController {
         if (platformUserEntity == null){
             return "redirect:/login.html";
         }
-        session.setAttribute("getPlatformInfo",platformUserEntity);
+        session.setAttribute("PlatformInfo",platformUserEntity);
+        //-------------------!!!
+        session.setAttribute("userId", platformUserEntity.getP_id());//用户id
+        session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
+        //-------------------!!!
         return "redirect:/project/my";
     }
 

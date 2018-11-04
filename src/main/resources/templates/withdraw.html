@@ -50,7 +50,7 @@
                         , btn: ['查看', '取消']
                         , shadeClose: false
                         , yes: function () {
-                            alert("正在跳转");
+                            $(location).attr('href', 'http://localhost/wallet#withdraw');
                         }
                         , no: function () {
                             history.go(-1);
@@ -93,7 +93,7 @@
                         , btn: ['查看', '取消']
                         , shadeClose: false
                         , yes: function () {
-                            alert("正在跳转");
+                            $(location).attr('href', 'http://localhost/wallet#withdraw');
                         }
                         , no: function () {
                             history.go(-1);
@@ -105,7 +105,7 @@
                         ,btn: '查看'
                         , shadeClose: false
                         , yes: function () {
-                            alert("正在跳转");
+                            $(location).attr('href', 'http://localhost/wallet#withdraw');
                         }
                     });
                 } else {

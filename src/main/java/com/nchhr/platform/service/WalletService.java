@@ -1,7 +1,10 @@
 package com.nchhr.platform.service;
 
+import com.nchhr.platform.ModelVo.WalletProVo;
 import com.nchhr.platform.dao.InvestDao;
+import com.nchhr.platform.dao.PlatformUserDao;
 import com.nchhr.platform.dao.WalletDao;
+import com.nchhr.platform.entity.ProjectWalletIncome;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import com.nchhr.platform.util.GetCodeUtils;
 import org.springframework.stereotype.Service;
@@ -20,11 +23,58 @@ public class WalletService {
     WalletDao walletDao;
     @Resource
     InvestDao investDao;
+    @Resource
+    PlatformUserDao userDao;
 
     private final static int MIN_WITHDRAW_AMOUNT = 10;
 
+    /**
+     *获取用户收入list
+     * @author HWG
+     */
+    public List<ProjectWalletIncome> getAllIncome(String user_id){
+        return walletDao.getAllIncomeList(user_id);
+    }
+
+    /**
+     *获取用户项目收入list
+     * @author HWG
+     */
+    public List<ProjectWalletIncome> getProIncome(String user_id,String project_id){
+        return walletDao.getProIncomeList(user_id,project_id);
+    }
+
+    /**
+     *获取用户项目提现list
+     * @author HWG
+     */
+    public List<ProjectWalletWithdraw> getProWithdraw(String user_id,String project_id){
+        return walletDao.getProWithdrawList(user_id,project_id);
+    }
+
+
+    /**
+     *获取用户提现list
+     * @author HWG
+     */
+    public List<ProjectWalletWithdraw> getAllWithdraw(String user_id){
+        return walletDao.getAllWithdrawList(user_id);
+    }
+
+    /**
+     分项目获取用户钱包余额
+     @author HWG
+     */
+    public List<WalletProVo> getAllAmount(String user_id){
+        return walletDao.getWallet(user_id);
+    }
+
+    public List<WalletProVo> getOneAmount(String user_id,String project_id){
+        return walletDao.getProWallet(user_id,project_id);
+    }
+
     //获取项目钱包金额
-    public int getWalletAmount(String userId, String projectId) {
+    public String getWalletAmount(String userId, String projectId) {
 
         return walletDao.getWalletAmount(userId, projectId);
     }
@@ -61,14 +111,17 @@ public class WalletService {
             if (pattern.matcher(withdrawAmount).matches()) {
                 if (Double.parseDouble(withdrawAmount) < MIN_WITHDRAW_AMOUNT)
                     return "3";
-                if (Double.parseDouble(withdrawAmount) > getWalletAmount(userId, projectId))
+                if (Double.parseDouble(withdrawAmount) > Double.parseDouble(getWalletAmount(userId, projectId)))
                     return "4";
                 String withdrawId = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
                 Timestamp applyTime = new Timestamp(new Date().getTime());
                 int withdrawStatus = 0;
                 walletDao.addWalletApplyRecord(withdrawId, userId, projectId, withdrawAmount, applyTime, applyName, withdrawStatus);
 
-                GetCodeUtils.getCode(phone, httpSession, "2");
+                //短信通知项目发起人进行处理
+                String sponsorUserId = investDao.getSponsorUserId(projectId);
+                String sponsorPhone = userDao.getUserPhoneById(sponsorUserId);
+                GetCodeUtils.getCode(sponsorPhone, httpSession, "0");
 
                 return "1";
             }
@@ -78,13 +131,14 @@ public class WalletService {
 
     //查看是否还有提现申请未处理
     public boolean isApplying(String userId, String projectId) {
-        if (walletDao.getWalletStatus(userId, projectId) == null)
+        if (walletDao.getLatestWalletStatus(userId, projectId) == null)
             return false;
-        if (walletDao.getWalletStatus(userId, projectId) != 0)
+        if (walletDao.getLatestWalletStatus(userId, projectId) != 0)
             return false;
         return true;//true
     }
 
+    //------------------以下为处理提现功能
     //获取某个项目所有的提现申请
     public List<ProjectWalletWithdraw> getWithdrawApplyList(String projectId) {
         int withdrawStatus = 0;
@@ -92,9 +146,26 @@ public class WalletService {
     }
 
     //处理一条提现申请
-    public Integer handleWithdraw(String withdrawId) {
-        int withdrawStatus = 1;
-        return walletDao.setWithdrawStatus(withdrawId, withdrawStatus);
+    public Integer handleWithdraw(String userId, String projectId, String withdrawId) {
+        //TODO 防止提现被异步处理！！！
+        Integer preWithdrawStatus = walletDao.getWithdrawStatus(withdrawId);
+        if (preWithdrawStatus == 1)
+            return 0;
+        ProjectWalletWithdraw projectWalletWithdraw = walletDao.getWithdrawById(withdrawId);
+        String withdrawUserId = projectWalletWithdraw.getUserId();//
+        String withdrawProjectId = projectWalletWithdraw.getProjectId();
+        //钱包信息更新准备
+        String withdrawAmount = projectWalletWithdraw.getWithdrawAmount();
+        String walletAmount = walletDao.getWalletAmount(withdrawUserId, withdrawProjectId);
+        //提现信息更新准备
+        Timestamp hadleTime = new Timestamp(new Date().getTime());
+        String handleName = investDao.getInvestorNameById(userId, projectId);
+        Integer withdrawStatus = 1;
+        System.out.println("-----"+withdrawUserId+"---"+withdrawProjectId+"---"+withdrawAmount+"---"+walletAmount);
+        if (walletDao.updateWalletAmount(withdrawUserId, withdrawProjectId, (Double.parseDouble(walletAmount) - Double.parseDouble(withdrawAmount))+""))
+            return walletDao.setWithdrawStatus(withdrawId, hadleTime, handleName, withdrawStatus);
+        else
+            return 0;
     }
 
     //获取申请提现人的姓名，前期从项目投资表获取，后期即为实名

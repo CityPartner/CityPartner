@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/myIncome.js"></script>
+    <link href="/style/reset.css" rel="stylesheet" type="text/css">
+    <link href="/style/base.css" rel="stylesheet" type="text/css">
+    <link href="/style/header.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/style/supportList.css"/>
+    <title>我的收入</title>
+</head>
+<body>
+<header><span onclick="javascript:history.go(-1)"></span>我的收入</header>
+<table>
+    <!--<thead>-->
+        <!--<tr class="f28 g9">-->
+            <!--<td>项目名称</td>-->
+            <!--<td>余额</td>-->
+            <!--<td>操作</td>-->
+        <!--</tr>-->
+    <!--</thead>-->
+    <tbody class="">
+        <th>
+            <div class="test1111" style="width: 100%;height: 100px;background-color: black">
+
+            </div>
+            <div class="test22222" disabled="true" style="width: 100%;height: 100px;background-color: red;">
+
+
+
+            </div>
+
+        </th>
+
+
+        <!--<tr th:each="wp : ${WM.AA}">-->
+            <!--<td th:text="${wp.name}"></td>-->
+            <!--<td class="gred" th:text="${wp.wallet_amount}+￥"></td>-->
+            <!--<td><a th:href="@{/wallet/withdraw?project_id=}+${wp.project_id}">提现</a></td>-->
+        <!--</tr>-->
+
+    </tbody>
+
+</table>
+<div style="z-index: 9999;font-size: 16px;position: fixed;top: 11px;right: 10px;">
+    <a href="/wallet/income/detail" style="text-decoration: none;color: #FFF">收入详情</a>
+</div>
+</body>
+</html>

@@ -6,7 +6,7 @@ public class ProjectWalletWithdraw {
     private String withdrawId;
     private String userId;
     private String projectId;
-    private Integer withdrawAmount;
+    private String withdrawAmount;
     private Timestamp applyTime;
     private String applyName;
     private Timestamp handleTime;
@@ -40,11 +40,11 @@ public class ProjectWalletWithdraw {
         this.projectId = projectId;
     }
 
-    public Integer getWithdrawAmount() {
+    public String getWithdrawAmount() {
         return withdrawAmount;
     }
 
-    public void setWithdrawAmount(Integer withdrawAmount) {
+    public void setWithdrawAmount(String withdrawAmount) {
         this.withdrawAmount = withdrawAmount;
     }
 

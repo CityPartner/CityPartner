@@ -1,5 +1,8 @@
 package com.nchhr.platform.controller;
 
+import com.nchhr.platform.ModelVo.WalletProVo;
+import com.nchhr.platform.entity.PlatformUserEntity;
+import com.nchhr.platform.entity.ProjectWalletIncome;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import com.nchhr.platform.service.WalletService;
 import com.nchhr.platform.util.GetCodeUtils;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -21,69 +25,51 @@ public class WalletController {
     @Autowired
     WalletService walletService;
 
-    /*
-        我的钱包
-        @Author HWG
-            1.从project_wallet读取数据，显示钱包数额
-            2.提供“收入”按钮，链接“收入详情页面”
-            3.提供“提现”按钮，链接“提现功能页面”
-                project_wallet数据的来源需要对接
-    */
-    @RequestMapping("")
-    public String wallet() {
-
-        return "wallet";
-    }
-
-    /*
-        钱包——收入详情
-        @Author HWG
-            从project_wallet_income读取数据显示
-                project_wallet_income数据的来源需要对接
+    /**
+     * 我的钱包
+     * @author HWG
+     * 1.从project_wallet读取数据，显示钱包数额
+     * 2.提供“收入”按钮，链接“收入详情页面”
+     * 3.提供“提现”按钮，链接“提现功能页面”
+     * @param session
+     * @param model
+     * @return
      */
-    @RequestMapping("/income/detail")
-    public String income() {
-
-        return "incomeDetail";
+    @RequestMapping("")
+    public ModelAndView wallet(HttpSession session,Model model) {
+        PlatformUserEntity platformUserEntity= (PlatformUserEntity) session.getAttribute("PlatformInfo");
+        String user_id=platformUserEntity.getP_id();
+        String projectId = (String) session.getAttribute("projectId");
+//        String user_id="WOSHIHUANG";
+        List<WalletProVo> allAmount = walletService.getOneAmount(user_id,projectId);
+        List<ProjectWalletWithdraw> allWithdraw = walletService.getProWithdraw(user_id,projectId);
+        List<ProjectWalletIncome> allIncome = walletService.getProIncome(user_id,projectId);
+//        System.out.println(allWithdraw.toString());
+        model.addAttribute("AA",allAmount);
+        model.addAttribute("AW",allWithdraw);
+        model.addAttribute("AI",allIncome);
+        return new ModelAndView("MyWallets","WM",model);
     }
-
-    /*
-    钱包——提现详情
-    @Author HWG
-        从project_wallet_withdraw读取数据显示
-            project_wallet_withdraw数据的来源需要对接
-    */
-    @RequestMapping("/withdraw/detail")//
-    public String withdeawDetail() {
-
-        return "withdrawDetail";
-    }
-
-
 
 
     /*
-        钱包——盈利提现
+        钱包——申请提现
         @Author JC
      */
     @RequestMapping("/withdraw")
     public String withdraw(HttpSession httpSession, Model model) {
-        //TODO 以下为测试数据
-        httpSession.setAttribute("userId", "18160742626");//测试用户
-        httpSession.setAttribute("projectId", "PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");//测试项目
-        httpSession.setAttribute("phone", "18160742626");//测试用户手机号
-
         String userId = (String) httpSession.getAttribute("userId");
         String projectId = (String) httpSession.getAttribute("projectId");
         model.addAttribute("walletAmount", walletService.getWalletAmount(userId, projectId));
         model.addAttribute("applyName", walletService.getApplyName(userId, projectId));
+        System.out.println(userId+"--"+projectId+"*************---"+walletService.getWalletAmount(userId, projectId));
         return "withdraw";
     }
     //获取验证码
     @RequestMapping("/withdraw/getCode")
     @ResponseBody
     public String getCode(HttpSession httpSession) {
-        System.out.println("--短信已发送--");
+        System.out.println("--申请提现短信验证码已发送");
         String phone = (String) httpSession.getAttribute("phone");
         return GetCodeUtils.getCode(phone, httpSession, "0");
     }
@@ -119,7 +105,9 @@ public class WalletController {
 
     @RequestMapping("/withdraw/handle")
     @ResponseBody
-    public String dealwith(String withdrawId) {
-        return walletService.handleWithdraw(withdrawId).toString();
+    public String dealwith(HttpSession httpSession, String withdrawId) {
+        String userId = (String) httpSession.getAttribute("userId");//谁处理
+        String projectId = (String) httpSession.getAttribute("projectId");//哪个项目的
+        return walletService.handleWithdraw(userId, projectId, withdrawId).toString();
     }
 }
