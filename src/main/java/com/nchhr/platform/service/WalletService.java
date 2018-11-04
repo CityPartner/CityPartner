@@ -105,13 +105,14 @@ public class WalletService {
 
     //查看是否还有提现申请未处理
     public boolean isApplying(String userId, String projectId) {
-        if (walletDao.getWalletStatus(userId, projectId) == null)
+        if (walletDao.getLatestWalletStatus(userId, projectId) == null)
             return false;
-        if (walletDao.getWalletStatus(userId, projectId) != 0)
+        if (walletDao.getLatestWalletStatus(userId, projectId) != 0)
             return false;
         return true;//true
     }
 
+    //------------------以下为处理提现功能
     //获取某个项目所有的提现申请
     public List<ProjectWalletWithdraw> getWithdrawApplyList(String projectId) {
         int withdrawStatus = 0;
@@ -119,20 +120,24 @@ public class WalletService {
     }
 
     //处理一条提现申请
-    public Integer handleWithdraw(String withdrawId) {
+    public Integer handleWithdraw(String userId, String projectId, String withdrawId) {
         //TODO 防止提现被异步处理！！！
-        Integer preWithdrawStatus = 0;
+        Integer preWithdrawStatus = walletDao.getWithdrawStatus(withdrawId);
         if (preWithdrawStatus == 1)
             return 0;
-        Integer withdrawStatus = 1;
-        ProjectWalletWithdraw projectWalletWithdraw = walletDao.getWithdrawInfo(withdrawId);
-        String userId = projectWalletWithdraw.getUserId();
-        String projectId = projectWalletWithdraw.getProjectId();
+        ProjectWalletWithdraw projectWalletWithdraw = walletDao.getWithdrawById(withdrawId);
+        String withdrawUserId = projectWalletWithdraw.getUserId();//
+        String withdrawProjectId = projectWalletWithdraw.getProjectId();
+        //钱包信息更新准备
         String withdrawAmount = projectWalletWithdraw.getWithdrawAmount();
-        String walletAmount = walletDao.getWalletAmount(userId, projectId);
-        System.out.println("-----"+userId+"---"+projectId+"---"+withdrawAmount+"---"+walletAmount);
-        if (walletDao.updateWalletAmount(userId, projectId, (Double.parseDouble(walletAmount) - Double.parseDouble(withdrawAmount))+""))
-            return walletDao.setWithdrawStatus(withdrawId, withdrawStatus);
+        String walletAmount = walletDao.getWalletAmount(withdrawUserId, withdrawProjectId);
+        //提现信息更新准备
+        Timestamp hadleTime = new Timestamp(new Date().getTime());
+        String handleName = investDao.getInvestorNameById(userId, projectId);
+        Integer withdrawStatus = 1;
+        System.out.println("-----"+withdrawUserId+"---"+withdrawProjectId+"---"+withdrawAmount+"---"+walletAmount);
+        if (walletDao.updateWalletAmount(withdrawUserId, withdrawProjectId, (Double.parseDouble(walletAmount) - Double.parseDouble(withdrawAmount))+""))
+            return walletDao.setWithdrawStatus(withdrawId, hadleTime, handleName, withdrawStatus);
         else
             return 0;
     }

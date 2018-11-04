@@ -27,7 +27,7 @@ public class WalletController {
 
     /**
      * 我的钱包
-     * @Author HWG
+     * @author HWG
      * 1.从project_wallet读取数据，显示钱包数额
      * 2.提供“收入”按钮，链接“收入详情页面”
      * 3.提供“提现”按钮，链接“提现功能页面”
@@ -50,34 +50,9 @@ public class WalletController {
         return new ModelAndView("MyWallets","WM",model);
     }
 
-    /**
-     * 钱包——收入详情
-     * @Author HWG
-     * @return
-     */
-    @RequestMapping("/income/detail")
-    public String income() {
-
-        return "myIncome";
-    }
-
-    /**
-     * 钱包——提现详情
-     * @Author HWG
-     * 从project_wallet_withdraw读取数据显示
-     * @return
-     */
-    @RequestMapping("/withdraw/detail")//
-    public String withdeawDetail() {
-
-        return "withdrawDetail";
-    }
-
-
-
 
     /*
-        钱包——盈利提现
+        钱包——申请提现
         @Author JC
      */
     @RequestMapping("/withdraw")
@@ -85,8 +60,8 @@ public class WalletController {
         String userId = (String) httpSession.getAttribute("userId");
         String projectId = (String) httpSession.getAttribute("projectId");
         model.addAttribute("walletAmount", walletService.getWalletAmount(userId, projectId));
-        System.out.println(userId+"--"+projectId+"*************---"+walletService.getWalletAmount(userId, projectId));
         model.addAttribute("applyName", walletService.getApplyName(userId, projectId));
+        System.out.println(userId+"--"+projectId+"*************---"+walletService.getWalletAmount(userId, projectId));
         return "withdraw";
     }
     //获取验证码
@@ -129,7 +104,9 @@ public class WalletController {
 
     @RequestMapping("/withdraw/handle")
     @ResponseBody
-    public String dealwith(String withdrawId) {
-        return walletService.handleWithdraw(withdrawId).toString();
+    public String dealwith(HttpSession httpSession, String withdrawId) {
+        String userId = (String) httpSession.getAttribute("userId");//谁处理
+        String projectId = (String) httpSession.getAttribute("projectId");//哪个项目的
+        return walletService.handleWithdraw(userId, projectId, withdrawId).toString();
     }
 }

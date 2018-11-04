@@ -111,9 +111,13 @@ public interface WalletDao {
      * @param withdrawStatus 提现状态
      * @return 1成功，0失败
      */
-    @Update("update project_wallet_withdraw set withdraw_status = #{withdrawStatus}" +
+    @Update("update project_wallet_withdraw set handle_time = #{handleTime}" +
+            ", handle_name = #{handleName}" +
+            ", withdraw_status = #{withdrawStatus}" +
             " where withdraw_id = #{withdrawId}")
     Integer setWithdrawStatus(@Param("withdrawId") String withdrawId
+            ,@Param("handleTime") Timestamp handleTime
+            , @Param("handleName") String handleName
             , @Param("withdrawStatus") Integer withdrawStatus);
 
     /**
@@ -148,7 +152,7 @@ public interface WalletDao {
             @Result(property = "handleName", column = "handle_name"),
             @Result(property = "withdrawStatus", column = "withdraw_status")
     })
-    ProjectWalletWithdraw getWithdrawInfo(@Param("withdrawId") String withdrawId);
+    ProjectWalletWithdraw getWithdrawById(@Param("withdrawId") String withdrawId);
 
 
 
