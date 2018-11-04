@@ -17,7 +17,7 @@ public class CookiesService {
 
                 Cookie WXIDCookie = new Cookie(cookiesName, MID);
 
-                WXIDCookie.setMaxAge(86400);//设置cookie生存时间：
+                WXIDCookie.setMaxAge(315360000);//设置cookie生存时间：十年
                 response.addCookie(WXIDCookie);// 添加cookie：
             } else {
                 for (Cookie cookie : cookies) {
@@ -27,7 +27,7 @@ public class CookiesService {
                     }
                 }
                 Cookie WXIDCookie = new Cookie(cookiesName, MID);
-                WXIDCookie.setMaxAge(86400);//设置cookie生存时间：
+                WXIDCookie.setMaxAge(315360000);//设置cookie生存时间：
                 response.addCookie(WXIDCookie);// 添加cookie：
             }
 
