@@ -17,6 +17,6 @@ public interface InvestDao {
             , @Param("projectId") String projectId);
 
     @Select("select user_id from project_invest " +
-            "where project_id = #{projectId} and user_status = '0'}")
+            "where project_id = #{projectId} and user_status = 0")
     String getSponsorUserId(@Param("projectId") String projectId);
 }

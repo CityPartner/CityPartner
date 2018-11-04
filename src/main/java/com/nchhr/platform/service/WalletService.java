@@ -119,7 +119,8 @@ public class WalletService {
                 walletDao.addWalletApplyRecord(withdrawId, userId, projectId, withdrawAmount, applyTime, applyName, withdrawStatus);
 
                 //短信通知项目发起人进行处理
-                String sponsorPhone = userDao.getUserPhoneById(investDao.getSponsorUserId(projectId));
+                String sponsorUserId = investDao.getSponsorUserId(projectId);
+                String sponsorPhone = userDao.getUserPhoneById(sponsorUserId);
                 GetCodeUtils.getCode(sponsorPhone, httpSession, "0");
 
                 return "1";
