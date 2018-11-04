@@ -66,8 +66,18 @@ public interface WalletDao {
     @Select("select withdraw_status from project_wallet_withdraw" +
             " where user_id = #{userId} and project_id = #{projectId}" +
             " order by apply_time desc limit 1")
-    Integer getWalletStatus(@Param("userId") String userId
+    Integer getLatestWalletStatus(@Param("userId") String userId
             , @Param("projectId") String projectId);
+
+    /**
+     * 根据提现id查询提现状态
+     * @author JC
+     * @param withdrawId 提现id
+     * @return 提现状态
+     */
+    @Select("select withdraw_status from project_wallet_withdraw" +
+            " where withdraw_id = #{withdrawId}")
+    Integer getWithdrawStatus(@Param("withdrawId") String withdrawId);
 
     /**
      * 查询项目中对应状态的提现记录（申请时间降序）
@@ -95,7 +105,7 @@ public interface WalletDao {
             , @Param("withdrawStatus") Integer withdrawStatus);
 
     /**
-     * 更新提现状态
+     * 更新提现处理
      * @author JC
      * @param withdrawId 提现ID
      * @param withdrawStatus 提现状态
@@ -139,6 +149,9 @@ public interface WalletDao {
             @Result(property = "withdrawStatus", column = "withdraw_status")
     })
     ProjectWalletWithdraw getWithdrawInfo(@Param("withdrawId") String withdrawId);
+
+
+
 
     /**
      * 查询用户项目的钱包
