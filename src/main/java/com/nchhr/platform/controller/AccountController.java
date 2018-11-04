@@ -42,7 +42,6 @@ public class AccountController {
                session.setAttribute("PlatformInfo",platformUserEntity);
                 //-------------------!!!
                 session.setAttribute("userId", platformUserEntity.getP_id());//用户id
-                session.setAttribute("projectId", "PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");//项目id
                 session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
                 //-------------------!!!
                return "redirect:/project/my";
@@ -68,7 +67,6 @@ public class AccountController {
                 session.setAttribute("PlatformInfo", platformUserEntity);
                 //-------------------!!!
                 session.setAttribute("userId", platformUserEntity.getP_id());//用户id
-                session.setAttribute("projectId", "PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");//项目id
                 session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
                 //-------------------!!!
                 return "redirect:/project/my";
@@ -141,7 +139,11 @@ public class AccountController {
         if (platformUserEntity == null){
             return "redirect:/login.html";
         }
-        session.setAttribute("getPlatformInfo",platformUserEntity);
+        session.setAttribute("PlatformInfo",platformUserEntity);
+        //-------------------!!!
+        session.setAttribute("userId", platformUserEntity.getP_id());//用户id
+        session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
+        //-------------------!!!
         return "redirect:/project/my";
     }
 

@@ -47,6 +47,10 @@ public class AccountService {
             if (pwd.equals(platformUserEntity.getPassword())) {
                 //保存session
                 session.setAttribute("PlatformInfo", platformUserEntity);
+                //-------------------!!!
+                session.setAttribute("userId", platformUserEntity.getP_id());//用户id
+                session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
+                //-------------------!!!
                 //保存cookies
                 cookiesService.clear(response,"MID",request);
                 cookiesService.saveCookies(platformUserEntity.getP_id(),"PID", response, request);
@@ -144,6 +148,10 @@ public class AccountService {
                         //保存cookies
                         cookiesService.saveCookies(Pid,"PID", response, request);
                         session.setAttribute("PlatformInfo", platformUserEntity1);
+                        //-------------------!!!
+                        session.setAttribute("userId", platformUserEntity.getP_id());//用户id
+                        session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
+                        //-------------------!!!
                         //1代表成功
                         return "1";
 

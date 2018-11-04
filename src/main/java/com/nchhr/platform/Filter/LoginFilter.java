@@ -25,8 +25,8 @@ public class LoginFilter implements Filter {
         //如果没有登录
 //        String requestURI = req.getRequestURI().substring(req.getRequestURI().indexOf("/", 1), req.getRequestURI().length());
         String requestURI = req.getRequestURI();
-        System.out.println("requestURI=" + requestURI);
-        System.out.println("路径："+req.getContextPath());
+        System.out.println("RequestURI：" + requestURI);
+//        System.out.println("路径："+req.getContextPath());
 ////        boolean ss = requestURI.contains("**/index**");
 //        System.out.println("80:"+requestURI);
         //访问除login.jsp（登录页面）和验证码servlet之外的jsp/servlet都要进行验证
@@ -76,7 +76,7 @@ public class LoginFilter implements Filter {
                     }
                 }
             }
-            System.out.println("---进入过滤器---");
+            System.out.println("=====进入过滤器=====");
             System.out.println("PID:"+PID);
             if ( PID == null || PID.equals("")) {
 

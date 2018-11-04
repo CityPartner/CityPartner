@@ -30,8 +30,8 @@ public class ProjectController {
 
     //项目详情（控制用户使用的功能）
     @RequestMapping("/detail")
-    public String projectDetail() {
-
+    public String projectDetail(HttpSession httpSession) {
+        httpSession.setAttribute("projectId", "PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");//项目id
         return "projectDetail";
     }
 }

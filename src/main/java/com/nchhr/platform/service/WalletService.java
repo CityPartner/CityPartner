@@ -51,7 +51,7 @@ public class WalletService {
     }
 
     //获取项目钱包金额
-    public int getWalletAmount(String userId, String projectId) {
+    public String getWalletAmount(String userId, String projectId) {
 
         return walletDao.getWalletAmount(userId, projectId);
     }
@@ -88,7 +88,7 @@ public class WalletService {
             if (pattern.matcher(withdrawAmount).matches()) {
                 if (Double.parseDouble(withdrawAmount) < MIN_WITHDRAW_AMOUNT)
                     return "3";
-                if (Double.parseDouble(withdrawAmount) > getWalletAmount(userId, projectId))
+                if (Double.parseDouble(withdrawAmount) > Double.parseDouble(getWalletAmount(userId, projectId)))
                     return "4";
                 String withdrawId = UUID.randomUUID().toString().replace("-", "").substring(0, 16);
                 Timestamp applyTime = new Timestamp(new Date().getTime());
@@ -120,8 +120,20 @@ public class WalletService {
 
     //处理一条提现申请
     public Integer handleWithdraw(String withdrawId) {
-        int withdrawStatus = 1;
-        return walletDao.setWithdrawStatus(withdrawId, withdrawStatus);
+        //TODO 防止提现被异步处理！！！
+        Integer preWithdrawStatus = 0;
+        if (preWithdrawStatus == 1)
+            return 0;
+        Integer withdrawStatus = 1;
+        ProjectWalletWithdraw projectWalletWithdraw = walletDao.getWithdrawInfo(withdrawId);
+        String userId = projectWalletWithdraw.getUserId();
+        String projectId = projectWalletWithdraw.getProjectId();
+        String withdrawAmount = projectWalletWithdraw.getWithdrawAmount();
+        String walletAmount = walletDao.getWalletAmount(userId, projectId);
+        if (walletDao.updateWalletAmount(userId, projectId, (Double.parseDouble(walletAmount) - Double.parseDouble(withdrawAmount))+""))
+            return walletDao.setWithdrawStatus(withdrawId, withdrawStatus);
+        else
+            return 0;
     }
 
     //获取申请提现人的姓名，前期从项目投资表获取，后期即为实名

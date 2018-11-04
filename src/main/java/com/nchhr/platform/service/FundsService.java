@@ -113,7 +113,7 @@ public class FundsService {
                 income_user_id = projectInvestEntity.getUser_id();
                 //找到对应项目的每个用户
                 boolean projectWalletIncome = projectWalletIncomeDao.insertDivIncome(income_id,income_user_id,project_id,income_amount,time,'1',FO_id);
-                boolean wallet = walletDao.updateWalletAmount(income_user_id,income_amount);
+                boolean wallet = walletDao.updateWalletAmount(income_user_id,"","");
 
                 if (projectWalletIncome && wallet != true){
                     delok = false;

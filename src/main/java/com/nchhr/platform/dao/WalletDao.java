@@ -20,7 +20,7 @@ public interface WalletDao {
      */
     @Select("select wallet_amount from project_wallet " +
             "where user_id = #{userId} and project_id = #{projectId}")
-    int getWalletAmount(@Param("userId") String userId
+    String getWalletAmount(@Param("userId") String userId
             , @Param("projectId") String projectId);
 
 
@@ -160,12 +160,23 @@ public interface WalletDao {
     /**
      * 更新用户项目钱包数额
      * @author JC
-     * @param userId 用户钱包
+     * @param userId 用户id
+     * @param projectId 项目id
      * @param walletAmount 钱包数额
      * @return 更新钱包状态
      */
     @Update("update project_wallet set wallet_amount = #{walletAmount} " +
-            "where user_id = #{userId}")
+            "where user_id = #{userId} and project_id = #{projectId}")
     boolean updateWalletAmount(@Param("userId") String userId
-            , @Param("walletAmount") int walletAmount);
+            , @Param("projectId") String projectId
+            , @Param("walletAmount") String walletAmount);
+
+    /**
+     * 通过提现id获取该条提现信息
+     * @author JC
+     * @param withdrawId 提现id
+     * @return 提现信息
+     */
+    @Select("select * from project_wallet_withdraw where withdraw_id = #{withdrawId}")
+    ProjectWalletWithdraw getWithdrawInfo(@Param("withdrawId") String withdrawId);
 }
