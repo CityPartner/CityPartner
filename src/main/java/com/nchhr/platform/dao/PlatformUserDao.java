@@ -8,4 +8,5 @@ public interface PlatformUserDao {
 
     @Select("select * from platform_user where P_id = #{0}")
     PlatformUserEntity loadList(@Param("0") String userId);
+
 }

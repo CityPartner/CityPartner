@@ -95,7 +95,8 @@ public class WalletService {
                 int withdrawStatus = 0;
                 walletDao.addWalletApplyRecord(withdrawId, userId, projectId, withdrawAmount, applyTime, applyName, withdrawStatus);
 
-                GetCodeUtils.getCode(phone, httpSession, "2");
+                //TODO 短信通知项目发起人进行处理
+                GetCodeUtils.getCode(phone, httpSession, "0");
 
                 return "1";
             }

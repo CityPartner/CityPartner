@@ -15,4 +15,6 @@ public interface InvestDao {
             "where user_id = #{userId} and project_id = #{projectId}")
     String getInvestorNameById(@Param("userId") String userId
             , @Param("projectId") String projectId);
+
+
 }
