@@ -127,9 +127,11 @@ public interface WalletDao {
     List<ProjectWalletWithdraw> getAllWithdrawList(@Param("userId") String userId);
 
 
-    /*
-     *获取用户所有收入信息
-     * @author HWG
+    /**
+     * 获取所有用户收入信息
+     * @param user_id
+     * @return
+     * HWG
      */
     @Select("select * from " +
             "(select * from project_wallet_income where user_id=#{user_id}) as i " +

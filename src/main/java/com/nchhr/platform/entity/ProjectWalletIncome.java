@@ -1,11 +1,13 @@
 package com.nchhr.platform.entity;
 
+import java.sql.Timestamp;
+
 public class ProjectWalletIncome {
     private String incomeId;
     private String userId;
     private String projectId;
     private String incomeAmount;
-    private String incomeTime;
+    private Timestamp incomeTime;
     private String incomeType;
     private String attachInfo;
 
@@ -44,11 +46,11 @@ public class ProjectWalletIncome {
         this.incomeAmount = incomeAmount;
     }
 
-    public String getIncomeTime() {
+    public Timestamp getIncomeTime() {
         return incomeTime;
     }
 
-    public void setIncomeTime(String incomeTime) {
+    public void setIncomeTime(Timestamp incomeTime) {
         this.incomeTime = incomeTime;
     }
 

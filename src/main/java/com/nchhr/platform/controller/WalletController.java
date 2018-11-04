@@ -25,14 +25,16 @@ public class WalletController {
     @Autowired
     WalletService walletService;
 
-    /*
-        我的钱包
-        @Author HWG
-            1.从project_wallet读取数据，显示钱包数额
-            2.提供“收入”按钮，链接“收入详情页面”
-            3.提供“提现”按钮，链接“提现功能页面”
-                project_wallet数据的来源需要对接
-    */
+    /**
+     * 我的钱包
+     * @Author HWG
+     * 1.从project_wallet读取数据，显示钱包数额
+     * 2.提供“收入”按钮，链接“收入详情页面”
+     * 3.提供“提现”按钮，链接“提现功能页面”
+     * @param session
+     * @param model
+     * @return
+     */
     @RequestMapping("")
     public ModelAndView wallet(HttpSession session,Model model) {
         PlatformUserEntity platformUserEntity= (PlatformUserEntity) session.getAttribute("PlatformInfo");
@@ -48,11 +50,10 @@ public class WalletController {
         return new ModelAndView("MyWallets","WM",model);
     }
 
-    /*
-        钱包——收入详情
-        @Author HWG
-            从project_wallet_income读取数据显示
-                project_wallet_income数据的来源需要对接
+    /**
+     * 钱包——收入详情
+     * @Author HWG
+     * @return
      */
     @RequestMapping("/income/detail")
     public String income() {
@@ -60,12 +61,12 @@ public class WalletController {
         return "myIncome";
     }
 
-    /*
-    钱包——提现详情
-    @Author HWG
-        从project_wallet_withdraw读取数据显示
-            project_wallet_withdraw数据的来源需要对接
-    */
+    /**
+     * 钱包——提现详情
+     * @Author HWG
+     * 从project_wallet_withdraw读取数据显示
+     * @return
+     */
     @RequestMapping("/withdraw/detail")//
     public String withdeawDetail() {
 
