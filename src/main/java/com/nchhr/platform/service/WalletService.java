@@ -130,6 +130,7 @@ public class WalletService {
         String projectId = projectWalletWithdraw.getProjectId();
         String withdrawAmount = projectWalletWithdraw.getWithdrawAmount();
         String walletAmount = walletDao.getWalletAmount(userId, projectId);
+        System.out.println("-----"+userId+"---"+projectId+"---"+withdrawAmount+"---"+walletAmount);
         if (walletDao.updateWalletAmount(userId, projectId, (Double.parseDouble(walletAmount) - Double.parseDouble(withdrawAmount))+""))
             return walletDao.setWithdrawStatus(withdrawId, withdrawStatus);
         else
