@@ -2,6 +2,7 @@ package com.nchhr.platform.service;
 
 import com.nchhr.platform.ModelVo.WalletProVo;
 import com.nchhr.platform.dao.InvestDao;
+import com.nchhr.platform.dao.PlatformUserDao;
 import com.nchhr.platform.dao.WalletDao;
 import com.nchhr.platform.entity.ProjectWalletIncome;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
@@ -22,6 +23,8 @@ public class WalletService {
     WalletDao walletDao;
     @Resource
     InvestDao investDao;
+    @Resource
+    PlatformUserDao userDao;
 
     private final static int MIN_WITHDRAW_AMOUNT = 10;
 
@@ -95,8 +98,9 @@ public class WalletService {
                 int withdrawStatus = 0;
                 walletDao.addWalletApplyRecord(withdrawId, userId, projectId, withdrawAmount, applyTime, applyName, withdrawStatus);
 
-                //TODO 短信通知项目发起人进行处理
-                GetCodeUtils.getCode(phone, httpSession, "0");
+                //短信通知项目发起人进行处理
+                String sponsorPhone = userDao.getUserPhoneById(investDao.getSponsorUserId(projectId));
+                GetCodeUtils.getCode(sponsorPhone, httpSession, "0");
 
                 return "1";
             }
