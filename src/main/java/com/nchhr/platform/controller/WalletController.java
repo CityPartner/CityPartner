@@ -39,10 +39,11 @@ public class WalletController {
     public ModelAndView wallet(HttpSession session,Model model) {
         PlatformUserEntity platformUserEntity= (PlatformUserEntity) session.getAttribute("PlatformInfo");
         String user_id=platformUserEntity.getP_id();
+        String projectId = (String) session.getAttribute("projectId");
 //        String user_id="WOSHIHUANG";
-        List<WalletProVo> allAmount = walletService.getAllAmount(user_id);
-        List<ProjectWalletWithdraw> allWithdraw = walletService.getAllWithdraw(user_id);
-        List<ProjectWalletIncome> allIncome = walletService.getAllIncome(user_id);
+        List<WalletProVo> allAmount = walletService.getOneAmount(user_id,projectId);
+        List<ProjectWalletWithdraw> allWithdraw = walletService.getProWithdraw(user_id,projectId);
+        List<ProjectWalletIncome> allIncome = walletService.getProIncome(user_id,projectId);
 //        System.out.println(allWithdraw.toString());
         model.addAttribute("AA",allAmount);
         model.addAttribute("AW",allWithdraw);

@@ -155,16 +155,24 @@ public interface WalletDao {
     ProjectWalletWithdraw getWithdrawById(@Param("withdrawId") String withdrawId);
 
 
-
-
     /**
-     * 查询用户项目的钱包
-     * @param P_id 用户id
+     * 查询用户钱包
+     * @param user_id 用户id
      */
     @Select("SELECT w.wallet_id,w.user_id,w.project_id,w.wallet_amount,p.name from " +
             "(select * from project_wallet where user_id=#{user_id}) AS w JOIN " +
             "project as p ON w.project_id=p.project_id")
-    List<WalletProVo> getWallet(@Param("user_id") String P_id);
+    List<WalletProVo> getWallet(@Param("user_id") String user_id);
+
+
+    /**
+     * 查询用户项目的钱包
+     * @param user_id 用户id
+     */
+    @Select("SELECT w.wallet_id,w.user_id,w.project_id,w.wallet_amount,p.name from " +
+            "(select * from project_wallet where user_id=#{user_id} and project_id=#{project_id}) AS w JOIN " +
+            "project as p ON w.project_id=p.project_id")
+    List<WalletProVo> getProWallet(@Param("user_id") String user_id,@Param("project_id")String project_id);
 
     /**
      * 查询用户的所有提现记录（申请时间降序）
@@ -189,6 +197,29 @@ public interface WalletDao {
     List<ProjectWalletWithdraw> getAllWithdrawList(@Param("userId") String userId);
 
     /**
+     * 查询用户项目提现记录
+     * @param userId
+     * @param project_id
+     * @return
+     */
+    @Select("SELECT * from " +
+            "(SELECT * from project_wallet_withdraw where user_id=#{userId} and project_id=#{project_id} order by apply_time desc) AS w" +
+            " join project as p " +
+            "on w.project_id= p.project_id ;")
+    @Results({
+            @Result(property = "withdrawId", column = "withdraw_id"),
+            @Result(property = "userId", column = "user_id"),
+            @Result(property = "projectId", column = "name"),
+            @Result(property = "withdrawAmount", column = "withdraw_amount"),
+            @Result(property = "applyTime", column = "apply_time"),
+            @Result(property = "applyName", column = "apply_name"),
+            @Result(property = "handleTime", column = "handle_time"),
+            @Result(property = "handleName", column = "handle_name"),
+            @Result(property = "withdrawStatus", column = "withdraw_status")
+    })
+    List<ProjectWalletWithdraw> getProWithdrawList(@Param("userId") String userId,@Param("project_id")String project_id);
+
+    /**
      * 获取所有用户收入信息
      * @param userId 用户id
      * @return
@@ -207,4 +238,25 @@ public interface WalletDao {
             @Result(property = "attachInfo",column = "attach_info")
     })
     List<ProjectWalletIncome> getAllIncomeList(@Param("userId")String userId);
+
+    /**
+     * 获取所有用户某项目的收入信息
+     * @param userId
+     * @param project_id
+     * @return
+     * HWG
+     */
+    @Select("select * from " +
+            "(select * from project_wallet_income where user_id=#{userId} and project_id=#{project_id} order by income_time desc) as i " +
+            "JOIN project as p on i.project_id=p.project_id;")
+    @Results({
+            @Result(property = "incomeId",column = "income_id"),
+            @Result(property = "userId",column = "user_id"),
+            @Result(property = "projectId",column = "name"),
+            @Result(property = "incomeAmount",column = "income_amount"),
+            @Result(property = "incomeTime",column = "income_time"),
+            @Result(property = "incomeType",column = "income_type"),
+            @Result(property = "attachInfo",column = "attach_info")
+    })
+    List<ProjectWalletIncome> getProIncomeList(@Param("userId")String userId,@Param("project_id")String project_id);
 }

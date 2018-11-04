@@ -28,7 +28,7 @@ public class WalletService {
 
     private final static int MIN_WITHDRAW_AMOUNT = 10;
 
-    /*
+    /**
      *获取用户收入list
      * @author HWG
      */
@@ -36,8 +36,24 @@ public class WalletService {
         return walletDao.getAllIncomeList(user_id);
     }
 
+    /**
+     *获取用户项目收入list
+     * @author HWG
+     */
+    public List<ProjectWalletIncome> getProIncome(String user_id,String project_id){
+        return walletDao.getProIncomeList(user_id,project_id);
+    }
 
-    /*
+    /**
+     *获取用户项目提现list
+     * @author HWG
+     */
+    public List<ProjectWalletWithdraw> getProWithdraw(String user_id,String project_id){
+        return walletDao.getProWithdrawList(user_id,project_id);
+    }
+
+
+    /**
      *获取用户提现list
      * @author HWG
      */
@@ -45,12 +61,16 @@ public class WalletService {
         return walletDao.getAllWithdrawList(user_id);
     }
 
-    /*
-      分项目获取用户钱包余额
-      @author HWG
+    /**
+     分项目获取用户钱包余额
+     @author HWG
      */
-    public List<WalletProVo> getAllAmount(String P_id){
-        return walletDao.getWallet(P_id);
+    public List<WalletProVo> getAllAmount(String user_id){
+        return walletDao.getWallet(user_id);
+    }
+
+    public List<WalletProVo> getOneAmount(String user_id,String project_id){
+        return walletDao.getProWallet(user_id,project_id);
     }
 
     //获取项目钱包金额
