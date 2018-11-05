@@ -207,7 +207,7 @@ public interface WalletDao {
     @Select("SELECT * from " +
             "(SELECT * from project_wallet_withdraw where user_id=#{userId} and project_id=#{project_id}) AS w" +
             " join project as p " +
-            "on w.project_id= p.project_id  order by apply_time desc;")
+            "on w.project_id= p.project_id  order by apply_time desc  ;")
     @Results({
             @Result(property = "withdrawId", column = "withdraw_id"),
             @Result(property = "userId", column = "user_id"),
