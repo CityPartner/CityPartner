@@ -7,6 +7,7 @@ import com.nchhr.platform.dao.WalletDao;
 import com.nchhr.platform.entity.ProjectWalletIncome;
 import com.nchhr.platform.entity.ProjectWalletWithdraw;
 import com.nchhr.platform.util.GetCodeUtils;
+import com.nchhr.platform.util.SmsUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -121,7 +122,8 @@ public class WalletService {
                 //短信通知项目发起人进行处理
                 String sponsorUserId = investDao.getSponsorUserId(projectId);
                 String sponsorPhone = userDao.getUserPhoneById(sponsorUserId);
-                GetCodeUtils.getCode(sponsorPhone, httpSession, "0");
+                System.out.println("==="+sponsorUserId+"--"+sponsorPhone+"--"+applyName);
+                SmsUtils.send(sponsorPhone, applyName, httpSession, "1");
 
                 return "1";
             }
@@ -147,10 +149,11 @@ public class WalletService {
 
     //处理一条提现申请
     public Integer handleWithdraw(String userId, String projectId, String withdrawId) {
-        //TODO 防止提现被异步处理！！！
+        //防止提现被异步处理！！！
         Integer preWithdrawStatus = walletDao.getWithdrawStatus(withdrawId);
         if (preWithdrawStatus == 1)
             return 0;
+        //获取提现信息
         ProjectWalletWithdraw projectWalletWithdraw = walletDao.getWithdrawById(withdrawId);
         String withdrawUserId = projectWalletWithdraw.getUserId();//
         String withdrawProjectId = projectWalletWithdraw.getProjectId();
