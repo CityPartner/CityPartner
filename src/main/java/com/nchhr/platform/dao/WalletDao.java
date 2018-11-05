@@ -205,9 +205,9 @@ public interface WalletDao {
      * @return
      */
     @Select("SELECT * from " +
-            "(SELECT * from project_wallet_withdraw where user_id=#{userId} and project_id=#{project_id} order by apply_time desc) AS w" +
+            "(SELECT * from project_wallet_withdraw where user_id=#{userId} and project_id=#{project_id}) AS w" +
             " join project as p " +
-            "on w.project_id= p.project_id ;")
+            "on w.project_id= p.project_id  order by apply_time desc;")
     @Results({
             @Result(property = "withdrawId", column = "withdraw_id"),
             @Result(property = "userId", column = "user_id"),
@@ -249,8 +249,8 @@ public interface WalletDao {
      * HWG
      */
     @Select("select * from " +
-            "(select * from project_wallet_income where user_id=#{userId} and project_id=#{project_id} order by income_time desc) as i " +
-            "JOIN project as p on i.project_id=p.project_id;")
+            "(select * from project_wallet_income where user_id=#{userId} and project_id=#{project_id}) as i " +
+            "JOIN project as p on i.project_id=p.project_id  order by income_time desc;")
     @Results({
             @Result(property = "incomeId",column = "income_id"),
             @Result(property = "userId",column = "user_id"),
