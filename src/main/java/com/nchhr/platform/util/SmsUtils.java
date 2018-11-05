@@ -17,8 +17,8 @@ public class SmsUtils {
 
         CodeEnum codeEnumAccessId = CodeEnum.AccessId;
         CodeEnum codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
-        CodeEnum codeEnumSignName = CodeEnum.SignName;
-        CodeEnum codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
+        CodeEnum codeEnumSignName = CodeEnum.SignName1;
+        CodeEnum codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode1;
         if (model == "1") {
             codeEnumAccessId = CodeEnum.AccessId;
             codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
