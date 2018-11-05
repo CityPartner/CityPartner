@@ -10,12 +10,12 @@ public enum CodeEnum {
 
     //短信提醒提现
     SMSTemplateCode1("SMSTemplateCode","SMS_150172325"),
-    SignName1("SignName", "平台提醒"),
+    SignName1("SignName", "南昌城市合伙人"),
 
 
     //短信申请验证码
     SMSTemplateCode2("SMSTemplateCode","SMS_150182420"),
-    SignName2("SignName", "申请提现"),;
+    SignName2("SignName", "南昌城市合伙人"),;
 
 
 
