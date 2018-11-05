@@ -20,7 +20,10 @@ public class SmsUtils {
         CodeEnum codeEnumSignName = CodeEnum.SignName;
         CodeEnum codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
         if (model == "1") {
-
+            codeEnumAccessId = CodeEnum.AccessId;
+            codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
+            codeEnumSignName = CodeEnum.SignName1;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode1;
         } else {
             //短信提醒
             codeEnumAccessId = CodeEnum.AccessId;
