@@ -18,9 +18,9 @@
 <div>
     <ul class="bgwh content1">
         <li class="df pr30 pl30"><label class="f26" for="amount">可提现金额</label>
-            <input type="text" id="amount" name="amount" th:value="${walletAmount}" value="2000.00" disabled/></li>
+            <input type="text" id="amount" name="amount" th:value="${walletAmount}" value="余额" disabled/></li>
         <li class="df pr30 pl30"><label class="f26" for="name">申请人</label>
-            <input type="text" id="name" name="name" th:value="${applyName}" disabled/></li>
+            <input type="text" id="name" name="name" th:value="${applyName}" value="姓名" disabled/></li>
         <li class="pr30 pl30"><label class="f26" for="money">本次提现金额</label>
             <input type="text"  id="money" name="money" placeholder="请输入提现金额"/>元
         </li>
@@ -50,7 +50,7 @@
                         , btn: ['查看', '取消']
                         , shadeClose: false
                         , yes: function () {
-                            $(location).attr('href', 'http://localhost/wallet#withdraw');
+                            $(location).attr('href', 'http://haoduodian.trunch.cn/wallet#withdraw');
                         }
                         , no: function () {
                             history.go(-1);
@@ -93,7 +93,7 @@
                         , btn: ['查看', '取消']
                         , shadeClose: false
                         , yes: function () {
-                            $(location).attr('href', 'http://localhost/wallet#withdraw');
+                            $(location).attr('href', 'http://haoduodian.trunch.cn/wallet#withdraw');
                         }
                         , no: function () {
                             history.go(-1);
@@ -105,7 +105,7 @@
                         ,btn: '查看'
                         , shadeClose: false
                         , yes: function () {
-                            $(location).attr('href', 'http://localhost/wallet#withdraw');
+                            $(location).attr('href', 'http://haoduodian.trunch.cn/wallet#withdraw');
                         }
                     });
                 } else {

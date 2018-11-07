@@ -71,7 +71,7 @@ public class WalletController {
     public String getCode(HttpSession httpSession) {
         System.out.println("--申请提现短信验证码已发送");
         String phone = (String) httpSession.getAttribute("phone");
-        return GetCodeUtils.getCode(phone, httpSession, "0");
+        return GetCodeUtils.getCode(phone, httpSession, "5");
     }
     //判断当前是否有申请未处理
     @RequestMapping("/withdraw/isApplying")
