@@ -17,19 +17,19 @@ public class SmsUtils {
 
         CodeEnum codeEnumAccessId = CodeEnum.AccessId;
         CodeEnum codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
-        CodeEnum codeEnumSignName = CodeEnum.SignName1;
-        CodeEnum codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode1;
+        CodeEnum codeEnumSignName = CodeEnum.SignName3;
+        CodeEnum codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode3;
         if (model == "1") {
             codeEnumAccessId = CodeEnum.AccessId;
             codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
-            codeEnumSignName = CodeEnum.SignName1;
-            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode1;
+            codeEnumSignName = CodeEnum.SignName3;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode3;
         } else {
             //短信提醒
             codeEnumAccessId = CodeEnum.AccessId;
             codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
-            codeEnumSignName = CodeEnum.SignName1;
-            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode1;
+            codeEnumSignName = CodeEnum.SignName3;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode3;
         }
         //获取随机验证码，保存在session中
         CodeUtils codeUtils = new CodeUtils();

@@ -232,12 +232,11 @@ header.header .header-nav a img {
 .navigation-bar a.z-01 {
     position: absolute;
     left: 10px;
-    top: 50%;
-    margin-top: -15px;
-    background: url(../images/ico-top4.png) no-repeat;
+    background: url(../images/arrow-right.png ) no-repeat ;
     background-size: contain;
     width: 2.1rem;
-    height: 4.4rem;
+    height: 1.5rem;
+    margin-top: 13px;
 }
 
 .navigation-bar a.z-02 {

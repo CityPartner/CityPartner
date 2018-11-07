@@ -47,8 +47,8 @@ public class GetCodeUtils {
             //商城找回密码
             codeEnumAccessId = CodeEnum.AccessId;
             codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
-            codeEnumSignName = CodeEnum.SignName;
-            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
+            codeEnumSignName = CodeEnum.SignName1;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode1;
         } else if (model == "3") {
             //平台注册
             codeEnumAccessId = CodeEnum.AccessId;
@@ -59,8 +59,8 @@ public class GetCodeUtils {
             //平台找回密码
             codeEnumAccessId = CodeEnum.AccessId;
             codeEnumAccessKeySecre = CodeEnum.AccessKeySecre;
-            codeEnumSignName = CodeEnum.SignName;
-            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode;
+            codeEnumSignName = CodeEnum.SignName1;
+            codeEnumSMSTemplateCode = CodeEnum.SMSTemplateCode1;
         } else if (model == "5") {
             //申请提现
             codeEnumAccessId = CodeEnum.AccessId;

@@ -2,20 +2,26 @@ package com.nchhr.platform.enums;
 
 public enum CodeEnum {
 
-    AccessId("AccessKeyId", "LTAIMCtxtFp03EBf"),
-    AccessKeySecre("AccessKeySecret", "nDr1n0ZRemha5MrkYnQ2ZLXprTmTdM"),
-    //短信模板
-    SMSTemplateCode("SMSTemplateCode", "SMS_146807344"),
+    AccessId("AccessKeyId", "LTAIt2OMF0RdFsw0"),
+    AccessKeySecre("AccessKeySecret", "CKNdqWQgzmYmPdeZetwpu0HmXHmEQH"),
+
+
+    //用户注册
+    SMSTemplateCode("SMSTemplateCode", "SMS_147125242"),
     SignName("SignName", "南昌城市合伙人"),
 
-    //短信提醒提现
-    SMSTemplateCode1("SMSTemplateCode","SMS_150172325"),
+    //修改密码
+    SMSTemplateCode1("SMSTemplateCode","SMS_147125241"),
     SignName1("SignName", "南昌城市合伙人"),
 
 
     //短信申请验证码
-    SMSTemplateCode2("SMSTemplateCode","SMS_150182420"),
-    SignName2("SignName", "南昌城市合伙人"),;
+    SMSTemplateCode2("SMSTemplateCode","SMS_150576690"),
+    SignName2("SignName", "南昌城市合伙人"),
+
+    //商城提醒去提现
+    SMSTemplateCode3("SMSTemplateCode","SMS_150571761"),
+    SignName3("SignName","南昌城市合伙人");
 
 
 
