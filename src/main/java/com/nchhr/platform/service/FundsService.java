@@ -1,8 +1,6 @@
 package com.nchhr.platform.service;
 
-import com.nchhr.platform.ModelVo.IncomeVo;
-import com.nchhr.platform.ModelVo.ProInvetstVo;
-import com.nchhr.platform.ModelVo.ProWalletInVo;
+import com.nchhr.platform.ModelVo.*;
 import com.nchhr.platform.dao.*;
 import com.nchhr.platform.entity.*;
 import com.nchhr.platform.util.CodeUtils;
@@ -10,7 +8,6 @@ import com.nchhr.platform.util.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +38,20 @@ public class FundsService {
     @Autowired
     PlatformUserDao platformUserDao;
 
+    @Autowired
+    IncomeDayDao incomeDayDao;
+
+    @Autowired
+    IncomeMonthDao incomeMonthDao;
+
+    @Autowired
+    IncomeYearDao incomeYearDao;
+
     /**
-     * 加载收入数据
+     * 加载所有的收入数据（income表）
      * @return
      */
     public List<IncomeVo> income() {
-
         List<IncomeVo> incomeVos = new ArrayList<>();
         List<IncomeEntity> incomeEntities = incomeDao.loadList();
 
@@ -57,6 +62,30 @@ public class FundsService {
             incomeVos.add(incomeVo);
         }
         return incomeVos;
+    }
+
+    /**
+     * 按天加载收入数据
+     * @return
+     */
+    public List<IncomeDayEntity> showIncomeDay(){
+        return incomeDayDao.loadList();
+    }
+
+    /**
+     * 按月加载收入数据
+     * @return
+     */
+    public List<IncomeMonthEntity> showIncomeMonth(){
+        return incomeMonthDao.loadList();
+    }
+
+    /**
+     * 按年加载收入数据
+     * @return
+     */
+    public List<IncomeYearEntity> showIncomeYear(){
+        return incomeYearDao.loadList();
     }
 
     /**
@@ -77,14 +106,14 @@ public class FundsService {
 
 
     /**
-     * 项目分红
-     * @param user_id       //分红人。项目发起人
-     * @param project_id
-     * @param dividendAmount
-     * @return
-     */
-    public boolean dividendFund(String user_id, String project_id, int dividendAmount) {
-        /*
+         * 项目分红
+         * @param user_id       //分红人。项目发起人
+         * @param project_id
+         * @param dividendAmount
+         * @return
+         */
+        public boolean dividendFund(String user_id, String project_id, int dividendAmount) {
+            /*
          * 只有项目发起人可以分红
          * 分红计算每个人所得钱，放入每个人的钱包中，project_wallet需要改数值，project_wallet_income需要插入数据
          * 往固定开销表中插入一条支出记录fixed_overhead

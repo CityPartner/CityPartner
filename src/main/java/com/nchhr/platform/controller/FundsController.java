@@ -1,11 +1,7 @@
 package com.nchhr.platform.controller;
 
-import com.nchhr.platform.ModelVo.IncomeVo;
-import com.nchhr.platform.ModelVo.ProInvetstVo;
-import com.nchhr.platform.ModelVo.ProWalletInVo;
-import com.nchhr.platform.entity.FactoryRebateEntity;
-import com.nchhr.platform.entity.FixedOverheadEntity;
-import com.nchhr.platform.entity.ProjectWalletIncome;
+import com.nchhr.platform.ModelVo.*;
+import com.nchhr.platform.entity.*;
 import com.nchhr.platform.service.FundsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,14 +22,37 @@ public class FundsController {
     @Autowired
     FundsService fundsService;
 
+    //按年月日来显示收入和支出,String类型还是int类型，自己修改
+    int day = 0;
+    int months = 1;
+    int years = 2;
+    //默认按天，月，年显示，自己修改
+    int showdata = 0;
+
     //项目收入
     @RequestMapping("/income")
     @ResponseBody
     public ModelAndView income(Model model) {
-        List<IncomeVo> incomeVos = fundsService.income();
-        List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
-        model.addAttribute("Incomes",incomeVos);
-        model.addAttribute("Expenses", factoryRebateEntity);
+        //收入的显示方式
+        showdata = 0;
+
+        if(showdata == day){
+            List<IncomeDayEntity> incomeDay = fundsService.showIncomeDay();
+            List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
+            model.addAttribute("Incomes",incomeDay);
+            model.addAttribute("Expenses", factoryRebateEntity);    //支出在下面，这个是返点
+        }else if (showdata == months){
+            List<IncomeMonthEntity> incomeMonth = fundsService.showIncomeMonth();
+            List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
+            model.addAttribute("Incomes",incomeMonth);
+            model.addAttribute("Expenses", factoryRebateEntity);
+        }else if (showdata == years){
+            List<IncomeYearEntity> incomeYear = fundsService.showIncomeYear();
+            List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
+            model.addAttribute("Incomes",incomeYear);
+            model.addAttribute("Expenses", factoryRebateEntity);
+        }
+
         return new ModelAndView("funds","IncomeModel",model);
     }
 
