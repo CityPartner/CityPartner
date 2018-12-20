@@ -32,6 +32,11 @@ public class ProjectController {
     @RequestMapping("/detail")
     public String projectDetail(HttpSession httpSession) {
         httpSession.setAttribute("projectId", "PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");//项目id
-        return "projectDetail";
+        String userId = (String) httpSession.getAttribute("userId");//谁处理
+        String projectId = (String) httpSession.getAttribute("projectId");//谁处理
+        if (projectService.isProjectSponsor(userId, projectId))
+            return "projectDetailSponsor";
+        else
+            return "projectDetail";
     }
 }
