@@ -47,6 +47,16 @@ public class FundsService {
     @Autowired
     IncomeYearDao incomeYearDao;
 
+    @Autowired
+    FixedOverheadDayDao fixedOverheadDayDao;
+
+    @Autowired
+    FixedOverheadMonthDao fixedOverheadMonthDao;
+
+    @Autowired
+    FixedOverheadYearDao fixedOverheadYearDao;
+
+
     /**
      * 加载所有的收入数据（income表）
      * @return
@@ -97,12 +107,37 @@ public class FundsService {
     }
 
     /**
-     * 加载开销数据
+     * 加载支出数据
      * @return
      */
     public List<FixedOverheadEntity> overHead() {
         return fixedOverheadDao.loadList();
     }
+
+    /**
+     * 按天加载支出数据
+     * @return
+     */
+    public List<FixedOverheadDayEntity> showFixedOverheadDay(){
+        return fixedOverheadDayDao.loadList();
+    }
+
+    /**
+     * 按月加载支出数据
+     * @return
+     */
+    public List<FixedOverheadMonthEntity> showFixedOverheadMonth(){
+        return fixedOverheadMonthDao.loadList();
+    }
+
+    /**
+     * 按年加载支出数据
+     * @return
+     */
+    public List<FixedOverheadYearEntity> showFixedOverheadYear(){
+        return fixedOverheadYearDao.loadList();
+    }
+
 
 
     /**

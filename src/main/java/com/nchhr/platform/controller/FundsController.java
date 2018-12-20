@@ -24,8 +24,8 @@ public class FundsController {
 
     //按年月日来显示收入和支出,String类型还是int类型，自己修改
     int day = 0;
-    int months = 1;
-    int years = 2;
+    int month = 1;
+    int year = 2;
     //默认按天，月，年显示，自己修改
     int showdata = 0;
 
@@ -38,19 +38,19 @@ public class FundsController {
 
         if(showdata == day){
             List<IncomeDayEntity> incomeDay = fundsService.showIncomeDay();
-            List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
+//            List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
             model.addAttribute("Incomes",incomeDay);
-            model.addAttribute("Expenses", factoryRebateEntity);    //支出在下面，这个是返点
-        }else if (showdata == months){
+//            model.addAttribute("Expenses", factoryRebateEntity);    //支出在下面，这个是返点,属于收入
+        }else if (showdata == month){
             List<IncomeMonthEntity> incomeMonth = fundsService.showIncomeMonth();
-            List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
+//            List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
             model.addAttribute("Incomes",incomeMonth);
-            model.addAttribute("Expenses", factoryRebateEntity);
-        }else if (showdata == years){
+//            model.addAttribute("Expenses", factoryRebateEntity);
+        }else if (showdata == year){
             List<IncomeYearEntity> incomeYear = fundsService.showIncomeYear();
-            List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
+//            List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
             model.addAttribute("Incomes",incomeYear);
-            model.addAttribute("Expenses", factoryRebateEntity);
+//            model.addAttribute("Expenses", factoryRebateEntity);
         }
 
         return new ModelAndView("funds","IncomeModel",model);
@@ -60,8 +60,18 @@ public class FundsController {
     @RequestMapping("/expenses")
     @ResponseBody
     public String expenses(Model model) {
-        List<FixedOverheadEntity> FixedOverheadEntity = fundsService.overHead();
-        model.addAttribute("expenses", FixedOverheadEntity);
+        showdata = 0;
+        if (showdata == day){
+            List<FixedOverheadDayEntity> FixedOverheadDayEntity = fundsService.showFixedOverheadDay();
+            model.addAttribute("expenses", FixedOverheadDayEntity);
+        }else if (showdata == month){
+            List<FixedOverheadMonthEntity> FixedOverheadMonthEntity = fundsService.showFixedOverheadMonth();
+            model.addAttribute("expenses", FixedOverheadMonthEntity);
+        }else if (showdata == year){
+            List<FixedOverheadYearEntity> FixedOverheadYearEntity = fundsService.showFixedOverheadYear();
+            model.addAttribute("expenses", FixedOverheadYearEntity);
+        }
+
         return "";
     }
 
