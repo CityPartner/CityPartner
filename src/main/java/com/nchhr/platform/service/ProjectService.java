@@ -12,6 +12,10 @@ public class ProjectService {
     @Resource
     ProjectInvestDao projectInvestDao;
     public boolean isProjectSponsor(String userId, String projectId) {
-        return projectInvestDao.getUserStatusInProject(userId, projectId) == 0;
+        Integer projectStatus = projectInvestDao.getUserStatusInProject(userId, projectId);
+        if (projectStatus == null)
+            return false;
+        else
+            return projectStatus == 0;
     }
 }
