@@ -1,11 +1,8 @@
 package com.nchhr.platform.controller;
 
-import com.nchhr.platform.ModelVo.IncomeVo;
-import com.nchhr.platform.ModelVo.ProInvetstVo;
-import com.nchhr.platform.ModelVo.ProWalletInVo;
+import com.nchhr.platform.ModelVo.*;
 import com.nchhr.platform.entity.FactoryRebateEntity;
 import com.nchhr.platform.entity.FixedOverheadEntity;
-import com.nchhr.platform.entity.ProjectWalletIncome;
 import com.nchhr.platform.service.FundsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,20 +27,48 @@ public class FundsController {
     @RequestMapping("/income")
     @ResponseBody
     public ModelAndView income(Model model) {
+
         List<IncomeVo> incomeVos = fundsService.income();
-        List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate();
+        List<FactoryRebateEntity> factoryRebateEntity = fundsService.Rebate1();
+
+
+
         model.addAttribute("Incomes",incomeVos);
         model.addAttribute("Expenses", factoryRebateEntity);
+
         return new ModelAndView("funds","IncomeModel",model);
+    }
+
+    //项目根据日期查询结果
+
+    /***
+     * 0 年
+     * 1 月
+     * 2 日
+     * fromIdex //第几页信息
+     * pageSize //加载数据条数
+     * @param index
+     * @return
+     */
+    @RequestMapping("/index")
+    @ResponseBody
+    public indexPage index(String index, String fromIndex, String pageSize, String currentPage){
+
+
+//        System.out.println("index:"+index);
+        indexPage indexPage =  fundsService.index(index,fromIndex,pageSize,currentPage);
+
+        return indexPage;
     }
 
     //项目支出
     @RequestMapping("/expenses")
     @ResponseBody
-    public String expenses(Model model) {
-        List<FixedOverheadEntity> FixedOverheadEntity = fundsService.overHead();
-        model.addAttribute("expenses", FixedOverheadEntity);
-        return "";
+    public indexPage expenses(String index, String fromIndex, String pageSize, String currentPage) {
+
+        indexPage indexPage = fundsService.Rebate(index,fromIndex,pageSize,currentPage);
+
+        return indexPage;
     }
 
     //项目分红
