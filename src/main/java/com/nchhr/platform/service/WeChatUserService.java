@@ -26,7 +26,7 @@ public class WeChatUserService {
     //获取微信验证请求路径
     public String getWeChatRequestURL() {
         //回调页面路径
-        String wechat_redirect_uri = "http://haoduodian.trunch.cn/wechatuser/wechat_redirect";
+        String wechat_redirect_uri = "http://nchhr.com/wechatuser/wechat_redirect";
         //授权请求路径
         String request_url = null;
         try {
