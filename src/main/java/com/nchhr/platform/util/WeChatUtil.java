@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 
 public class WeChatUtil {
 
-    public static final String AppID = "wxd37234f803fb499e";
+    public static final String AppID = "wxfdcc608f745e9fc8";
 
-    public static final String AppSecret = "197e3656caf846e48d7ce9a3cf9ddba9";
+    public static final String AppSecret = "552cf5e2338b17cdd0a8606861805767";
 
     public static String access_token = "";
 
