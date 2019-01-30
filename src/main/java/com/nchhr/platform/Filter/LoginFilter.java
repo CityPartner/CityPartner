@@ -33,8 +33,9 @@ public class LoginFilter implements Filter {
         if (    !(req.getContextPath()+"/").contains(requestURI)
                 && requestURI.contains(req.getContextPath())
                 && !requestURI.contains("/images")
-                && !requestURI.contains("/funds")
                 && !requestURI.contains("/js")
+                && !requestURI.contains("/fund")
+                && !requestURI.contains("/funds")
                 && !requestURI.contains("/style")
                 && !requestURI.contains("/wechat_redirect")
                 && !requestURI.contains("/custom-js")
@@ -79,13 +80,13 @@ public class LoginFilter implements Filter {
             System.out.println("=====进入过滤器=====");
             System.out.println("PID:"+PID);
             if ( PID == null || PID.equals("")) {
-
                 res.sendRedirect( req.getContextPath()+"/login.html");
                 return;
             }else {
                 if (session.getAttribute("PlatformInfo") == null) {
-
-                    req.getRequestDispatcher( req.getContextPath()+"/getPlatformInfo").forward(request,response);
+//                    System.out.println(req.getContextPath());
+                    res.sendRedirect( req.getContextPath()+"/getPlatformInfo");
+                    return;
                 }
             }
 
