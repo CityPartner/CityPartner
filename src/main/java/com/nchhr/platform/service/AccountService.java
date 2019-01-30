@@ -139,7 +139,7 @@ public class AccountService {
                     String Pid = "M" + codeUtils.createRandom(false, 16);
                     System.out.println(Pid);
 
-                    boolean b = accountDao.RegisterLogin(Pid, userPhone, pwd, TimeUtils.getTime(), "123456");
+                    boolean b = accountDao.RegisterLogin(Pid, userPhone, pwd, TimeUtils.getTime(), weChatUserEntity.getOpenid());
                     System.out.println("是否添加成功平台用户：" + b);
                     if (b == true) {
                         PlatformUserEntity platformUserEntity1 = accountDao.loadByid(Pid);
