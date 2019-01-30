@@ -149,8 +149,8 @@ public class AccountService {
                         cookiesService.saveCookies(Pid,"PID", response, request);
                         session.setAttribute("PlatformInfo", platformUserEntity1);
                         //-------------------!!!
-                        session.setAttribute("userId", platformUserEntity.getP_id());//用户id
-                        session.setAttribute("phone", platformUserEntity.getPhone());//用户手机号
+                        session.setAttribute("userId", platformUserEntity1.getP_id());//用户id
+                        session.setAttribute("phone", platformUserEntity1.getPhone());//用户手机号
                         //-------------------!!!
                         //1代表成功
                         return "1";
