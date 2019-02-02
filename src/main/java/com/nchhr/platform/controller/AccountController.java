@@ -33,7 +33,8 @@ public class AccountController {
         System.out.println("程序主入口");
         if (cookiesService.alreadyCookies(request,"PID")){
             String pid = cookiesService.printCookies(request,"PID");
-            if (!pid.equals("0")){
+            System.out.println("pid"+pid);
+            if (!pid.equals("")){
                PlatformUserEntity platformUserEntity =  accountService.loadByMid(pid);
                //如果不存在该用户，就去登录，重新保存数据
                if (platformUserEntity == null){
