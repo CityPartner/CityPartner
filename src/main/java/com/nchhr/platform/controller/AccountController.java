@@ -60,7 +60,7 @@ public class AccountController {
          */
         if (cookiesService.alreadyCookies(request, "PID")) {
             String pid = cookiesService.printCookies(request, "PID");
-            if (pid.equals("0")) {
+            if (pid.equals("")) {
                 //判断openid
                 return "/login.html";
             } else {

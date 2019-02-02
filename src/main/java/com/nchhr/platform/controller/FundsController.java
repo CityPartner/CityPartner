@@ -71,6 +71,7 @@ public class FundsController {
         return indexPage;
     }
 
+
     //项目分红
     @RequestMapping("/dividend")
     public String dividend(HttpServletRequest request) {
